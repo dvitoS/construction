@@ -1,14 +1,14 @@
 import React, {FC} from 'react'
 import {PageTitle} from '../../../_metronic/layout/core'
-import {BuilderPage} from './BuilderPage'
+import {WorkersPage} from './WorkersPage'
 
-const BuilderPageWrapper: FC = () => {
+const WorkersPageWrapper: FC = () => {
   return (
     <>
       <PageTitle breadcrumbs={[]}>Layout Builder</PageTitle>
-      <BuilderPage />
+      <WorkersPage />
     </>
   )
 }
 
-export default BuilderPageWrapper
+export default WorkersPageWrapper

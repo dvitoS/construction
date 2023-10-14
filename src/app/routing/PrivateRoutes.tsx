@@ -7,6 +7,7 @@ import {MenuTestPage} from '../pages/MenuTestPage'
 import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
 import {WithChildren} from '../../_metronic/helpers'
 import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
+import WorkersPageWrapper from '../pages/workers/WorkersPageWrapper'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -15,6 +16,7 @@ const PrivateRoutes = () => {
   const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
   const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
   const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
+  const Workers = lazy(() => import ('../modules/widgets/WidgetsPage'))
 
   return (
     <Routes>
@@ -24,7 +26,9 @@ const PrivateRoutes = () => {
         {/* Pages */}
         <Route path='dashboard' element={<DashboardWrapper />} />
         <Route path='builder' element={<BuilderPageWrapper />} />
+        <Route path='workers' element={<WorkersPageWrapper />} />
         <Route path='menu-test' element={<MenuTestPage />} />
+        
         {/* Lazy Modules */}
         <Route
           path='crafted/pages/profile/*'
