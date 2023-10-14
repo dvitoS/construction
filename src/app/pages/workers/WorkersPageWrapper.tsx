@@ -5,7 +5,7 @@ import {WorkersPage} from './WorkersPage'
 const WorkersPageWrapper: FC = () => {
   return (
     <>
-      <PageTitle breadcrumbs={[]}>Layout Builder</PageTitle>
+      <PageTitle breadcrumbs={[]}>Workers</PageTitle>
       <WorkersPage />
     </>
   )
