@@ -28,7 +28,8 @@ const SidebarMenuMain = () => {
         fontIcon='bi-archive'
         icon='element-plus'
       >
-        <SidebarMenuItemWithSub to='/crafted/pages/workers' title='Workers' hasBullet={true}>
+
+        <SidebarMenuItemWithSub to='/crafted/pages/build-site' title='Workers' hasBullet={true}>
           <SidebarMenuItem
             to='/crafted/pages/workers/add'
             title='Add'
@@ -45,6 +46,7 @@ const SidebarMenuMain = () => {
             hasBullet={true}
           />
         </SidebarMenuItemWithSub>
+
 
       </SidebarMenuItemWithSub>
       <SidebarMenuItemWithSub
