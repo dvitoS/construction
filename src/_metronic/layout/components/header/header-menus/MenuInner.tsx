@@ -32,6 +32,7 @@ export function MenuInner() {
             menuPlacement='right-start'
             menuTrigger={`{default:'click', lg: 'hover'}`}
           >
+          
             <MenuItem to='/crafted/pages/profile/overview' title='Overview' hasBullet={true} />
             <MenuItem to='/crafted/pages/profile/projects' title='Projects' hasBullet={true} />
             <MenuItem to='/crafted/pages/profile/campaigns' title='Campaigns' hasBullet={true} />
@@ -42,6 +43,7 @@ export function MenuInner() {
               hasBullet={true}
             />
           </MenuInnerWithSub>
+
           <MenuInnerWithSub
             title='Wizards'
             to='/crafted/pages/wizards'

@@ -16,7 +16,7 @@ const PrivateRoutes = () => {
   const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
   const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
   const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
-  const Workers = lazy(() => import ('../modules/widgets/WidgetsPage'))
+  const WorkersPage = lazy(() => import ('../modules/widgets/WidgetsPage'))
 
   return (
     <Routes>
@@ -75,6 +75,14 @@ const PrivateRoutes = () => {
           element={
             <SuspensedView>
               <UsersPage />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='crafted/pages/workers/*'
+          element={
+            <SuspensedView>
+              <WorkersPage />
             </SuspensedView>
           }
         />
