@@ -29,20 +29,39 @@ const SidebarMenuMain = () => {
         icon='element-plus'
       >
 
-        <SidebarMenuItemWithSub to='/crafted/pages/build-site' title='Workers' hasBullet={true}>
+        <SidebarMenuItemWithSub to='/crafted/pages' title='Workers' hasBullet={true}>
           <SidebarMenuItem
-            to='/crafted/pages/workers/add'
-            title='Add'
+            to='/crafted/pages/workers/addworkers'
+            title='Add Workers'
             hasBullet={true}
           />
           <SidebarMenuItem
-            to='/crafted/pages/workers/edit'
-            title='Edit'
+            to='/crafted/pages/workers/editworkers'
+            title='Edit Workers'
             hasBullet={true}
           />
           <SidebarMenuItem
-            to='/crafted/pages/workers/list'
-            title='List'
+            to='/crafted/pages/workers/listworkers'
+            title='List Workers'
+            hasBullet={true}
+          />
+        </SidebarMenuItemWithSub>
+
+
+        <SidebarMenuItemWithSub to='/crafted/pages' title='Constructions' hasBullet={true}>
+          <SidebarMenuItem
+            to='/crafted/pages/constructions/addconstructions'
+            title='Add Constructions'
+            hasBullet={true}
+          />
+          <SidebarMenuItem
+            to='/crafted/pages/construction/editconstructions'
+            title='Edit Constructions'
+            hasBullet={true}
+          />
+          <SidebarMenuItem
+            to='/crafted/pages/listconstructions'
+            title='List Constructions'
             hasBullet={true}
           />
         </SidebarMenuItemWithSub>

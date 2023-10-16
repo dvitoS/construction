@@ -31,7 +31,7 @@ const ListConstructionsPage: React.FC = () => {
 
   return (
     <div>
-      
+      <h1>List of construction sites</h1>
     </div>
   )
 }
