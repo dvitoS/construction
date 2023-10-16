@@ -5,7 +5,7 @@ import {ListConstructionsPage} from './ListConstructionsPage'
 const ListConstructionsPageWrapper: FC = () => {
   return (
     <>
-      <PageTitle breadcrumbs={[]}>Construction-sites</PageTitle>
+      <PageTitle breadcrumbs={[]}>Construction-sites List</PageTitle>
       <ListConstructionsPage />
     </>
   )

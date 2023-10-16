@@ -8,7 +8,7 @@ import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
 import {WithChildren} from '../../_metronic/helpers'
 import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
 import WorkersPageWrapper from '../pages/workers/WorkersPageWrapper'
-import ConstructionsPageWrapper from '../pages/construction-sites/ConstructionsPageWrapper'
+import AddConstructionsPageWrapper from '../pages/construction-sites/add/AddConstructionsPageWrapper'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -17,7 +17,12 @@ const PrivateRoutes = () => {
   const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
   const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
   const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
-  const WorkersPage = lazy(() => import ('../modules/widgets/WidgetsPage'))
+  const AddWorkersPageWrapper = lazy(() => import ('../pages/workers/add/AddWorkersPageWrapper'))
+  const EditWorkersPageWrapper = lazy(() => import ('../pages/workers/edit/EditWorkersPageWrapper'))
+  const ListWorkersPageWrapper = lazy(() => import ('../pages/workers/list/ListWorkersPageWrapper'))
+  const AddConstructionsPageWrapper = lazy(() => import ('../pages/construction-sites/add/AddConstructionsPageWrapper'))
+  const EditConstructionsPageWrapper = lazy(() => import ('../pages/construction-sites/edit/EditConstructionsPageWrapper'))
+  const ListConstructionsPageWrapper = lazy(() => import ('../pages/construction-sites/list/ListConstructionsPageWrapper'))
 
   return (
     <Routes>
@@ -27,7 +32,12 @@ const PrivateRoutes = () => {
         {/* Pages */}
         <Route path='dashboard' element={<DashboardWrapper />} />
         <Route path='builder' element={<BuilderPageWrapper />} />
-        <Route path='workers' element={<WorkersPageWrapper />} />
+        <Route path='addworkers' element={<AddWorkersPageWrapper />} />
+        <Route path='editworkers' element={<EditWorkersPageWrapper />} />
+        <Route path='listworkers' element={<ListWorkersPageWrapper />} />
+        <Route path='addconstructions' element={<AddConstructionsPageWrapper />} />
+        <Route path='editconstructions' element={<EditConstructionsPageWrapper />} />
+        <Route path='listconstructions' element={<ListConstructionsPageWrapper />} />
         <Route path='menu-test' element={<MenuTestPage />} />
         
         {/* Lazy Modules */}
@@ -80,19 +90,51 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-          path='crafted/pages/workers/*'
+          path='crafted/pages/addworkers'
           element={
             <SuspensedView>
-              <WorkersPageWrapper />
+              <AddWorkersPageWrapper />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='crafted/pages/editworkers'
+          element={
+            <SuspensedView>
+              <EditWorkersPageWrapper />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='crafted/pages/listworkers'
+          element={
+            <SuspensedView>
+              <ListWorkersPageWrapper />
             </SuspensedView>
           }
         />
 
         <Route
-          path='crafted/pages/constructions/addconstructions'
+          path='crafted/pages/addconstructions'
           element={
             <SuspensedView>
-              <ConstructionsPageWrapper />
+              <AddConstructionsPageWrapper />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='crafted/pages/editconstructions'
+          element={
+            <SuspensedView>
+              <EditConstructionsPageWrapper />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='crafted/pages/listconstructions'
+          element={
+            <SuspensedView>
+              <ListConstructionsPageWrapper />
             </SuspensedView>
           }
         />

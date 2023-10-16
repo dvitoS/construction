@@ -31,7 +31,7 @@ const ListWorkersPage: React.FC = () => {
   
   return (
     <div>
-      <h1>Add</h1>
+      <h1>List</h1>
     </div>
   )
 }

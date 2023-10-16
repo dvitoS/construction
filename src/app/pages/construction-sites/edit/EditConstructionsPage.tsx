@@ -31,7 +31,7 @@ const EditConstructionsPage: React.FC = () => {
 
   return (
     <div>
-      
+      <h1>Edit construction-site</h1>
     </div>
   )
 }

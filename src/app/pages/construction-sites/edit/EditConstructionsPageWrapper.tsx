@@ -5,7 +5,7 @@ import {EditConstructionsPage} from './EditConstructionsPage'
 const EditConstructionsPageWrapper: FC = () => {
   return (
     <>
-      <PageTitle breadcrumbs={[]}>Construction-sites</PageTitle>
+      <PageTitle breadcrumbs={[]}>Edit Construction-sites</PageTitle>
       <EditConstructionsPage />
     </>
   )

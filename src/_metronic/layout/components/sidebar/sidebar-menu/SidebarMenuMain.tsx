@@ -31,17 +31,17 @@ const SidebarMenuMain = () => {
 
         <SidebarMenuItemWithSub to='/crafted/pages' title='Workers' hasBullet={true}>
           <SidebarMenuItem
-            to='/crafted/pages/workers/addworkers'
+            to='/crafted/pages/addworkers'
             title='Add Workers'
             hasBullet={true}
           />
           <SidebarMenuItem
-            to='/crafted/pages/workers/editworkers'
+            to='/crafted/pages/editworkers'
             title='Edit Workers'
             hasBullet={true}
           />
           <SidebarMenuItem
-            to='/crafted/pages/workers/listworkers'
+            to='/crafted/pages/listworkers'
             title='List Workers'
             hasBullet={true}
           />
@@ -50,12 +50,12 @@ const SidebarMenuMain = () => {
 
         <SidebarMenuItemWithSub to='/crafted/pages' title='Constructions' hasBullet={true}>
           <SidebarMenuItem
-            to='/crafted/pages/constructions/addconstructions'
+            to='/crafted/pages/addconstructions'
             title='Add Constructions'
             hasBullet={true}
           />
           <SidebarMenuItem
-            to='/crafted/pages/construction/editconstructions'
+            to='/crafted/pages/editconstructions'
             title='Edit Constructions'
             hasBullet={true}
           />
@@ -65,6 +65,8 @@ const SidebarMenuMain = () => {
             hasBullet={true}
           />
         </SidebarMenuItemWithSub>
+
+        
 
 
       </SidebarMenuItemWithSub>
