@@ -4,7 +4,7 @@ import React, {useState} from 'react'
 import {KTIcon, toAbsoluteUrl} from '../../../../_metronic/helpers'
 import {getLayoutFromLocalStorage, ILayout, LayoutSetup} from '../../../../_metronic/layout/core'
 
-const ListWorkersPage: React.FC = () => {
+const ListConstructionsPage: React.FC = () => {
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
@@ -28,12 +28,12 @@ const ListWorkersPage: React.FC = () => {
       setResetLoading(false)
     }, 1000)
   }
-  
+
   return (
     <div>
-      <h1>Add</h1>
+      
     </div>
   )
 }
 
-export {ListWorkersPage}
+export {ListConstructionsPage}
