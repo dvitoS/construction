@@ -24,44 +24,44 @@ const SidebarMenuMain = () => {
       </div>
       <SidebarMenuItemWithSub
         to='/crafted/pages'
-        title='Pages'
+        title='Radinci i gradilišta'
         fontIcon='bi-archive'
         icon='element-plus'
       >
 
-        <SidebarMenuItemWithSub to='/crafted/pages' title='Workers' hasBullet={true}>
+        <SidebarMenuItemWithSub to='/crafted/pages' title='Radinici' hasBullet={true}>
           <SidebarMenuItem
             to='/crafted/pages/addworkers'
-            title='Add Workers'
+            title='Dodaj radnika'
             hasBullet={true}
           />
           <SidebarMenuItem
             to='/crafted/pages/editworkers'
-            title='Edit Workers'
+            title='Izmjeni radnika'
             hasBullet={true}
           />
           <SidebarMenuItem
             to='/crafted/pages/listworkers'
-            title='List Workers'
+            title='Popis radnika'
             hasBullet={true}
           />
         </SidebarMenuItemWithSub>
 
 
-        <SidebarMenuItemWithSub to='/crafted/pages' title='Constructions' hasBullet={true}>
+        <SidebarMenuItemWithSub to='/crafted/pages' title='Gradilišta' hasBullet={true}>
           <SidebarMenuItem
             to='/crafted/pages/addconstructions'
-            title='Add Constructions'
+            title='Dodaj gradilišta'
             hasBullet={true}
           />
           <SidebarMenuItem
             to='/crafted/pages/editconstructions'
-            title='Edit Constructions'
+            title='Izmjeni gradilišta'
             hasBullet={true}
           />
           <SidebarMenuItem
             to='/crafted/pages/listconstructions'
-            title='List Constructions'
+            title='Popis gradilišta'
             hasBullet={true}
           />
         </SidebarMenuItemWithSub>
@@ -79,13 +79,6 @@ const SidebarMenuMain = () => {
         <SidebarMenuItem to='/crafted/account/overview' title='Overview' hasBullet={true} />
         <SidebarMenuItem to='/crafted/account/settings' title='Settings' hasBullet={true} />
       </SidebarMenuItemWithSub>
-      
-      
-      <div className='menu-item'>
-        <div className='menu-content pt-8 pb-2'>
-          <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Apps</span>
-        </div>
-      </div>
       
       
     </>
