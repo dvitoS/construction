@@ -8,12 +8,21 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import {useForm} from 'react-hook-form'
+
+
+	
+
+
 
 const AddWorkersPage: React.FC = () => {
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const onSubmit = (data:any) => console.log(data);
+  console.log(errors);
 
   const updateConfig = () => {
     setConfigLoading(true)
@@ -35,65 +44,45 @@ const AddWorkersPage: React.FC = () => {
   }
 
   return (
-    
-    <Form>
-    <Container>
-      <Row>
-        <Col><Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group></Col>
-        <Col></Col>
-      </Row>
-      <Row>
-        <Col><Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-        <Form.Group controlId="formBasicChecbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group></Col>
-        <Col></Col>
-      
-      </Row>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Container>
-  </Form>
-    
+	<form onSubmit={handleSubmit(onSubmit)}>
+		<label for="firstname">First Name</label>
+		<input type="text" placeholder="First name" id="firstname" {...register("First name", {required: true, maxLength: 80})} />
+		<input type="text" placeholder="Last Name" {...register} />
+		<input type="text" placeholder="OIB" {...register("OIB", {})} />
+		<input type="tel" placeholder="Mobile number" {...register("Mobile number", {required: true, minLength: 6, maxLength: 12})} />
+		<input type="text" placeholder="Email" {...register("Email", {required: true, pattern: /^\S+@\S+$/i})} />
+		<input type="number" placeholder="Passport number" {...register("Passport number", {})} />
+		<input type="text" placeholder="Parents names" {...register("Parents names", {})} />
+		<input type="datetime" placeholder="Work permit expiration date" {...register("Work permit expiration date", {})} />
+		<input type="datetime" placeholder="Health certificate expiration date" {...register("Health certificate expiration date", {})} />
+		<input type="checkbox" placeholder="Workplace safety certificate" {...register} />
+		<input type="checkbox" placeholder="First aid" {...register("First aid", {})} />
+		<input type="checkbox" placeholder="GEDA" {...register("GEDA", {})} />
+		<input type="text" placeholder="Hourly wage" {...register("Hourly wage", {})} />
+
+	<input type="submit" />
+	</form>
+	
   )
 }
 
 export {AddWorkersPage}
-<Form>
-  <Container>
-    <Row>
-      <Col><Form.Group controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group></Col>
-      <Col></Col>
-    </Row>
-    <Row>
-      <Col><Form.Group controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group controlId="formBasicChecbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group></Col>
-      <Col></Col>
-      
-    </Row>
-    <Button variant="primary" type="submit">
-      Submit
-    </Button>
-  </Container>
-</Form>
+
+
+{/* <form onSubmit={handleSubmit(onSubmit)}>
+<input type="text" placeholder="First name" {...register("First name", {required: true, maxLength: 80})} />
+<input type="text" placeholder="Last Name" {...register} />
+<input type="text" placeholder="OIB" {...register("OIB", {})} />
+<input type="tel" placeholder="Mobile number" {...register("Mobile number", {required: true, minLength: 6, maxLength: 12})} />
+<input type="text" placeholder="Email" {...register("Email", {required: true, pattern: /^\S+@\S+$/i})} />
+<input type="number" placeholder="Passport number" {...register("Passport number", {})} />
+<input type="text" placeholder="Parents names" {...register("Parents names", {})} />
+<input type="datetime" placeholder="Work permit expiration date" {...register("Work permit expiration date", {})} />
+<input type="datetime" placeholder="Health certificate expiration date" {...register("Health certificate expiration date", {})} />
+<input type="checkbox" placeholder="Workplace safety certificate" {...register} />
+<input type="checkbox" placeholder="First aid" {...register("First aid", {})} />
+<input type="checkbox" placeholder="GEDA" {...register("GEDA", {})} />
+<input type="text" placeholder="Hourly wage" {...register("Hourly wage", {})} />
+
+<input type="submit" />
+</form> */}
