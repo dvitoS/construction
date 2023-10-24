@@ -3,13 +3,16 @@ import clsx from 'clsx'
 import React, {useState} from 'react'
 import {KTIcon, toAbsoluteUrl} from '../../../../_metronic/helpers'
 import {getLayoutFromLocalStorage, ILayout, LayoutSetup} from '../../../../_metronic/layout/core'
+import {useEffect} from 'react'
+import ReactDom from 'react'
+import axios from 'axios'
 
 const EditConstructionsPage: React.FC = () => {
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-
+  
   const updateConfig = () => {
     setConfigLoading(true)
     try {
@@ -30,9 +33,7 @@ const EditConstructionsPage: React.FC = () => {
   }
 
   return (
-    <div>
-      <h1>Edit construction-site</h1>
-    </div>
+	<></>
   )
 }
 

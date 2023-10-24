@@ -31,7 +31,7 @@ const AddWorkersPage: React.FC = () => {
 
     function handleSubmit(e:any) {
         e.preventDefault()
-        axios.post('https://jsonplaceholder.typicode.com/posts', {data})
+        axios.post('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers.json', {data})
         .then(response => console.log(response))
         .catch(err => console.log(err))
     }
