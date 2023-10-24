@@ -19,17 +19,17 @@ const SidebarMenuMain = () => {
 
         <SidebarMenuItemWithSub to='/crafted/pages' title='Radinici' hasBullet={true}>
           <SidebarMenuItem
-            to='/crafted/pages/addworkers'
+            to='/crafted/workers/add'
             title='Dodaj radnika'
             hasBullet={true}
           />
           <SidebarMenuItem
-            to='/crafted/pages/editworkers'
+            to='/crafted/workers/edit'
             title='Izmjeni radnika'
             hasBullet={true}
           />
           <SidebarMenuItem
-            to='/crafted/pages/listworkers'
+            to='/crafted/workers/list'
             title='Popis radnika'
             hasBullet={true}
           />
@@ -38,17 +38,17 @@ const SidebarMenuMain = () => {
 
         <SidebarMenuItemWithSub to='/crafted/pages' title='Gradilišta' hasBullet={true}>
           <SidebarMenuItem
-            to='/crafted/pages/addconstructions'
+            to='/crafted/constructions/add'
             title='Dodaj gradilišta'
             hasBullet={true}
           />
           <SidebarMenuItem
-            to='/crafted/pages/editconstructions'
+            to='/crafted/constructions/edit'
             title='Izmjeni gradilišta'
             hasBullet={true}
           />
           <SidebarMenuItem
-            to='/crafted/pages/listconstructions'
+            to='/crafted/constructions/list'
             title='Popis gradilišta'
             hasBullet={true}
           />

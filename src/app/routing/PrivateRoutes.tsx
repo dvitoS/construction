@@ -32,12 +32,12 @@ const PrivateRoutes = () => {
         {/* Pages */}
         <Route path='dashboard' element={<DashboardWrapper />} />
         <Route path='builder' element={<BuilderPageWrapper />} />
-        <Route path='addworkers' element={<AddWorkersPageWrapper />} />
-        <Route path='editworkers' element={<EditWorkersPageWrapper />} />
-        <Route path='listworkers' element={<ListWorkersPageWrapper />} />
-        <Route path='addconstructions' element={<AddConstructionsPageWrapper />} />
-        <Route path='editconstructions' element={<EditConstructionsPageWrapper />} />
-        <Route path='listconstructions' element={<ListConstructionsPageWrapper />} />
+        <Route path='add' element={<AddWorkersPageWrapper />} />
+        <Route path='edit' element={<EditWorkersPageWrapper />} />
+        <Route path='list' element={<ListWorkersPageWrapper />} />
+        <Route path='add' element={<AddConstructionsPageWrapper />} />
+        <Route path='edit' element={<EditConstructionsPageWrapper />} />
+        <Route path='list' element={<ListConstructionsPageWrapper />} />
         <Route path='menu-test' element={<MenuTestPage />} />
         
         {/* Lazy Modules */}
@@ -90,7 +90,7 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-          path='crafted/pages/addworkers'
+          path='crafted/workers/add'
           element={
             <SuspensedView>
               <AddWorkersPageWrapper />
@@ -98,7 +98,7 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-          path='crafted/pages/editworkers'
+          path='crafted/workers/edit'
           element={
             <SuspensedView>
               <EditWorkersPageWrapper />
@@ -106,7 +106,7 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-          path='crafted/pages/listworkers'
+          path='crafted/workers/list'
           element={
             <SuspensedView>
               <ListWorkersPageWrapper />
@@ -115,7 +115,7 @@ const PrivateRoutes = () => {
         />
 
         <Route
-          path='crafted/pages/addconstructions'
+          path='crafted/constructions/add'
           element={
             <SuspensedView>
               <AddConstructionsPageWrapper />
@@ -123,7 +123,7 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-          path='crafted/pages/editconstructions'
+          path='crafted/constructions/edit'
           element={
             <SuspensedView>
               <EditConstructionsPageWrapper />
@@ -131,7 +131,7 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-          path='crafted/pages/listconstructions'
+          path='crafted/constructions/list'
           element={
             <SuspensedView>
               <ListConstructionsPageWrapper />
