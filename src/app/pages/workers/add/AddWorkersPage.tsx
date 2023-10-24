@@ -22,30 +22,29 @@ const AddWorkersPage: React.FC = () => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [checked, setChecked] = useState('');
-  
-  
-  
-  function handleSubmit(e:any) {
-    e.preventDefault()
-    axios.post('https://jsonplaceholder.typicode.com/posts', {data})
-    .then(response => console.log(response))
-    .catch(err => console.log(err))
-  }
+  const [checked, setChecked] = useState(true);
   
 
-
-  const handleChange = (e:any) =>{
-    const name = e.target.name;
-    const value = e.target.value;
-    setData({...data, [name]:value})
     
-  }
+    
 
- 
-  
-  
 
+    function handleSubmit(e:any) {
+        e.preventDefault()
+        axios.post('https://jsonplaceholder.typicode.com/posts', {data})
+        .then(response => console.log(response))
+        .catch(err => console.log(err))
+    }
+  
+    
+
+    const handleChange = (e:any) =>{
+        const name = e.target.name;
+        const value = e.target.value;
+        setData({...data, [name]:value})
+        setChecked(current => !current);
+    
+    }
 
   const updateConfig = () => {
     setConfigLoading(true)
@@ -203,7 +202,14 @@ const AddWorkersPage: React.FC = () => {
 
     <div className="mb-10">
       <div className="form-check form-check-custom form-check-solid">
-          <input name="Zastita" defaultChecked={false} onChange={handleChange} value={data.Zastita} className="form-check-input" type="checkbox"  id="flexCheckDefault"/>
+          <input 
+          name="Zastita" 
+          value={ "ima"}
+          onChange={handleChange}
+          className="form-check-input" 
+          type="checkbox"  
+          id="flexCheckDefault"/>
+          
           <label className="form-check-label" >
               Zaštita na radu
           </label>
@@ -212,15 +218,30 @@ const AddWorkersPage: React.FC = () => {
 
     <div className="mb-10">
       <div className="form-check form-check-custom form-check-solid">
-          <input name="Prva_pomoc" defaultChecked={false} onChange={handleChange} value={data.Prva_pomoc}className="form-check-input" type="checkbox" id="flexCheckDefault"/>
-          <label className="form-check-label" >
+          <input  
+          name="Prva_pomoc" 
+          value={ "ima"}
+          onChange={handleChange}
+          className="form-check-input" 
+          type="checkbox" 
+          id="flexCheckDefault"/>
+
+          <label htmlFor="prvapomoc" className="form-check-label" >
               Prva pomoć
           </label>
       </div>
     </div>
     <div className="mb-10">
       <div className="form-check form-check-custom form-check-solid">
-          <input name="GEDA" defaultChecked={false} onChange={handleChange} value="ima" className="form-check-input" type="checkbox" id="flexCheckDefault"/>
+          <input  
+          name="GEDA" 
+          value={ "ima"}
+          onChange={handleChange}
+          className="form-check-input" 
+          type="checkbox" 
+          id="flexCheckDefault"
+          />
+
           <label className="form-check-label" >
               GEDA
           </label>
