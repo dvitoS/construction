@@ -17,7 +17,7 @@ import axios from 'axios'
 
 const AddWorkersPage: React.FC = () => {
   const nameInputId = useId();
-  const [data, setData] = useState ({ime:"", prezime:"", adresa:"", oib:"", email:"", mobitel:"", broj_putovnice:"", ime_oca:"", ime_majke:"", Radna_dozvola:"", Ljecnicki:"", Zastita:'', Prva_pomoc:'', GEDA:'' })
+  const [data, setData] = useState ({ime:"", prezime:"", adresa:"", oib:"", email:"", mobitel:"", broj_putovnice:"", ime_oca:"", ime_majke:"", Radna_dozvola:"", Ljecnicki:"", Zastita:'', Prva_pomoc:'', GEDA:'' });
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
@@ -31,7 +31,7 @@ const AddWorkersPage: React.FC = () => {
 
     function handleSubmit(e:any) {
         e.preventDefault()
-        axios.post('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers.json', {data})
+        axios.post('https://jsonplaceholder.typicode.com/posts', {data})
         .then(response => console.log(response))
         .catch(err => console.log(err))
     }
@@ -42,8 +42,16 @@ const AddWorkersPage: React.FC = () => {
         const name = e.target.name;
         const value = e.target.value;
         setData({...data, [name]:value})
-        setChecked(current => !current);
-    
+    }
+
+    const handleChangeCheckbox = (e:any) =>{
+      const name = e.target.name;
+      const value = e.target.value;
+      if(e.target.checked == true){
+        setData({...data, [name]:"true"})
+      }else{
+        setData({...data, [name]:""})
+      }
     }
 
   const updateConfig = () => {
@@ -67,145 +75,131 @@ const AddWorkersPage: React.FC = () => {
 
   return (
     <form className="form" method="post" onSubmit={handleSubmit}>
-    <div className="mb-10">
-      <label htmlFor={nameInputId} className="form-label">Ime</label>
-      <input
-        id={nameInputId}
-        type="text"
-        name="ime"
-        className="form-control h-40px w-500px"
-        placeholder="Ime"
-        onChange={handleChange}
-        value={data.ime}
-      />
-    </div>
+    <div className="card-body">
+      <div className="form-group row">
+        <div className="col-lg-4">
+          <label>Ime:</label>
+          <input 
+          type="text"
+          name="ime"
+          className="form-control"
+          placeholder="Unesite ime"
+          onChange={handleChange}
+          value={data.ime}/>
+        </div>
 
-    <div className="mb-10">
-      <label className="form-label">Prezime</label>
-      <input
-        type="text"
-        name="prezime"
-        className="form-control h-40px w-500px"
-        placeholder="Prezime"
-        onChange={handleChange}
-        value={data.prezime}
-      />
-    </div>
+        <div className="col-lg-4">
+          <label>Prezime:</label>
+          <input type="text"
+          name="prezime"
+          className="form-control"
+          placeholder="Unesite prezime"
+          onChange={handleChange}
+          value={data.prezime}
+          />
+        </div>
+      </div>
 
-    <div className="mb-10">
-      <label className="form-label">Adresa</label>
-      <input
-        type="text"
-        name="adresa"
-        className="form-control h-40px w-500px"
-        placeholder="Adresa"
-        onChange={handleChange}
-        value={data.adresa}
-      />
-    </div>
+      <div className="form-group row">
+        <div className="col-lg-4">
+          <label>Adresa:</label>
+          <input type="text"
+          name="adresa"
+          className="form-control"
+          placeholder="Unesite adresu"
+          onChange={handleChange}
+          value={data.adresa}/>
+        </div>
 
-    <div className="mb-10">
-      <label className="form-label">OIB</label>
-      <input
-        type="number"
-        name="oib"
-        className="form-control h-40px w-500px"
-        placeholder="OIB"
-        onChange={handleChange}
-        value={data.oib}
-      />
-    </div>
+          <div className="col-lg-4">
+            <label>OIB:</label>
+            <input type="number"
+            name="oib"
+            className="form-control"
+            placeholder="OIB"
+            onChange={handleChange}
+            value={data.oib}/>
+          </div>
+          
 
-    <div className="mb-10">
-      <label className="form-label">Broj mobitela</label>
-      <input
-        type="tel"
-        name="mobitel"
-        className="form-control h-40px w-500px"
-        placeholder="tel"
-        onChange={handleChange}
-        value={data.mobitel}
-      />
-    </div>
+        <div className="col-lg-4">
+          <label>Putovnica:</label>
+            <input        
+            type="number"
+            name="broj_putovnice"
+            className="form-control"
+            placeholder="Broj putovnice"
+            onChange={handleChange}
+            value={data.broj_putovnice}/>
+        </div>
 
-    <div className="mb-10">
-      <label className="form-label">E-mail adresa</label>
-      <input
-        type="email"
-        name="email"
-        className="form-control h-40px w-500px"
-        placeholder="email@email.com"
-        onChange={handleChange}
-        value={data.email}
-      />
-    </div>
-    
-    <div className="mb-10">
-      <label className="form-label">Broj putovnice</label>
-      <input
-        type="number"
-        name="broj_putovnice"
-        className="form-control h-40px w-500px"
-        placeholder="Broj putovnice"
-        onChange={handleChange}
-        value={data.broj_putovnice}
-      />
-    </div>
+        <div className="col-lg-4">
+          <label>Broj mobitela:</label>
+            <input type="tel" className="form-control" placeholder="Unesite broj mobitela"/>
+        </div>
 
-    <div className="mb-10">
-      <label className="form-label">Ime oca</label>
-      <input
-        type="text"
-        name="ime_oca"
-        className="form-control h-40px w-500px"
-        placeholder="Ime Oca"
-        onChange={handleChange}
-        value={data.ime_oca}
-      />
-    </div>
+        <div className="col-lg-4">
+          <label>Email:</label>
+            <input type="email"
+              name="email"
+              className="form-control"
+              placeholder="email@email.com"
+              onChange={handleChange}
+              value={data.email}/>
+        </div>
+      </div>
 
-    <div className="mb-10">
-      <label className="form-label">Ime majke</label>
-      <input
-        type="text"
-        name="ime_majke"
-        className="form-control h-40px w-500px"
-        placeholder="Ime majke"
-        onChange={handleChange}
-        value={data.ime_majke}
-      />
-    </div>
-    
-    <div className="mb-10">
-      <label className="form-label">Radna dozvola (ističe)</label>
-      <input
-        type="date"
-        name="Radna_dozvola"
-        className="form-control h-40px w-500px"
-        placeholder="Radna dozvola"
-        onChange={handleChange}
-        value={data.Radna_dozvola}
-      />
-    </div>
-    
-    <div className="mb-10">
-      <label className="form-label">Liječnički pregled (ističe)</label>
-      <input
-        type="date"
-        name="Ljecnicki"
-        className="form-control h-40px w-500px"
-        placeholder="Liječnički pregled"
-        onChange={handleChange}
-        value={data.Ljecnicki}
-      />
-    </div>
+      <div className="form-group row">
+        <div className="col-lg-4">
+          <label>Ime oca:</label>
+            <input type="text"
+            name="ime_oca"
+            className="form-control"
+            placeholder="Unesite ime Oca"
+            onChange={handleChange}
+            value={data.ime_oca}/>
+        </div>
 
-    <div className="mb-10">
+        <div className="col-lg-4">
+          <label>Ime majke:</label>
+            <input type="text"
+            name="ime_majke"
+            className="form-control"
+            placeholder="Unesite ime majke"
+            onChange={handleChange}
+            value={data.ime_majke}/>
+        </div>
+      </div>
+
+      <div className="form-group row">
+        <div className="col-lg-4">
+          <label>Radna dozvola vrijedi do:</label>
+            <input type="date"
+            name="Radna_dozvola"
+            className="form-control"
+            placeholder="Radna dozvola"
+            onChange={handleChange}
+            value={data.Radna_dozvola} />
+        </div>
+
+        <div className="col-lg-4">
+          <label>Liječnički pregled vrijedi do:</label>
+            <input type="date"
+            name="Ljecnicki"
+            className="form-control"
+            placeholder="Liječnički pregled"
+            onChange={handleChange}
+            value={data.Ljecnicki}/>
+        </div>
+      </div>
+    </div>
+   <br />
+   <div className="mb-10">
       <div className="form-check form-check-custom form-check-solid">
           <input 
           name="Zastita" 
-          value={ "ima"}
-          onChange={handleChange}
+          value="false"
+          onChange={handleChangeCheckbox}
           className="form-check-input" 
           type="checkbox"  
           id="flexCheckDefault"/>
@@ -220,8 +214,8 @@ const AddWorkersPage: React.FC = () => {
       <div className="form-check form-check-custom form-check-solid">
           <input  
           name="Prva_pomoc" 
-          value={ "ima"}
-          onChange={handleChange}
+          value="false"
+          onChange={handleChangeCheckbox}
           className="form-check-input" 
           type="checkbox" 
           id="flexCheckDefault"/>
@@ -235,8 +229,8 @@ const AddWorkersPage: React.FC = () => {
       <div className="form-check form-check-custom form-check-solid">
           <input  
           name="GEDA" 
-          value={ "ima"}
-          onChange={handleChange}
+          value="false"
+          onChange={handleChangeCheckbox}
           className="form-check-input" 
           type="checkbox" 
           id="flexCheckDefault"
@@ -247,8 +241,15 @@ const AddWorkersPage: React.FC = () => {
           </label>
       </div>
     </div>
-    <button type="submit" className="btn btn-primary font-weight-bold mr-2">Potvrdi</button>
-
+    <br/>
+    <div className="card-footer">
+      <div className="row">
+        <div className="col-lg-4"></div>
+        <div className="col-lg-8">
+          <button type="submit" className="btn btn-primary font-weight-bold mr-2">Potvrdi</button>
+        </div>
+      </div>
+    </div>
   </form>
 	
   )
