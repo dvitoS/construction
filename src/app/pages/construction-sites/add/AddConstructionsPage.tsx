@@ -37,7 +37,7 @@ const AddConstructionsPage: React.FC = () => {
     axios.post('https://jsonplaceholder.typicode.com/posts', {data})
     .then(response => console.log(response))
     .catch(err => console.log(err))
-}
+  }
 
   
 
