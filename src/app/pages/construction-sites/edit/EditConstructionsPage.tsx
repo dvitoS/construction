@@ -90,6 +90,7 @@ const EditConstructionsPage: React.FC = () => {
           <button type="submit" className="btn btn-primary font-weight-bold mr-2">Potvrdi</button>
         </div>
   </form>
+  
   )
 }
 
