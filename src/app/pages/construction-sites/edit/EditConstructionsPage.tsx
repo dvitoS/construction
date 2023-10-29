@@ -43,7 +43,7 @@ const EditConstructionsPage: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.put(`/api/update/${data}`, data);
+      const response = await axios.put(`https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/${data}`, data);
       console.log('Data updated successfully', response.data);
       // Add logic for handling success, such as showing a success message or redirecting
     } catch (error) {
