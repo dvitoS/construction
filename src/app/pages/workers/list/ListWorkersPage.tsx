@@ -59,9 +59,9 @@ const ListWorkersPage: React.FC = () => {
                   <td>{d.firstName}</td>
                   <td>{d.lastName}</td>
                   <td>
-                    <button className='btn btn-sm btn-primary me-2'>Read</button>
-                    <button className='btn btn-sm btn-primary me-2'>Edit</button>
-                    <button className='btn btn-sm btn-danger'>Delete</button>
+                    <button className='btn btn-sm btn-primary me-2'>Otvori</button>
+                    <button className='btn btn-sm btn-primary me-2'>Izmjeni</button>
+                    <button className='btn btn-sm btn-danger'>Izbriši</button>
                   </td>
                 </tr>
               ))
