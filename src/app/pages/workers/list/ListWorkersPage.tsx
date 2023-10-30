@@ -34,20 +34,21 @@ const ListWorkersPage: React.FC = () => {
   }
 
   useEffect(()=> {
-    axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions.json')
+    axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers.json')
     .then(res => setData(res.data))
     .catch(err => console.log(err));
   }, [])
   
   return (
     <div className='d-flex flex-column  align-items-center bg-light vh-100'>
-    <h1>Lista gradilišta</h1>
+    <h1>Lista radnika</h1>
     <div className='w-75 rounded bg-white border shadow p-4'>
       <table className='table table-striped'>
         <thead>
           <tr>
             <th>ID</th>
             <th>Ime</th>
+            <th>Prezime</th>
           </tr>
         </thead>
         <tbody>
@@ -55,7 +56,8 @@ const ListWorkersPage: React.FC = () => {
               data.map((d, i) => (
                 <tr key={i}>
                   <td>{d.id}</td>
-                  <td>{d.name}</td>
+                  <td>{d.firstName}</td>
+                  <td>{d.lastName}</td>
                   <td>
                     <button className='btn btn-sm btn-primary me-2'>Read</button>
                     <button className='btn btn-sm btn-primary me-2'>Edit</button>
