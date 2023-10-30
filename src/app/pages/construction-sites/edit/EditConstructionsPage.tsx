@@ -13,7 +13,12 @@ const EditConstructionsPage: React.FC = () => {
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
   const [data, setData] = useState({dokaznica:'', racun:'', adresa_gradilista:''});
-
+  const [gradiliste, setGradiliste] = useState([])
+  const [dokaznica, setDokaznica] =useState('');
+  const [racun, setRacun] =useState('');
+  const [adresa_gradilista, setAdresa_gradilista] =useState('');
+  const [ID, setID] = useState(null);
+  
   const updateConfig = () => {
     setConfigLoading(true)
     try {
@@ -34,6 +39,21 @@ const EditConstructionsPage: React.FC = () => {
   }
 
 
+  useEffect(() => {
+    getUsers();
+  }, [])
+  function getUsers() {
+    axios.get("https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions.json" + "${data}")
+    .then((resp:any) => {
+        // console.warn(resp)
+        setGradiliste(resp)
+        setDokaznica(resp[0].name)
+        setRacun(resp[0].mobile)
+        setAdresa_gradilista(resp[0].email)
+      
+    })
+  }
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
@@ -43,7 +63,7 @@ const EditConstructionsPage: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.put(`https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/${data}`, data);
+      const response = await axios.put(`https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions.json${ID}`, data);
       console.log('Data updated successfully', response.data);
       // Add logic for handling success, such as showing a success message or redirecting
     } catch (error) {
