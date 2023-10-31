@@ -49,38 +49,47 @@ const AddConstructionsPage: React.FC = () => {
 
   return (
     <form className="form" method="post" onSubmit={handleSubmit}>
-      <div className="col-lg-4">
-        <label>Adresa:</label>
-        <input type="text"
-        name="adresa_gradilista"
-        className="form-control"
-        placeholder="Unesite adresu gradilišta"
-        onChange={handleChange}
-        value={data.adresa_gradilista}/>
+      <div className="form-group row">
+          <div className="col-lg-4">
+            <label>Adresa:</label>
+            <input type="text"
+            name="adresa_gradilista"
+            className="form-control"
+            placeholder="Unesite adresu gradilišta"
+            onChange={handleChange}
+            value={data.adresa_gradilista}/>
+          </div>
       </div>
-      <div className="col-lg-4">
-        <label>Dodaj dokaznicu:</label>
-          <input type="date"
-          name="dokaznica"
-          className="form-control"
-          placeholder="Dokaznica"
-          onChange={handleChange}
-          value={data.dokaznica}/>
-      </div>
-      <div className="col-lg-4">
-        <label>Dodaj račun:</label>
-          <input type="date"
-          name="racun"
-          className="form-control"
-          placeholder="Racun"
-          onChange={handleChange}
-          value={data.racun}/>
-      </div>
+      <div className="form-group row">
+        <div className="col-lg-4">
+          <label>Dodaj dokaznicu:</label>
+            <input type="date"
+            name="dokaznica"
+            className="form-control"
+            placeholder="Dokaznica"
+            onChange={handleChange}
+            value={data.dokaznica}/>
+        </div>
+
+          <div className="col-lg-4">
+            <label>Dodaj račun:</label>
+              <input type="date"
+              name="racun"
+              className="form-control"
+              placeholder="Racun"
+              onChange={handleChange}
+              value={data.racun}/>
+          </div>
+       </div>
+
+       
+
       <br/>
       <div className="card-footer">
             <button type="submit" className="btn btn-primary font-weight-bold mr-2">Potvrdi</button>
           </div>
     </form>
+    
   )
 }
 

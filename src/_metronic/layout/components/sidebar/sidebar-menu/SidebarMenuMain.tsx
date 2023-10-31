@@ -54,7 +54,18 @@ const SidebarMenuMain = () => {
           />
         </SidebarMenuItemWithSub>
 
-        
+
+        <SidebarMenuItem
+          to='/crafted/hourlyrate'
+          title='Satnica'
+          hasBullet={true}
+        />  
+
+        <SidebarMenuItem
+          to='/crafted/costsheet'
+          title='Troškovnik'
+          hasBullet={true}
+        />  
 
 
       </SidebarMenuItemWithSub>

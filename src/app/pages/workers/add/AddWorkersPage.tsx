@@ -9,7 +9,6 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import {useForm} from 'react-hook-form'
 import axios from 'axios'
 
 
@@ -262,92 +261,3 @@ export {AddWorkersPage}
 
 
 
-
-{/* 
-
-
-
-
-<form className="form">
-  <div className="card-body">
-    <div className="form-group row">
-      <div className="col-lg-4">
-        <label>Ime:</label>
-        <input type="text" className="form-control" placeholder="Ime"/>
-      </div>
-      <div className="col-lg-4">
-        <label>Prezime:</label>
-        <input type="text" className="form-control" placeholder="Prezime"/>
-        <span className="form-text text-muted">Prezime</span>
-      </div>
-      <div className="col-lg-4">
-        <label>Email:</label>
-        <input type="email" className="form-control" placeholder="Enter email"/>
-        <span className="form-text text-muted">email</span>
-      </div>
-    </div>
-    <div className="form-group row">
-      <div className="col-lg-4">
-        <label>Contact:</label>
-        <input type="email" className="form-control" placeholder="Enter contact number"/>
-        <span className="form-text text-muted">Please enter your contact</span>
-      </div>
-      <div className="col-lg-4">
-        <label>Fax:</label>
-        <div className="input-group">
-          <div className="input-group-prepend"><span className="input-group-text"><i className="la la-info-circle"></i></span></div>
-          <input type="text" className="form-control" placeholder="Fax number"/>
-        </div>
-        <span className="form-text text-muted">Please enter fax</span>
-      </div>
-      <div className="col-lg-4">
-        <label>Address:</label>
-        <div className="input-group">
-          <input type="text" className="form-control" placeholder="Enter your address"/>
-          <div className="input-group-append"><span className="input-group-text"><i className="la la-map-marker"></i></span></div>
-        </div>
-        <span className="form-text text-muted">Please enter your address</span>
-      </div>
-    </div>
-    <div className="form-group row">
-      <div className="col-lg-4">
-        <label>Postcode:</label>
-        <div className="input-group">
-          <div className="input-group-append"><span className="input-group-text"><i className="la la-bookmark-o"></i></span></div>
-          <input type="text" className="form-control" placeholder="Enter your postcode"/>
-        </div>
-        <span className="form-text text-muted">Please enter your postcode</span>
-      </div>
-    </div>
-  </div>
-  <div className="card-footer">
-    <div className="row">
-      <div className="col-lg-4"></div>
-      <div className="col-lg-8">
-        <button type="reset" className="btn btn-primary mr-2">Submit</button>
-        <button type="reset" className="btn btn-secondary">Cancel</button>
-      </div>
-    </div>
-  </div>
-</form>
-
-
-
-
-<form onSubmit={handleSubmit(onSubmit)}>
-<input type="text" placeholder="First name" {...register("First name", {required: true, maxLength: 80})} />
-<input type="text" placeholder="Last Name" {...register} />
-<input type="text" placeholder="OIB" {...register("OIB", {})} />
-<input type="tel" placeholder="Mobile number" {...register("Mobile number", {required: true, minLength: 6, maxLength: 12})} />
-<input type="text" placeholder="Email" {...register("Email", {required: true, pattern: /^\S+@\S+$/i})} />
-<input type="number" placeholder="Passport number" {...register("Passport number", {})} />
-<input type="text" placeholder="Parents names" {...register("Parents names", {})} />
-<input type="datetime" placeholder="Work permit expiration date" {...register("Work permit expiration date", {})} />
-<input type="datetime" placeholder="Health certificate expiration date" {...register("Health certificate expiration date", {})} />
-<input type="checkbox" placeholder="Workplace safety certificate" {...register} />
-<input type="checkbox" placeholder="First aid" {...register("First aid", {})} />
-<input type="checkbox" placeholder="GEDA" {...register("GEDA", {})} />
-<input type="text" placeholder="Hourly wage" {...register("Hourly wage", {})} />
-
-<input type="submit" />
-</form> */}

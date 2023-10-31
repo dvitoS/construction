@@ -9,6 +9,8 @@ import {WithChildren} from '../../_metronic/helpers'
 import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
 import WorkersPageWrapper from '../pages/workers/WorkersPageWrapper'
 import AddConstructionsPageWrapper from '../pages/construction-sites/add/AddConstructionsPageWrapper'
+import HourlyRatePageWrapper from '../pages/hourly_rate/HourlyRatePageWrapper'
+import CostSheetPageWrapper from '../pages/cost_sheet/CostSheetPageWrapper'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -38,6 +40,7 @@ const PrivateRoutes = () => {
         <Route path='add' element={<AddConstructionsPageWrapper />} />
         <Route path='edit' element={<EditConstructionsPageWrapper />} />
         <Route path='list' element={<ListConstructionsPageWrapper />} />
+        <Route path='hr' element={<HourlyRatePageWrapper />} />
         <Route path='menu-test' element={<MenuTestPage />} />
         
         {/* Lazy Modules */}
@@ -135,6 +138,22 @@ const PrivateRoutes = () => {
           element={
             <SuspensedView>
               <ListConstructionsPageWrapper />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='crafted/hourlyrate'
+          element={
+            <SuspensedView>
+              <HourlyRatePageWrapper />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='crafted/costsheet'
+          element={
+            <SuspensedView>
+              <CostSheetPageWrapper />
             </SuspensedView>
           }
         />
