@@ -39,6 +39,17 @@ const ListWorkersPage: React.FC = () => {
     .then(res => setData(res.data))
     .catch(err => console.log(err));
   }, [])
+
+
+  const handleDelete = (id:any) => {
+    const confirm = window.confirm("Jeste li sigurni da želite izbrisati stavku?");
+    if(confirm){
+      axios.delete('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers/' + id)
+      .then(res => {
+        window.location.reload();
+      }).catch(err => console.log(err));
+    }
+  } 
   
   return (
     <div className='d-flex flex-column  align-items-center bg-light vh-100'>
@@ -62,7 +73,7 @@ const ListWorkersPage: React.FC = () => {
                   <td>
                     <button className='btn btn-sm btn-primary me-2'>Otvori</button>
                     <Link to={'/edit/'+ d.id} className="btn btn-sm btn-info me-2">Izmijeni</Link>
-                    <button className='btn btn-sm btn-danger'>Izbriši</button>
+                    <button onClick={e => handleDelete(d.id)}  className='btn btn-sm btn-danger'>Izbriši</button>
                   </td>
                 </tr>
               ))

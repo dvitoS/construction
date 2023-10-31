@@ -31,7 +31,7 @@ const EditWorkersPage: React.FC = () => {
     
     function handleSubmit(event:any){
     event.preventDefault()
-    axios.put('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers.json', data)
+    axios.put('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers/', data)
     .then(res => console.log(res.data))
     .catch(err => console.log(err))
     } 
