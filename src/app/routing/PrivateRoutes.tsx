@@ -38,7 +38,7 @@ const PrivateRoutes = () => {
         <Route path='edit/:id' element={<EditWorkersPageWrapper />} />
         <Route path='list' element={<ListWorkersPageWrapper />} />
         <Route path='add' element={<AddConstructionsPageWrapper />} />
-        <Route path='edit/:id' element={<EditConstructionsPageWrapper />} />
+        <Route path='editc/:id' element={<EditConstructionsPageWrapper />} />
         <Route path='list' element={<ListConstructionsPageWrapper />} />
         <Route path='hr' element={<HourlyRatePageWrapper />} />
         <Route path='menu-test' element={<MenuTestPage />} />

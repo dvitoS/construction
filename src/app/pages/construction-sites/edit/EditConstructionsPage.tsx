@@ -6,18 +6,22 @@ import {getLayoutFromLocalStorage, ILayout, LayoutSetup} from '../../../../_metr
 import {useEffect} from 'react'
 import ReactDom from 'react'
 import axios from 'axios'
+import { Link, useParams } from 'react-router-dom'
+
 
 const EditConstructionsPage: React.FC = () => {
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [data, setData] = useState({dokaznica:'', racun:'', adresa_gradilista:''});
+  const [d, setD] = useState({dokaznica:'', racun:'', adresa_gradilista:''});
+  const [data, setData] = useState({name:'', id:''})
   const [gradiliste, setGradiliste] = useState([])
   const [dokaznica, setDokaznica] =useState('');
   const [racun, setRacun] =useState('');
   const [adresa_gradilista, setAdresa_gradilista] =useState('');
-  const [ID, setID] = useState(null);
+  const { id } = useParams();
+
   
   const updateConfig = () => {
     setConfigLoading(true)
@@ -38,42 +42,28 @@ const EditConstructionsPage: React.FC = () => {
     }, 1000)
   }
 
-
-  useEffect(() => {
-    getUsers();
-  }, [])
-  function getUsers() {
-    axios.get("https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions.json" + "${data}")
-    .then((resp:any) => {
-        // console.warn(resp)
-        setGradiliste(resp)
-        setDokaznica(resp[0].name)
-        setRacun(resp[0].mobile)
-        setAdresa_gradilista(resp[0].email)
-      
-    })
+  useEffect(()=>{
+    axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions/'+ id)
+    .then(res => setData(res.data))
+    .catch(err => console.log(err));
+  },[])
+  const handleInput = (event:any) => {
+  //setData({...data, [event.target.name]: event.target.value})		
   }
+  
+  function handleSubmit(event:any){
+  event.preventDefault()
+  axios.put('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions.json', data)
+  .then(res => console.log(res.data))
+  .catch(err => console.log(err))
+  } 
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setData({ ...data, [name]: value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    try {
-      const response = await axios.put(`https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions.json${ID}`, data);
-      console.log('Data updated successfully', response.data);
-      // Add logic for handling success, such as showing a success message or redirecting
-    } catch (error) {
-      console.error('Error updating data', error);
-      // Add error handling logic here
-    }
-  };
-
-
-
+  const handleChange = (e:any) =>{
+    const name = e.target.name;
+    const value = e.target.value;
+    setData({...data, [name]:value})
+}
+  
 
 
   return (
@@ -81,11 +71,11 @@ const EditConstructionsPage: React.FC = () => {
     <div className="col-lg-4">
       <label>Adresa:</label>
       <input type="text"
-      name="adresa_gradilista"
+      name="name"
       className="form-control"
       placeholder="Unesite adresu gradilišta"
       onChange={handleChange}
-      value={data.adresa_gradilista}/>
+      value={data.name}/>
     </div>
     <div className="col-lg-4">
       <label>Dodaj dokaznicu:</label>
@@ -94,7 +84,7 @@ const EditConstructionsPage: React.FC = () => {
         className="form-control"
         placeholder="Dokaznica"
         onChange={handleChange}
-        value={data.dokaznica}/>
+        value={d.dokaznica}/>
     </div>
     <div className="col-lg-4">
       <label>Dodaj račun:</label>
@@ -103,7 +93,7 @@ const EditConstructionsPage: React.FC = () => {
         className="form-control"
         placeholder="Racun"
         onChange={handleChange}
-        value={data.racun}/>
+        value={d.racun}/>
     </div>
     <br/>
     <div className="card-footer">
