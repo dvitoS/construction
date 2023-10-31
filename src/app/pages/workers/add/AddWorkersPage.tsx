@@ -252,7 +252,7 @@ const AddWorkersPage: React.FC = () => {
     <div className="mb-10">
       <div className="form-check form-check-custom form-check-solid">
           <input  
-          name="Prva_pomoc" 
+          name="firstAid" 
           value="false"
           onChange={handleChangeCheckbox}
           className="form-check-input" 
