@@ -17,7 +17,7 @@ import axios from 'axios'
 const AddWorkersPage: React.FC = () => {
   const nameInputId = useId();
   const [d, setD] = useState ({adresa:"", oib:"", email:"", mobitel:"", broj_putovnice:"", ime_oca:"", ime_majke:"", Radna_dozvola:"", Ljecnicki:"", Zastita:'', Prva_pomoc:'', GEDA:''});
-  const [data, setData] = useState ({firstName:"", lastName:""});
+  const [data, setData] = useState ({firstName:'', lastName:''});
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
@@ -32,7 +32,7 @@ const AddWorkersPage: React.FC = () => {
     function handleSubmit(e:any) {
         e.preventDefault()
         console.log(data)
-        axios.post('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers', {data})
+        axios.post('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers', data)
         .then(response => {console.log(response)})
         .catch(error => {console.log(error.response)})
     }
