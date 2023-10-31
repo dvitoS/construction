@@ -23,13 +23,7 @@ const queryParameters = new URLSearchParams(window.location.search)
 //Checking if there is GET value (id)
 const userid = queryParameters.get("userid")
 
-if(userid){
-  //console.log("Prikazi popunjenu formu za id korisnika: "+userid)
-  axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers/'+userid)
-  .then(res => console.log(res))
-}else{
-  console.log("Treba odabrati korisnika")
-}
+
 
 //Getting all workers from API
     useEffect(()=>{

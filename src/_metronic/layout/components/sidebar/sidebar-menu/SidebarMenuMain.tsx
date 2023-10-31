@@ -23,11 +23,7 @@ const SidebarMenuMain = () => {
             title='Dodaj radnika'
             hasBullet={true}
           />
-          <SidebarMenuItem
-            to='/crafted/workers/edit'
-            title='Izmjeni radnika'
-            hasBullet={true}
-          />
+          
           <SidebarMenuItem
             to='/crafted/workers/list'
             title='Popis radnika'
@@ -42,11 +38,7 @@ const SidebarMenuMain = () => {
             title='Dodaj gradilišta'
             hasBullet={true}
           />
-          <SidebarMenuItem
-            to='/crafted/constructions/edit'
-            title='Izmjeni gradilišta'
-            hasBullet={true}
-          />
+          
           <SidebarMenuItem
             to='/crafted/constructions/list'
             title='Popis gradilišta'

@@ -5,6 +5,7 @@ import {KTIcon, toAbsoluteUrl} from '../../../../_metronic/helpers'
 import {getLayoutFromLocalStorage, ILayout, LayoutSetup} from '../../../../_metronic/layout/core'
 import axios from 'axios'
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 const ListWorkersPage: React.FC = () => {
   const [tab, setTab] = useState('Sidebar')
@@ -60,7 +61,7 @@ const ListWorkersPage: React.FC = () => {
                   <td>{d.lastName}</td>
                   <td>
                     <button className='btn btn-sm btn-primary me-2'>Otvori</button>
-                    <button className='btn btn-sm btn-primary me-2'>Izmjeni</button>
+                    <Link to={'/edit/'+ d.id} className="btn btn-sm btn-info me-2">Izmijeni</Link>
                     <button className='btn btn-sm btn-danger'>Izbriši</button>
                   </td>
                 </tr>
