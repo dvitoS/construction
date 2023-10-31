@@ -172,7 +172,7 @@ const AddWorkersPage: React.FC = () => {
       </div>
         <div>Satnica</div>
       <div className="form-group row">
-        <div className="col-lg-4">
+        <div className="col-lg-3">
           <label>Normalna satnica:</label>
             <input type="number"
             name="hr"
@@ -182,7 +182,7 @@ const AddWorkersPage: React.FC = () => {
             value={d.hr}/>
         </div>
 
-        <div className="col-lg-4">
+        <div className="col-lg-3">
           <label>Prekovremena satnica:</label>
             <input type="number"
             name="overtimehr"
@@ -192,7 +192,7 @@ const AddWorkersPage: React.FC = () => {
             value={d.overtimehr}/>
         </div>
 
-        <div className="col-lg-4">
+        <div className="col-lg-3">
           <label>Vikend satnica:</label>
             <input type="number"
             name="weekendhr"
@@ -202,7 +202,7 @@ const AddWorkersPage: React.FC = () => {
             value={d.weekendhr}/>
         </div>
 
-        <div className="col-lg-4">
+        <div className="col-lg-3">
           <label>Dnevnica:</label>
             <input type="number"
             name="dailywage"
