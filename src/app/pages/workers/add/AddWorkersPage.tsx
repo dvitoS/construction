@@ -286,7 +286,9 @@ const AddWorkersPage: React.FC = () => {
     </div>
     <div className="col-lg-4">
       <label>Napomena:</label>
-        <input type="textarea"
+        <textarea
+        rows={5}
+        cols={50}
         name="note"
         className="form-control"
         placeholder="Unesite napomenu"
