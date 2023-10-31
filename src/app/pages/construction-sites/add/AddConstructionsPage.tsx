@@ -10,7 +10,9 @@ const AddConstructionsPage: React.FC = () => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [data, setData] = useState({dokaznica:'', racun:'', adresa_gradilista:'', opis:''})
+  const [d, setD] = useState({dokaznica:'', racun:'', adresa_gradilista:'', opis:''})
+  const [data ,setData] = useState({name:''})
+
 
   const updateConfig = () => {
     setConfigLoading(true)
@@ -34,6 +36,7 @@ const AddConstructionsPage: React.FC = () => {
 
   function handleSubmit(e:any) {
     e.preventDefault()
+    console.log(data)
     axios.post('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions', data)
     .then(response => {console.log(response)})
     .catch(error => {console.log(error.response)})
@@ -53,11 +56,11 @@ const AddConstructionsPage: React.FC = () => {
           <div className="col-lg-4">
             <label>Adresa:</label>
             <input type="text"
-            name="adresa_gradilista"
+            name="name"
             className="form-control"
             placeholder="Unesite adresu gradilišta"
             onChange={handleChange}
-            value={data.adresa_gradilista}/>
+            value={data.name}/>
           </div>
       </div>
       <div className="form-group row">
@@ -68,7 +71,7 @@ const AddConstructionsPage: React.FC = () => {
             className="form-control"
             placeholder="Dokaznica"
             onChange={handleChange}
-            value={data.dokaznica}/>
+            value={d.dokaznica}/>
         </div>
 
           <div className="col-lg-4">
@@ -78,7 +81,7 @@ const AddConstructionsPage: React.FC = () => {
               className="form-control"
               placeholder="Racun"
               onChange={handleChange}
-              value={data.racun}/>
+              value={d.racun}/>
           </div>
        </div>
        <div className="form-group row">
@@ -89,7 +92,7 @@ const AddConstructionsPage: React.FC = () => {
               className="form-control"
               placeholder="Opis"
               onChange={handleChange}
-              value={data.opis}/>
+              value={d.opis}/>
           </div>
        </div>
 
