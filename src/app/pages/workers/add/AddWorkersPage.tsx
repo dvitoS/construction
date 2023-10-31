@@ -16,7 +16,7 @@ import axios from 'axios'
 
 const AddWorkersPage: React.FC = () => {
   const nameInputId = useId();
-  const [d, setD] = useState ({adresa:"", oib:"", email:"", mobitel:"", broj_putovnice:"", ime_oca:"", ime_majke:"", Radna_dozvola:"", Ljecnicki:"", Zastita:'', Prva_pomoc:'', GEDA:'', hr:'', overtimehr:''});
+  const [d, setD] = useState ({adresa:"", oib:"", email:"", mobitel:"", broj_putovnice:"", ime_oca:"", ime_majke:"", Radna_dozvola:"", Ljecnicki:"", Zastita:'', Prva_pomoc:'', GEDA:'', hr:'', overtimehr:'',weekendhr:'',dailywage:'',note:''});
   const [data, setData] = useState ({firstName:'', lastName:''});
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
@@ -191,6 +191,26 @@ const AddWorkersPage: React.FC = () => {
             onChange={handleChange}
             value={d.overtimehr}/>
         </div>
+
+        <div className="col-lg-4">
+          <label>Vikend satnica:</label>
+            <input type="number"
+            name="weekendhr"
+            className="form-control"
+            placeholder="Unesite vikend satnicu"
+            onChange={handleChange}
+            value={d.weekendhr}/>
+        </div>
+
+        <div className="col-lg-4">
+          <label>Dnevnica:</label>
+            <input type="number"
+            name="dailywage"
+            className="form-control"
+            placeholder="Unesite dnevnicu"
+            onChange={handleChange}
+            value={d.dailywage}/>
+        </div>
       </div>
 
 
@@ -263,6 +283,15 @@ const AddWorkersPage: React.FC = () => {
               GEDA
           </label>
       </div>
+    </div>
+    <div className="col-lg-4">
+      <label>Napomena:</label>
+        <input type="textarea"
+        name="note"
+        className="form-control"
+        placeholder="Unesite napomenu"
+        onChange={handleChange}
+        value={d.note}/>
     </div>
     <br/>
     <div className="card-footer">
