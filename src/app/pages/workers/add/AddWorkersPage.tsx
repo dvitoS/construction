@@ -16,7 +16,7 @@ import axios from 'axios'
 
 const AddWorkersPage: React.FC = () => {
   const nameInputId = useId();
-  const [d, setD] = useState ({adresa:"", oib:"", email:"", mobitel:"", broj_putovnice:"", ime_oca:"", ime_majke:"", Radna_dozvola:"", Ljecnicki:"", Zastita:'', Prva_pomoc:'', GEDA:'', hr:'', overtimehr:'',weekendhr:'',dailywage:'',note:''});
+  const [d, setD] = useState ({adress:"", oib:"", email:"", mob:"", passport:"", fatherName:"", motherName:"", workingPermit:"", firstAidDate:"", workProtection:'', firstAid:'', GEDA:'', hr:'', overtimehr:'',weekendhr:'',dailywage:'',note:''});
   const [data, setData] = useState ({firstName:'', lastName:''});
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
@@ -24,10 +24,6 @@ const AddWorkersPage: React.FC = () => {
   const [resetLoading, setResetLoading] = useState<boolean>(false)
   const [checked, setChecked] = useState(true);
   
-
-  
-    
-
 
     function handleSubmit(e:any) {
         e.preventDefault()
@@ -105,11 +101,11 @@ const AddWorkersPage: React.FC = () => {
         <div className="col-lg-4">
           <label>Adresa:</label>
           <input type="text"
-          name="adresa"
+          name="adress"
           className="form-control"
           placeholder="Unesite adresu"
           onChange={handleChange}
-          value={d.adresa}/>
+          value={d.adress}/>
         </div>
 
           <div className="col-lg-4">
@@ -127,11 +123,11 @@ const AddWorkersPage: React.FC = () => {
           <label>Putovnica:</label>
             <input        
             type="number"
-            name="broj_putovnice"
+            name="passport"
             className="form-control"
             placeholder="Broj putovnice"
             onChange={handleChange}
-            value={d.broj_putovnice}/>
+            value={d.passport}/>
         </div>
 
         <div className="col-lg-4">
@@ -153,21 +149,21 @@ const AddWorkersPage: React.FC = () => {
         <div className="col-lg-4">
           <label>Ime oca:</label>
             <input type="text"
-            name="ime_oca"
+            name="fatherName"
             className="form-control"
             placeholder="Unesite ime Oca"
             onChange={handleChange}
-            value={d.ime_oca}/>
+            value={d.fatherName}/>
         </div>
 
         <div className="col-lg-4">
           <label>Ime majke:</label>
             <input type="text"
-            name="ime_majke"
+            name="motherName"
             className="form-control"
             placeholder="Unesite ime majke"
             onChange={handleChange}
-            value={d.ime_majke}/>
+            value={d.motherName}/>
         </div>
       </div>
         <div>Satnica</div>
@@ -222,17 +218,17 @@ const AddWorkersPage: React.FC = () => {
             className="form-control"
             placeholder="Radna dozvola"
             onChange={handleChange}
-            value={d.Radna_dozvola} />
+            value={d.workingPermit} />
         </div>
 
         <div className="col-lg-4">
           <label>Liječnički pregled vrijedi do:</label>
             <input type="date"
-            name="Ljecnicki"
+            name="firstAidDate"
             className="form-control"
             placeholder="Liječnički pregled"
             onChange={handleChange}
-            value={d.Ljecnicki}/>
+            value={d.firstAidDate}/>
         </div>
       </div>
     </div>
@@ -240,7 +236,7 @@ const AddWorkersPage: React.FC = () => {
    <div className="mb-10">
       <div className="form-check form-check-custom form-check-solid">
           <input 
-          name="Zastita" 
+          name="workProtection" 
           value="false"
           onChange={handleChangeCheckbox}
           className="form-check-input" 
