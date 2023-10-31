@@ -10,7 +10,7 @@ const AddConstructionsPage: React.FC = () => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [data, setData] = useState({dokaznica:'', racun:'', adresa_gradilista:''})
+  const [data, setData] = useState({dokaznica:'', racun:'', adresa_gradilista:'', opis:''})
 
   const updateConfig = () => {
     setConfigLoading(true)
@@ -79,6 +79,17 @@ const AddConstructionsPage: React.FC = () => {
               placeholder="Racun"
               onChange={handleChange}
               value={data.racun}/>
+          </div>
+       </div>
+       <div className="form-group row">
+          <div className="col-lg-4">
+            <label>Opis:</label>
+              <input type="text"
+              name="opis"
+              className="form-control"
+              placeholder="Opis"
+              onChange={handleChange}
+              value={data.opis}/>
           </div>
        </div>
 

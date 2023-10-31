@@ -16,7 +16,8 @@ import axios from 'axios'
 
 const AddWorkersPage: React.FC = () => {
   const nameInputId = useId();
-  const [data, setData] = useState ({ime:"", prezime:"", adresa:"", oib:"", email:"", mobitel:"", broj_putovnice:"", ime_oca:"", ime_majke:"", Radna_dozvola:"", Ljecnicki:"", Zastita:'', Prva_pomoc:'', GEDA:'' });
+  const [d, setD] = useState ({adresa:"", oib:"", email:"", mobitel:"", broj_putovnice:"", ime_oca:"", ime_majke:"", Radna_dozvola:"", Ljecnicki:"", Zastita:'', Prva_pomoc:'', GEDA:''});
+  const [data, setData] = useState ({firstName:"", lastName:""});
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
@@ -24,15 +25,16 @@ const AddWorkersPage: React.FC = () => {
   const [checked, setChecked] = useState(true);
   
 
-    
+  
     
 
 
     function handleSubmit(e:any) {
         e.preventDefault()
-        axios.post('https://jsonplaceholder.typicode.com/posts', {data})
-        .then(response => console.log(response))
-        .catch(err => console.log(err))
+        console.log(data)
+        axios.post('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers', {data})
+        .then(response => {console.log(response)})
+        .catch(error => {console.log(error.response)})
     }
   
     
@@ -80,21 +82,21 @@ const AddWorkersPage: React.FC = () => {
           <label>Ime:</label>
           <input 
           type="text"
-          name="ime"
+          name="firstName"
           className="form-control"
           placeholder="Unesite ime"
           onChange={handleChange}
-          value={data.ime}/>
+          value={data.firstName}/>
         </div>
 
         <div className="col-lg-4">
           <label>Prezime:</label>
           <input type="text"
-          name="prezime"
+          name="lastName"
           className="form-control"
           placeholder="Unesite prezime"
           onChange={handleChange}
-          value={data.prezime}
+          value={data.lastName}
           />
         </div>
       </div>
@@ -107,7 +109,7 @@ const AddWorkersPage: React.FC = () => {
           className="form-control"
           placeholder="Unesite adresu"
           onChange={handleChange}
-          value={data.adresa}/>
+          value={d.adresa}/>
         </div>
 
           <div className="col-lg-4">
@@ -117,7 +119,7 @@ const AddWorkersPage: React.FC = () => {
             className="form-control"
             placeholder="OIB"
             onChange={handleChange}
-            value={data.oib}/>
+            value={d.oib}/>
           </div>
           
 
@@ -129,23 +131,22 @@ const AddWorkersPage: React.FC = () => {
             className="form-control"
             placeholder="Broj putovnice"
             onChange={handleChange}
-            value={data.broj_putovnice}/>
+            value={d.broj_putovnice}/>
         </div>
 
         <div className="col-lg-4">
           <label>Broj mobitela:</label>
             <input type="tel" className="form-control" placeholder="Unesite broj mobitela"/>
         </div>
-
-        <div className="col-lg-4">
+{/*         <div className="col-lg-4">
           <label>Email:</label>
             <input type="email"
               name="email"
               className="form-control"
               placeholder="email@email.com"
               onChange={handleChange}
-              value={data.email}/>
-        </div>
+              value={d.email}/>
+        </div> */}
       </div>
 
       <div className="form-group row">
@@ -156,7 +157,7 @@ const AddWorkersPage: React.FC = () => {
             className="form-control"
             placeholder="Unesite ime Oca"
             onChange={handleChange}
-            value={data.ime_oca}/>
+            value={d.ime_oca}/>
         </div>
 
         <div className="col-lg-4">
@@ -166,7 +167,7 @@ const AddWorkersPage: React.FC = () => {
             className="form-control"
             placeholder="Unesite ime majke"
             onChange={handleChange}
-            value={data.ime_majke}/>
+            value={d.ime_majke}/>
         </div>
       </div>
 
@@ -178,7 +179,7 @@ const AddWorkersPage: React.FC = () => {
             className="form-control"
             placeholder="Radna dozvola"
             onChange={handleChange}
-            value={data.Radna_dozvola} />
+            value={d.Radna_dozvola} />
         </div>
 
         <div className="col-lg-4">
@@ -188,7 +189,7 @@ const AddWorkersPage: React.FC = () => {
             className="form-control"
             placeholder="Liječnički pregled"
             onChange={handleChange}
-            value={data.Ljecnicki}/>
+            value={d.Ljecnicki}/>
         </div>
       </div>
     </div>
