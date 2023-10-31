@@ -26,12 +26,14 @@ const AddWorkersPage: React.FC = () => {
   
 
     function handleSubmit(e:any) {
-        window.location.reload()
         e.preventDefault()
-        console.log(data)
-        axios.post('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers', data)
-        .then(response => {console.log(response)})
-        .catch(error => {console.log(error.response)})
+        if(e){
+          axios.post('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers', data)
+          .then(res => {
+            window.location.reload()
+            window.alert("Dodan novi radnik")
+          }).catch(err => console.log(err));
+        }
     }
   
     

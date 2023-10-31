@@ -36,13 +36,16 @@ const AddConstructionsPage: React.FC = () => {
 
   function handleSubmit(e:any) {
     e.preventDefault()
-    window.location.reload()
+    
     console.log(data)
-    axios.post('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions', data)
-    .then(response => {console.log(response)})
-    .catch(error => {console.log(error.response)})
+    if(e){
+      axios.post('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions', data)
+      .then(response => {
+        window.location.reload()
+        window.alert("Dodano novo gradilište")
+        }).catch(error => {console.log(error.response)})
+   }
   }
-
   
 
   const handleChange = (e:any) =>{
