@@ -16,7 +16,7 @@ import axios from 'axios'
 
 const AddWorkersPage: React.FC = () => {
   const nameInputId = useId();
-  const [d, setD] = useState ({adresa:"", oib:"", email:"", mobitel:"", broj_putovnice:"", ime_oca:"", ime_majke:"", Radna_dozvola:"", Ljecnicki:"", Zastita:'', Prva_pomoc:'', GEDA:''});
+  const [d, setD] = useState ({adresa:"", oib:"", email:"", mobitel:"", broj_putovnice:"", ime_oca:"", ime_majke:"", Radna_dozvola:"", Ljecnicki:"", Zastita:'', Prva_pomoc:'', GEDA:'', hr:'', overtimehr:''});
   const [data, setData] = useState ({firstName:'', lastName:''});
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
@@ -170,6 +170,29 @@ const AddWorkersPage: React.FC = () => {
             value={d.ime_majke}/>
         </div>
       </div>
+        <div>Satnica</div>
+      <div className="form-group row">
+        <div className="col-lg-4">
+          <label>Normalna satnica:</label>
+            <input type="number"
+            name="hr"
+            className="form-control"
+            placeholder="Unesite satnicu"
+            onChange={handleChange}
+            value={d.hr}/>
+        </div>
+
+        <div className="col-lg-4">
+          <label>Prekovremena satnica:</label>
+            <input type="number"
+            name="overtimehr"
+            className="form-control"
+            placeholder="Unesite prekovremenu satnicu"
+            onChange={handleChange}
+            value={d.overtimehr}/>
+        </div>
+      </div>
+
 
       <div className="form-group row">
         <div className="col-lg-4">
