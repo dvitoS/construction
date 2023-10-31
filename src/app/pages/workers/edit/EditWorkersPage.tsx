@@ -8,6 +8,7 @@ import {useEffect} from 'react'
 import {Dropdown} from 'react-bootstrap'
 
 
+
 const EditWorkersPage: React.FC = () => {
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
@@ -16,19 +17,30 @@ const EditWorkersPage: React.FC = () => {
   const [d, setD] = useState ({adress:"", oib:"", email:"", mob:"", passport:"", fatherName:"", motherName:"", workingPermit:"", firstAidDate:"", workProtection:'', firstAid:'', GEDA:'', hr:'', overtimehr:'',weekendhr:'',dailywage:'',note:''});
   //const [data, setData] = useState ({firstName:'', lastName:''});
   const [data, setData] = useState<any[]>([])
+  const [workers, setWorkers] = useState<any[]>([])
+ 
+const queryParameters = new URLSearchParams(window.location.search)
+//Checking if there is GET value (id)
+const userid = queryParameters.get("userid")
 
+if(userid){
+  //console.log("Prikazi popunjenu formu za id korisnika: "+userid)
+  axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers/'+userid)
+  .then(res => console.log(res))
+}else{
+  console.log("Treba odabrati korisnika")
+}
 
-
-
+//Getting all workers from API
     useEffect(()=>{
       axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers.json')
-      .then(res => console.log(res.data))
+      .then(res => setWorkers(res.data))
     },[])
     const handleInput = (event:any) => {
-    setData({...data, [event.target.name]: event.target.value})		
+    //setData({...data, [event.target.name]: event.target.value})		
     }
     
-     function handleSubmit(event:any){
+    function handleSubmit(event:any){
     event.preventDefault()
     axios.put('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers.json', data)
     .then(res => console.log(res.data))
@@ -70,24 +82,27 @@ const EditWorkersPage: React.FC = () => {
     }, 1000)
   }
   return (
+    
     <div>
-      <Dropdown>
-        <Dropdown.Toggle variant="success" id="dropdown-basic">
-          Odaberite radnika
-        </Dropdown.Toggle>
+          <Dropdown>
+            <Dropdown.Toggle variant="success" id="dropdown-basic">
+              Odaberite radnika
+            </Dropdown.Toggle>
 
-        <Dropdown.Menu>
-        {
-            data.map((da, i) => (
-          <Dropdown.Item key={i} href={da.id}>{da.firstName} {da.lastName}</Dropdown.Item>
-          ))
-          }
-        </Dropdown.Menu>
-      </Dropdown>
+            <Dropdown.Menu>
+              {
+                  workers.map((da, i) => (
+                    <Dropdown.Item key={i} href={'http://localhost:3011/metronic8/react/demo1/crafted/workers/edit/?userid='+da.id} data-value={da.id}>{da.firstName} {da.lastName}</Dropdown.Item>
+                  ))
+              }
+            </Dropdown.Menu>
+          </Dropdown>
     </div>
   )
 }
 
 export {EditWorkersPage}
+
+
 
 
