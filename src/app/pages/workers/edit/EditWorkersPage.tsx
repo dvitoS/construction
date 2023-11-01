@@ -14,7 +14,7 @@ const EditWorkersPage: React.FC = () => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [d, setD] = useState ({adress:"", oib:"", email:"", mob:"", passport:"", fatherName:"", motherName:"", workingPermit:"", firstAidDate:"", workProtection:'', firstAid:'', GEDA:'', hr:'', overtimehr:'',weekendhr:'',dailywage:'',note:''});
+  const [d, setD] = useState ({address:"", oib:"", email:"", mob:"", passport:"", fatherName:"", motherName:"", workingPermit:"", firstAidDate:"", workProtection:'', firstAid:'', geda:'', hr:'', overtimeHr:'',weekendHr:'',dailyWage:'',note:''});
   //const [data, setData] = useState ({firstName:'', lastName:''});
   const [data, setData] = useState({firstName:'', lastName:''})
   const [workers, setWorkers] = useState<any[]>([])
@@ -82,7 +82,7 @@ const EditWorkersPage: React.FC = () => {
                 type="text"
                 name="firstName"
                 className="form-control"
-                placeholder="Unesite ime"
+                placeholder="Ime radnika"
                 onChange={handleChange}
                 value={data.firstName}/>
               </div>
@@ -92,7 +92,7 @@ const EditWorkersPage: React.FC = () => {
                 <input type="text"
                 name="lastName"
                 className="form-control"
-                placeholder="Unesite prezime"
+                placeholder="Prezime radnika"
                 onChange={handleChange}
                 value={data.lastName}
                 />
@@ -103,11 +103,11 @@ const EditWorkersPage: React.FC = () => {
               <div className="col-lg-4">
                 <label>Adresa:</label>
                 <input type="text"
-                name="adress"
+                name="address"
                 className="form-control"
-                placeholder="Unesite adresu"
+                placeholder="Prebivalište radnika"
                 onChange={handleChange}
-                value={d.adress}/>
+                value={d.address}/>
               </div>
 
                 <div className="col-lg-4">
@@ -127,17 +127,17 @@ const EditWorkersPage: React.FC = () => {
                   type="number"
                   name="passport"
                   className="form-control"
-                  placeholder="Broj putovnice"
+                  placeholder="Br putovnice"
                   onChange={handleChange}
                   value={d.passport}/>
               </div>
 
               <div className="col-lg-4">
-                <label>Broj mobitela:</label>
-                  <input type="tel" className="form-control" placeholder="Unesite broj mobitela"/>
+                <label htmlFor="mob">Broj mobitela:</label>
+                  <input type="tel" name="mob" className="form-control" placeholder="Br mobitela"/>
               </div>
                <div className="col-lg-4">
-                <label>Email:</label>
+                <label>E-mail:</label>
                   <input type="email"
                     name="email"
                     className="form-control"
@@ -153,7 +153,7 @@ const EditWorkersPage: React.FC = () => {
                   <input type="text"
                   name="fatherName"
                   className="form-control"
-                  placeholder="Unesite ime Oca"
+                  placeholder="Ime oca radnika"
                   onChange={handleChange}
                   value={d.fatherName}/>
               </div>
@@ -163,7 +163,7 @@ const EditWorkersPage: React.FC = () => {
                   <input type="text"
                   name="motherName"
                   className="form-control"
-                  placeholder="Unesite ime majke"
+                  placeholder="Ime majke radnika"
                   onChange={handleChange}
                   value={d.motherName}/>
               </div>
@@ -175,7 +175,7 @@ const EditWorkersPage: React.FC = () => {
                   <input type="number"
                   name="hr"
                   className="form-control"
-                  placeholder="Unesite satnicu"
+                  placeholder="Iznos satnice"
                   onChange={handleChange}
                   value={d.hr}/>
               </div>
@@ -183,31 +183,31 @@ const EditWorkersPage: React.FC = () => {
               <div className="col-lg-3">
                 <label>Prekovremena satnica:</label>
                   <input type="number"
-                  name="overtimehr"
+                  name="overtimeHr"
                   className="form-control"
-                  placeholder="Unesite prekovremenu satnicu"
+                  placeholder="Satnica prekovremenih"
                   onChange={handleChange}
-                  value={d.overtimehr}/>
+                  value={d.overtimeHr}/>
               </div>
 
               <div className="col-lg-3">
                 <label>Vikend satnica:</label>
                   <input type="number"
-                  name="weekendhr"
+                  name="weekendHr"
                   className="form-control"
-                  placeholder="Unesite vikend satnicu"
+                  placeholder="Satnicu za vikend"
                   onChange={handleChange}
-                  value={d.weekendhr}/>
+                  value={d.weekendHr}/>
               </div>
 
               <div className="col-lg-3">
                 <label>Dnevnica:</label>
                   <input type="number"
-                  name="dailywage"
+                  name="dailyWage"
                   className="form-control"
-                  placeholder="Unesite dnevnicu"
+                  placeholder="Iznos dnevnice"
                   onChange={handleChange}
-                  value={d.dailywage}/>
+                  value={d.dailyWage}/>
               </div>
             </div>
 
@@ -216,9 +216,8 @@ const EditWorkersPage: React.FC = () => {
               <div className="col-lg-4">
                 <label>Radna dozvola vrijedi do:</label>
                   <input type="date"
-                  name="Radna_dozvola"
+                  name="workingPermit"
                   className="form-control"
-                  placeholder="Radna dozvola"
                   onChange={handleChange}
                   value={d.workingPermit} />
               </div>
@@ -228,7 +227,6 @@ const EditWorkersPage: React.FC = () => {
                   <input type="date"
                   name="firstAidDate"
                   className="form-control"
-                  placeholder="Liječnički pregled"
                   onChange={handleChange}
                   value={d.firstAidDate}/>
               </div>
@@ -243,7 +241,7 @@ const EditWorkersPage: React.FC = () => {
                 onChange={handleChangeCheckbox}
                 className="form-check-input" 
                 type="checkbox"  
-                id="flexCheckDefault"/>
+                />
           
                 <label className="form-check-label" >
                     Zaštita na radu
@@ -259,9 +257,9 @@ const EditWorkersPage: React.FC = () => {
                 onChange={handleChangeCheckbox}
                 className="form-check-input" 
                 type="checkbox" 
-                id="flexCheckDefault"/>
+                />
 
-                <label htmlFor="prvapomoc" className="form-check-label" >
+                <label className="form-check-label" >
                     Prva pomoć
                 </label>
             </div>
@@ -269,12 +267,11 @@ const EditWorkersPage: React.FC = () => {
           <div className="mb-10">
             <div className="form-check form-check-custom form-check-solid">
                 <input  
-                name="GEDA" 
+                name="geda" 
                 value="false"
                 onChange={handleChangeCheckbox}
                 className="form-check-input" 
                 type="checkbox" 
-                id="flexCheckDefault"
                 />
 
                 <label className="form-check-label" >
