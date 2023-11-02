@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useId } from 'react';
 import {KTIcon, toAbsoluteUrl} from '../../../../src/_metronic/helpers'
 import {getLayoutFromLocalStorage, ILayout, LayoutSetup} from '../../../../src/_metronic/layout/core'
@@ -20,7 +20,7 @@ const HourlyRatePage: React.FC = () => {
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
   const [checked, setChecked] = useState(true);
-
+  const [data, setData] = useState('')
 
   const updateConfig = () => {
     setConfigLoading(true)
@@ -40,6 +40,20 @@ const HourlyRatePage: React.FC = () => {
       setResetLoading(false)
     }, 1000)
   }
+
+  useEffect(()=> {
+    axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions.json')
+    .then(res => setData(res.data))
+    .catch(err => console.log(err));
+  }, [])
+
+  useEffect(()=> {
+    axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers.json')
+    .then(res => setData(res.data))
+    .catch(err => console.log(err));
+  }, [])
+
+
 
   return (
     <div>
