@@ -20,7 +20,7 @@ const CostSheetPage: React.FC = () => {
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
   const [checked, setChecked] = useState(true);
-
+  const [data, setData] = useState({name:'', bill:'', note:'' })
 
   const updateConfig = () => {
     setConfigLoading(true)
@@ -41,10 +41,68 @@ const CostSheetPage: React.FC = () => {
     }, 1000)
   }
 
+  function handleSubmit(e:any) {
+    e.preventDefault()
+    
+    console.log(data)
+    if(e){
+      axios.post('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/costsheet', data)
+      .then(response => {
+        window.location.reload()
+        window.alert("Dodan novi troškovnik")
+        }).catch(error => {console.log(error.response)})
+   }
+  }
+
+  const handleChange = (e:any) =>{
+    const name = e.target.name;
+    const value = e.target.value;
+    setData({...data, [name]:value})
+}
+
   return (
-    <div>
-        <h1>Troškovnik</h1>
+    <form className="form" method="post" onSubmit={handleSubmit}>
+    <div className="form-group row">
+        <div className="col-lg-4">
+          <label>Naziv:</label>
+          <input type="text"
+          name="name"
+          className="form-control"
+          placeholder="Unesite naziv"
+          onChange={handleChange}
+          value={data.name}/>
+        </div>
+
+        <div className="col-lg-4">
+          <label>Dodaj trošak:</label>
+            <input type="number"
+            name="bill"
+            className="form-control"
+            placeholder="Trošak"
+            onChange={handleChange}
+            value={data.bill}/>
+        </div>
+     </div>
+    
+     <div className="col-lg-4">
+      <label>Opis troška:</label>
+        <textarea
+        rows={5}
+        cols={50}
+        name="note"
+        className="form-control"
+        placeholder="Opis troška"
+        onChange={handleChange}
+        value={data.note}/>
     </div>
+
+       
+
+    <br/>
+    <div className="card-footer">
+          <button type="submit" className="btn btn-primary font-weight-bold mr-2">Potvrdi</button>
+        </div>
+  </form>
   )
 }
 

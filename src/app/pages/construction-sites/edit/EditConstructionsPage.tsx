@@ -14,7 +14,7 @@ const EditConstructionsPage: React.FC = () => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [d, setD] = useState({proof:'', bill:'', adress:'', description:'', charged:''});
+  const [d, setD] = useState({proof:'', bill:'', adress:'', note:'', charged:''});
   const [data, setData] = useState({name:'', id:''})
   const [gradiliste, setGradiliste] = useState([])
   const [dokaznica, setDokaznica] =useState('');
@@ -130,7 +130,7 @@ const EditConstructionsPage: React.FC = () => {
         className="form-control"
         placeholder="Unesite napomenu"
         onChange={handleChange}
-        value={d.description}/>
+        value={d.note}/>
     </div>
 
        
