@@ -55,6 +55,8 @@ const AddConstructionsPage: React.FC = () => {
   }
 
   return (
+    <div>
+    <h1>Unos Gradilišta </h1>
     <form className="form" method="post" onSubmit={handleSubmit}>
       <div className="form-group row">
           <div className="col-lg-4">
@@ -128,7 +130,7 @@ const AddConstructionsPage: React.FC = () => {
             <button type="submit" className="btn btn-primary font-weight-bold mr-2">Potvrdi</button>
           </div>
     </form>
-    
+  </div>
   )
 }
 

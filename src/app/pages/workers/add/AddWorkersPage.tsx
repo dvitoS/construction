@@ -16,8 +16,7 @@ import axios from 'axios'
 
 const AddWorkersPage: React.FC = () => {
   const nameInputId = useId();
-  const [d, setD] = useState ({address:"", oib:"", email:"", mob:"", passport:"", fatherName:"", motherName:"", workingPermit:"", firstAidDate:"", workProtection:'', firstAid:'', geda:'', hr:'', overtimeHr:'',weekendHr:'',dailyWage:'', wage:'', nightHr:'', note:''});
-  const [data, setData] = useState ({firstName:'', lastName:''});
+  const [data, setData] = useState ({firstName:'', lastName:'', address:'', oib:'', email:'', mob:'', passport:'', fatherName:"", motherName:"", workingPermit:'', firstAidDate:'', workProtection:'', firstAid:'', geda:'', hr:'', overtimeHr:'',weekendHr:'',dailyWage:'', wage:'', nightHr:'', note:''});
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
@@ -74,6 +73,8 @@ const AddWorkersPage: React.FC = () => {
   }
 
   return (
+  <div>
+    <h1>Unos Radnika</h1>
     <form className="form" method="post" onSubmit={handleSubmit}>
     <div className="card-body">
       <div className="form-group row">
@@ -108,7 +109,7 @@ const AddWorkersPage: React.FC = () => {
           className="form-control"
           placeholder="Prebivalište radnika"
           onChange={handleChange}
-          value={d.address}/>
+          value={data.address}/>
         </div>
 
           <div className="col-lg-4">
@@ -118,7 +119,7 @@ const AddWorkersPage: React.FC = () => {
             className="form-control"
             placeholder="OIB"
             onChange={handleChange}
-            value={d.oib}/>
+            value={data.oib}/>
           </div>
           
 
@@ -130,22 +131,22 @@ const AddWorkersPage: React.FC = () => {
             className="form-control"
             placeholder="Br putovnice"
             onChange={handleChange}
-            value={d.passport}/>
+            value={data.passport}/>
         </div>
 
         <div className="col-lg-4">
           <label>Broj mobitela:</label>
             <input type="tel" name="mob" className="form-control" placeholder="Br mobitela"/>
         </div>
-{/*         <div className="col-lg-4">
+        <div className="col-lg-4">
           <label>E-mail:</label>
             <input type="email"
               name="email"
               className="form-control"
               placeholder="email@email.com"
               onChange={handleChange}
-              value={d.email}/>
-        </div> */}
+              value={data.email}/>
+        </div> 
       </div>
 
       <div className="form-group row">
@@ -156,7 +157,7 @@ const AddWorkersPage: React.FC = () => {
             className="form-control"
             placeholder="Ime oca radnika"
             onChange={handleChange}
-            value={d.fatherName}/>
+            value={data.fatherName}/>
         </div>
 
         <div className="col-lg-4">
@@ -166,7 +167,7 @@ const AddWorkersPage: React.FC = () => {
             className="form-control"
             placeholder="Ime majke radnika"
             onChange={handleChange}
-            value={d.motherName}/>
+            value={data.motherName}/>
         </div>
       </div><br/>
         <div>SATNICA</div>
@@ -178,7 +179,7 @@ const AddWorkersPage: React.FC = () => {
             className="form-control"
             placeholder="Iznos satnice"
             onChange={handleChange}
-            value={d.hr}/>
+            value={data.hr}/>
         </div>
 
         <div className="col-lg-3">
@@ -188,7 +189,7 @@ const AddWorkersPage: React.FC = () => {
             className="form-control"
             placeholder="Satnica prekovremenih"
             onChange={handleChange}
-            value={d.overtimeHr}/>
+            value={data.overtimeHr}/>
         </div>
 
         <div className="col-lg-3">
@@ -198,7 +199,7 @@ const AddWorkersPage: React.FC = () => {
             className="form-control"
             placeholder="Satnica za vikend"
             onChange={handleChange}
-            value={d.weekendHr}/>
+            value={data.weekendHr}/>
         </div>
 
         <div className="col-lg-3">
@@ -208,7 +209,7 @@ const AddWorkersPage: React.FC = () => {
             className="form-control"
             placeholder="Dnevnica ako ju ima"
             onChange={handleChange}
-            value={d.dailyWage}/>
+            value={data.dailyWage}/>
         </div>
       </div>
     <div className="form-group row">    
@@ -219,7 +220,7 @@ const AddWorkersPage: React.FC = () => {
           className="form-control"
           placeholder="Noćni rad"
           onChange={handleChange}
-          value={d.nightHr}/>
+          value={data.nightHr}/>
       </div>
 
       <div className="col-lg-3">
@@ -229,7 +230,7 @@ const AddWorkersPage: React.FC = () => {
           className="form-control"
           placeholder="Plaća"
           onChange={handleChange}
-          value={d.wage}/>
+          value={data.wage}/>
       </div>
     </div>
       <div className="form-group row">
@@ -240,7 +241,7 @@ const AddWorkersPage: React.FC = () => {
             className="form-control"
             placeholder="Radna dozvola"
             onChange={handleChange}
-            value={d.workingPermit} />
+            value={data.workingPermit} />
         </div>
 
         <div className="col-lg-4">
@@ -250,7 +251,7 @@ const AddWorkersPage: React.FC = () => {
             className="form-control"
             placeholder="Liječnički pregled"
             onChange={handleChange}
-            value={d.firstAidDate}/>
+            value={data.firstAidDate}/>
         </div>
       </div>
     </div>
@@ -310,7 +311,7 @@ const AddWorkersPage: React.FC = () => {
         className="form-control"
         placeholder="Unesite napomenu"
         onChange={handleChange}
-        value={d.note}/>
+        value={data.note}/>
     </div>
     <br/>
     <div className="card-footer">
@@ -322,7 +323,7 @@ const AddWorkersPage: React.FC = () => {
       </div>
     </div>
   </form>
-	
+</div>
   )
 }
 
