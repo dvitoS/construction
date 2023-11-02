@@ -14,7 +14,7 @@ const EditWorkersPage: React.FC = () => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [d, setD] = useState ({address:"", oib:"", email:"", mob:"", passport:"", fatherName:"", motherName:"", workingPermit:"", firstAidDate:"", workProtection:'', firstAid:'', geda:'', hr:'', overtimeHr:'',weekendHr:'',dailyWage:'', wage:'',note:''});
+  const [d, setD] = useState ({address:"", oib:"", email:"", mob:"", passport:"", fatherName:"", motherName:"", workingPermit:"", firstAidDate:"", workProtection:'', firstAid:'', geda:'', hr:'', overtimeHr:'',weekendHr:'',dailyWage:'', wage:'',nightHr:'', note:''});
   //const [data, setData] = useState ({firstName:'', lastName:''});
   const [data, setData] = useState({firstName:'', lastName:''})
   const [workers, setWorkers] = useState<any[]>([])
@@ -209,6 +209,17 @@ const EditWorkersPage: React.FC = () => {
                   onChange={handleChange}
                   value={d.dailyWage}/>
               </div>
+            </div>
+
+            <div className="form-group row">    
+            <div className="col-lg-3">
+              <label>Noćni rad:</label>
+                <input type="number"
+                name="nightHr"
+                className="form-control"
+                placeholder="Noćni rad"
+                onChange={handleChange}
+                value={d.nightHr}/>
             </div>
 
             <div className="col-lg-3">

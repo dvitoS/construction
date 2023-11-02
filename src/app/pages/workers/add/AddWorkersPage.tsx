@@ -16,7 +16,7 @@ import axios from 'axios'
 
 const AddWorkersPage: React.FC = () => {
   const nameInputId = useId();
-  const [d, setD] = useState ({address:"", oib:"", email:"", mob:"", passport:"", fatherName:"", motherName:"", workingPermit:"", firstAidDate:"", workProtection:'', firstAid:'', geda:'', hr:'', overtimeHr:'',weekendHr:'',dailyWage:'', wage:'',note:''});
+  const [d, setD] = useState ({address:"", oib:"", email:"", mob:"", passport:"", fatherName:"", motherName:"", workingPermit:"", firstAidDate:"", workProtection:'', firstAid:'', geda:'', hr:'', overtimeHr:'',weekendHr:'',dailyWage:'', wage:'', nightHr:'', note:''});
   const [data, setData] = useState ({firstName:'', lastName:''});
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
@@ -211,6 +211,16 @@ const AddWorkersPage: React.FC = () => {
             value={d.dailyWage}/>
         </div>
       </div>
+    <div className="form-group row">    
+      <div className="col-lg-3">
+        <label>Noćni rad:</label>
+          <input type="number"
+          name="nightHr"
+          className="form-control"
+          placeholder="Noćni rad"
+          onChange={handleChange}
+          value={d.nightHr}/>
+      </div>
 
       <div className="col-lg-3">
         <label>Plaća:</label>
@@ -221,7 +231,7 @@ const AddWorkersPage: React.FC = () => {
           onChange={handleChange}
           value={d.wage}/>
       </div>
-
+    </div>
       <div className="form-group row">
         <div className="col-lg-4">
           <label>Radna dozvola vrijedi do:</label>
