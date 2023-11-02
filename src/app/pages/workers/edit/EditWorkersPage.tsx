@@ -212,7 +212,7 @@ const EditWorkersPage: React.FC = () => {
             </div>
 
             <div className="form-group row">    
-            <div className="col-lg-3">
+          <div className="col-lg-3">
               <label>Noćni rad:</label>
                 <input type="number"
                 name="nightHr"
@@ -231,7 +231,7 @@ const EditWorkersPage: React.FC = () => {
                 onChange={handleChange}
                 value={d.wage}/>
             </div>
-
+          </div>
 
             <div className="form-group row">
               <div className="col-lg-4">
