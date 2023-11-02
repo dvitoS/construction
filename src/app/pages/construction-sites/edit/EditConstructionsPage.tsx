@@ -14,7 +14,7 @@ const EditConstructionsPage: React.FC = () => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [d, setD] = useState({dokaznica:'', racun:'', adresa_gradilista:''});
+  const [d, setD] = useState({proof:'', bill:'', adress:'', description:'', charged:''});
   const [data, setData] = useState({name:'', id:''})
   const [gradiliste, setGradiliste] = useState([])
   const [dokaznica, setDokaznica] =useState('');
@@ -68,33 +68,73 @@ const EditConstructionsPage: React.FC = () => {
 
   return (
     <form className="form" method="post" onSubmit={handleSubmit}>
-    <div className="col-lg-4">
-      <label>Adresa:</label>
-      <input type="text"
-      name="name"
-      className="form-control"
-      placeholder="Unesite adresu gradilišta"
-      onChange={handleChange}
-      value={data.name}/>
-    </div>
-    <div className="col-lg-4">
-      <label>Dodaj dokaznicu:</label>
-        <input type="date"
-        name="dokaznica"
+    <div className="form-group row">
+        <div className="col-lg-4">
+          <label>Ime:</label>
+          <input type="text"
+          name="name"
+          className="form-control"
+          placeholder="Unesite ime gradilišta"
+          onChange={handleChange}
+          value={data.name}/>
+        </div>
+
+        <div className="col-lg-4">
+        <label>Adresa:</label>
+        <input type="text"
+        name="adress"
         className="form-control"
-        placeholder="Dokaznica"
+        placeholder="Unesite adresu gradilišta"
         onChange={handleChange}
-        value={d.dokaznica}/>
+        value={d.adress}/>
+      </div>
     </div>
-    <div className="col-lg-4">
-      <label>Dodaj račun:</label>
-        <input type="date"
-        name="racun"
+    <div className="form-group row">
+      <div className="col-lg-4">
+        <label>Dodaj dokaznicu:</label>
+          <input type="date"
+          name="proof"
+          className="form-control"
+          placeholder="Dokaznica"
+          onChange={handleChange}
+          value={d.proof}/>
+      </div>
+
+        <div className="col-lg-4">
+          <label>Dodaj račun:</label>
+            <input type="date"
+            name="bill"
+            className="form-control"
+            placeholder="Racun"
+            onChange={handleChange}
+            value={d.bill}/>
+        </div>
+
+        <div className="col-lg-4">
+        <label>Naplaćeno:</label>
+          <input type="number"
+          name="charged"
+          className="form-control"
+          placeholder="Naplaćeno"
+          onChange={handleChange}
+          value={d.charged}/>
+      </div>
+     </div>
+    
+     <div className="col-lg-4">
+      <label>Napomena:</label>
+        <textarea
+        rows={5}
+        cols={50}
+        name="note"
         className="form-control"
-        placeholder="Racun"
+        placeholder="Unesite napomenu"
         onChange={handleChange}
-        value={d.racun}/>
+        value={d.description}/>
     </div>
+
+       
+
     <br/>
     <div className="card-footer">
           <button type="submit" className="btn btn-primary font-weight-bold mr-2">Potvrdi</button>
