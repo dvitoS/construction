@@ -14,7 +14,7 @@ const EditWorkersPage: React.FC = () => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [d, setD] = useState ({address:"", oib:"", email:"", mob:"", passport:"", fatherName:"", motherName:"", workingPermit:"", firstAidDate:"", workProtection:'', firstAid:'', geda:'', hr:'', overtimeHr:'',weekendHr:'',dailyWage:'',note:''});
+  const [d, setD] = useState ({address:"", oib:"", email:"", mob:"", passport:"", fatherName:"", motherName:"", workingPermit:"", firstAidDate:"", workProtection:'', firstAid:'', geda:'', hr:'', overtimeHr:'',weekendHr:'',dailyWage:'', wage:'',note:''});
   //const [data, setData] = useState ({firstName:'', lastName:''});
   const [data, setData] = useState({firstName:'', lastName:''})
   const [workers, setWorkers] = useState<any[]>([])
@@ -209,6 +209,16 @@ const EditWorkersPage: React.FC = () => {
                   onChange={handleChange}
                   value={d.dailyWage}/>
               </div>
+            </div>
+
+            <div className="col-lg-3">
+              <label>Plaća:</label>
+                <input type="number"
+                name="wage"
+                className="form-control"
+                placeholder="Plaća"
+                onChange={handleChange}
+                value={d.wage}/>
             </div>
 
 
