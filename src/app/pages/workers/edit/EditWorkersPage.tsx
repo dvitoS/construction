@@ -167,17 +167,18 @@ const EditWorkersPage: React.FC = () => {
                   value={data.motherName}/>
               </div>
             </div>
-              <div>Satnica</div>
-            <div className="form-group row">
+            <div>PLAĆA I SATNICA</div>
+              <div className="form-group row">
               <div className="col-lg-3">
-                <label>Normalna satnica:</label>
-                  <input type="number"
-                  name="hr"
-                  className="form-control"
-                  placeholder="Iznos satnice"
-                  onChange={handleChange}
-                  value={data.hr}/>
-              </div>
+                  <label>Plaća:</label>
+                    <input type="number"
+                    name="wage"
+                    className="form-control"
+                    placeholder="Plaća"
+                    onChange={handleChange}
+                    value={data.wage}/>
+                </div>
+
 
               <div className="col-lg-3">
                 <label>Prekovremena satnica:</label>
@@ -219,16 +220,6 @@ const EditWorkersPage: React.FC = () => {
                 placeholder="Noćni rad"
                 onChange={handleChange}
                 value={data.nightHr}/>
-            </div>
-
-            <div className="col-lg-3">
-              <label>Plaća:</label>
-                <input type="number"
-                name="wage"
-                className="form-control"
-                placeholder="Plaća"
-                onChange={handleChange}
-                value={data.wage}/>
             </div>
           </div>
 
