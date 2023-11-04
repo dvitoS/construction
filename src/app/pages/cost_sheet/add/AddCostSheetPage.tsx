@@ -1,8 +1,8 @@
 import clsx from 'clsx'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useId } from 'react';
-import {KTIcon, toAbsoluteUrl} from '../../../_metronic/helpers'
-import {getLayoutFromLocalStorage, ILayout, LayoutSetup} from '../../../_metronic/layout/core'
+import {KTIcon, toAbsoluteUrl} from '../../../../_metronic/helpers'
+import {getLayoutFromLocalStorage, ILayout, LayoutSetup} from '../../../../_metronic/layout/core'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container';
@@ -13,14 +13,19 @@ import axios from 'axios'
 
 
 
-const CostSheetPage: React.FC = () => {
+const AddCostSheetPage: React.FC = () => {
   const nameInputId = useId();
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [checked, setChecked] = useState(true);
+
   const [data, setData] = useState({name:'', bill:'', note:'' })
+
+  const [constructions, setConstructions] = useState([]);
+  const [selectedConstruction, setSelectedConstruction] = useState('');
+
+  
 
   const updateConfig = () => {
     setConfigLoading(true)
@@ -53,6 +58,7 @@ const CostSheetPage: React.FC = () => {
         }).catch(error => {console.log(error.response)})
    }
   }
+  
 
   const handleChange = (e:any) =>{
     const name = e.target.name;
@@ -60,21 +66,41 @@ const CostSheetPage: React.FC = () => {
     setData({...data, [name]:value})
 }
 
+useEffect(() => {
+  const url = 'https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions';
+
+  axios.get(url)
+    .then((response) => {
+      setConstructions(response.data); // Set the response directly, assuming it's an array
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+    });
+}, []);
+
   return (
     <form className="form" method="post" onSubmit={handleSubmit}>
+      <h1>Dodavanje troška</h1>
     <div className="form-group row">
-        <div className="col-lg-4">
-          <label>Naziv:</label>
-          <input type="text"
-          name="name"
-          className="form-control"
-          placeholder="Unesite naziv"
-          onChange={handleChange}
-          value={data.name}/>
+        <div>
+          <label>Select a construction:</label>
+          
+          <select
+            value={selectedConstruction}
+            onChange={(e) => setSelectedConstruction(e.target.value)}
+          >
+            <option value="">Select a construction</option>
+            {constructions.map((construction:any) => (
+              <option key={construction.id} value={construction.id}>
+                {construction.name}
+              </option>
+            ))}
+          </select>
         </div>
 
+
         <div className="col-lg-4">
-          <label>Dodaj trošak:</label>
+          <label>Trošak:</label>
             <input type="number"
             name="bill"
             className="form-control"
@@ -82,20 +108,19 @@ const CostSheetPage: React.FC = () => {
             onChange={handleChange}
             value={data.bill}/>
         </div>
-     </div>
+        <div className="col-lg-4">
+        <label>Opis troška:</label>
+          <textarea
+          rows={5}
+          cols={50}
+          name="note"
+          className="form-control"
+          placeholder="Opis troška"
+          onChange={handleChange}
+          value={data.note}/>
+          </div>
+        </div>
     
-     <div className="col-lg-4">
-      <label>Opis troška:</label>
-        <textarea
-        rows={5}
-        cols={50}
-        name="note"
-        className="form-control"
-        placeholder="Opis troška"
-        onChange={handleChange}
-        value={data.note}/>
-    </div>
-
        
 
     <br/>
@@ -106,4 +131,4 @@ const CostSheetPage: React.FC = () => {
   )
 }
 
-export {CostSheetPage}
+export {AddCostSheetPage}

@@ -10,7 +10,7 @@ import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
 import WorkersPageWrapper from '../pages/workers/WorkersPageWrapper'
 import AddConstructionsPageWrapper from '../pages/construction-sites/add/AddConstructionsPageWrapper'
 import HourlyRatePageWrapper from '../pages/hourly_rate/HourlyRatePageWrapper'
-import CostSheetPageWrapper from '../pages/cost_sheet/CostSheetPageWrapper'
+import CostSheetPageWrapper from '../pages/cost_sheet/add/AddCostSheetPageWrapper'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
