@@ -169,7 +169,7 @@ const EditWorkersPage: React.FC = () => {
             </div>
             <div>PLAĆA I SATNICA</div>
               <div className="form-group row">
-              <div className="col-lg-3">
+              <div className="col-lg-1">
                   <label>Plaća:</label>
                     <input type="number"
                     name="wage"
@@ -180,7 +180,7 @@ const EditWorkersPage: React.FC = () => {
                 </div>
 
 
-              <div className="col-lg-3">
+              <div className="col-lg-1">
                 <label>Prekovremena satnica:</label>
                   <input type="number"
                   name="overtimeHr"
@@ -190,7 +190,7 @@ const EditWorkersPage: React.FC = () => {
                   value={data.overtimeHr}/>
               </div>
 
-              <div className="col-lg-3">
+              <div className="col-lg-1">
                 <label>Vikend satnica:</label>
                   <input type="number"
                   name="weekendHr"
@@ -200,7 +200,7 @@ const EditWorkersPage: React.FC = () => {
                   value={data.weekendHr}/>
               </div>
 
-              <div className="col-lg-3">
+              <div className="col-lg-1">
                 <label>Dnevnica:</label>
                   <input type="number"
                   name="dailyWage"
@@ -209,19 +209,18 @@ const EditWorkersPage: React.FC = () => {
                   onChange={handleChange}
                   value={data.dailyWage}/>
               </div>
+              <div className="col-lg-1">
+                <label>Noćni rad:</label>
+                  <input type="number"
+                  name="nightHr"
+                  className="form-control"
+                  placeholder="Noćni rad"
+                  onChange={handleChange}
+                  value={data.nightHr}/>
+              </div>
             </div>
 
-            <div className="form-group row">    
-          <div className="col-lg-3">
-              <label>Noćni rad:</label>
-                <input type="number"
-                name="nightHr"
-                className="form-control"
-                placeholder="Noćni rad"
-                onChange={handleChange}
-                value={data.nightHr}/>
-            </div>
-          </div>
+            
 
             <div className="form-group row">
               <div className="col-lg-4">

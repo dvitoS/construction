@@ -172,7 +172,7 @@ const AddWorkersPage: React.FC = () => {
       </div><br/>
         <div>PLAĆA I SATNICA</div>
       <div className="form-group row">
-      <div className="col-lg-3">
+      <div className="col-lg-2">
           <label>Plaća:</label>
             <input type="number"
             name="wage"
@@ -182,7 +182,7 @@ const AddWorkersPage: React.FC = () => {
             value={data.wage}/>
         </div>
 
-        <div className="col-lg-3">
+        <div className="col-lg-2">
           <label>Prekovremena satnica:</label>
             <input type="number"
             name="overtimeHr"
@@ -192,7 +192,7 @@ const AddWorkersPage: React.FC = () => {
             value={data.overtimeHr}/>
         </div>
 
-        <div className="col-lg-3">
+        <div className="col-lg-2">
           <label>Vikend satnica:</label>
             <input type="number"
             name="weekendHr"
@@ -202,7 +202,7 @@ const AddWorkersPage: React.FC = () => {
             value={data.weekendHr}/>
         </div>
 
-        <div className="col-lg-3">
+        <div className="col-lg-2">
           <label>Dnevnica:</label>
             <input type="number"
             name="dailyWage"
@@ -211,9 +211,8 @@ const AddWorkersPage: React.FC = () => {
             onChange={handleChange}
             value={data.dailyWage}/>
         </div>
-      </div>
-    <div className="form-group row">    
-      <div className="col-lg-3">
+
+        <div className="col-lg-2">
         <label>Noćni rad:</label>
           <input type="number"
           name="nightHr"
@@ -222,6 +221,8 @@ const AddWorkersPage: React.FC = () => {
           onChange={handleChange}
           value={data.nightHr}/>
       </div>
+       
+      
 
       
     </div>
