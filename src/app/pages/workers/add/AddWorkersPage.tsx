@@ -16,7 +16,7 @@ import axios from 'axios'
 
 const AddWorkersPage: React.FC = () => {
   const nameInputId = useId();
-  const [data, setData] = useState ({firstName:'', lastName:'', address:'', oib:'', email:'', mob:'', passport:'', fatherName:"", motherName:"", workingPermit:'', firstAidDate:'', workProtection:'', firstAid:'', geda:'', hr:'', overtimeHr:'',weekendHr:'',dailyWage:'', wage:'', nightHr:'', note:''});
+  const [data, setData] = useState ({firstName:'', lastName:'', address:'', oib:'', passport:'', mob:'', email:'', fatherName:"", motherName:"", wage:'', overtimeHr:'',weekendHr:'',dailyWage:'',  nightHr:'', workingPermit:'', firstAidDate:'', workProtection:'', firstAid:'', geda:'', note:''});
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
@@ -170,16 +170,16 @@ const AddWorkersPage: React.FC = () => {
             value={data.motherName}/>
         </div>
       </div><br/>
-        <div>SATNICA</div>
+        <div>PLAĆA I SATNICA</div>
       <div className="form-group row">
-        <div className="col-lg-3">
-          <label>Normalna satnica:</label>
+      <div className="col-lg-3">
+          <label>Plaća:</label>
             <input type="number"
-            name="hr"
+            name="wage"
             className="form-control"
-            placeholder="Iznos satnice"
+            placeholder="Plaća"
             onChange={handleChange}
-            value={data.hr}/>
+            value={data.wage}/>
         </div>
 
         <div className="col-lg-3">
@@ -223,15 +223,7 @@ const AddWorkersPage: React.FC = () => {
           value={data.nightHr}/>
       </div>
 
-      <div className="col-lg-3">
-        <label>Plaća:</label>
-          <input type="number"
-          name="wage"
-          className="form-control"
-          placeholder="Plaća"
-          onChange={handleChange}
-          value={data.wage}/>
-      </div>
+      
     </div>
       <div className="form-group row">
         <div className="col-lg-4">

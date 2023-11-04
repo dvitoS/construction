@@ -10,7 +10,7 @@ const AddConstructionsPage: React.FC = () => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [data ,setData] = useState({name:'', proof:'', bill:'', adress:'', description:'', charged:''})
+  const [data ,setData] = useState({name:'', proof:'', bill:'', address:'', description:'', charged:''})
 
 
   const updateConfig = () => {
@@ -63,7 +63,7 @@ const AddConstructionsPage: React.FC = () => {
             <input type="text"
             name="name"
             className="form-control"
-            placeholder="Unesite ime gradilišta"
+            placeholder="Naziv gradilišta"
             onChange={handleChange}
             value={data.name}/>
           </div>
@@ -71,11 +71,11 @@ const AddConstructionsPage: React.FC = () => {
           <div className="col-lg-4">
           <label>Adresa:</label>
           <input type="text"
-          name="adress"
+          name="address"
           className="form-control"
-          placeholder="Unesite adresu gradilišta"
+          placeholder="Adresa gradilišta"
           onChange={handleChange}
-          value={data.adress}/>
+          value={data.address}/>
         </div>
       </div>
       <div className="form-group row">
