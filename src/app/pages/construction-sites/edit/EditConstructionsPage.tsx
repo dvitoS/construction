@@ -14,8 +14,7 @@ const EditConstructionsPage: React.FC = () => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [d, setD] = useState({proof:'', bill:'', adress:'', note:'', charged:''});
-  const [data, setData] = useState({name:'', id:''})
+  const [data, setData] = useState({name:'', id:'', proof:'', bill:'', adress:'', note:'', charged:''})
   const [gradiliste, setGradiliste] = useState([])
   const [dokaznica, setDokaznica] =useState('');
   const [racun, setRacun] =useState('');
@@ -86,7 +85,7 @@ const EditConstructionsPage: React.FC = () => {
         className="form-control"
         placeholder="Unesite adresu gradilišta"
         onChange={handleChange}
-        value={d.adress}/>
+        value={data.adress}/>
       </div>
     </div>
     <div className="form-group row">
@@ -97,7 +96,7 @@ const EditConstructionsPage: React.FC = () => {
           className="form-control"
           placeholder="Dokaznica"
           onChange={handleChange}
-          value={d.proof}/>
+          value={data.proof}/>
       </div>
 
         <div className="col-lg-4">
@@ -107,7 +106,7 @@ const EditConstructionsPage: React.FC = () => {
             className="form-control"
             placeholder="Racun"
             onChange={handleChange}
-            value={d.bill}/>
+            value={data.bill}/>
         </div>
 
         <div className="col-lg-4">
@@ -117,7 +116,7 @@ const EditConstructionsPage: React.FC = () => {
           className="form-control"
           placeholder="Naplaćeno"
           onChange={handleChange}
-          value={d.charged}/>
+          value={data.charged}/>
       </div>
      </div>
     
@@ -130,7 +129,7 @@ const EditConstructionsPage: React.FC = () => {
         className="form-control"
         placeholder="Unesite napomenu"
         onChange={handleChange}
-        value={d.note}/>
+        value={data.note}/>
     </div>
 
        

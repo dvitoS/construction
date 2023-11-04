@@ -10,8 +10,7 @@ const AddConstructionsPage: React.FC = () => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [d, setD] = useState({proof:'', bill:'', adress:'', description:'', charged:''})
-  const [data ,setData] = useState({name:''})
+  const [data ,setData] = useState({name:'', proof:'', bill:'', adress:'', description:'', charged:''})
 
 
   const updateConfig = () => {
@@ -76,7 +75,7 @@ const AddConstructionsPage: React.FC = () => {
           className="form-control"
           placeholder="Unesite adresu gradilišta"
           onChange={handleChange}
-          value={d.adress}/>
+          value={data.adress}/>
         </div>
       </div>
       <div className="form-group row">
@@ -87,7 +86,7 @@ const AddConstructionsPage: React.FC = () => {
             className="form-control"
             placeholder="Dokaznica"
             onChange={handleChange}
-            value={d.proof}/>
+            value={data.proof}/>
         </div>
 
           <div className="col-lg-4">
@@ -97,7 +96,7 @@ const AddConstructionsPage: React.FC = () => {
               className="form-control"
               placeholder="Racun"
               onChange={handleChange}
-              value={d.bill}/>
+              value={data.bill}/>
           </div>
 
           <div className="col-lg-4">
@@ -107,7 +106,7 @@ const AddConstructionsPage: React.FC = () => {
             className="form-control"
             placeholder="Naplaćeno"
             onChange={handleChange}
-            value={d.charged}/>
+            value={data.charged}/>
         </div>
        </div>
     
@@ -120,7 +119,7 @@ const AddConstructionsPage: React.FC = () => {
           className="form-control"
           placeholder="Unesite napomenu"
           onChange={handleChange}
-          value={d.description}/>
+          value={data.description}/>
       </div>
 
        
