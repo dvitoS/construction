@@ -4,6 +4,7 @@ import { useId } from 'react';
 import {KTIcon, toAbsoluteUrl} from '../../../../_metronic/helpers'
 import {getLayoutFromLocalStorage, ILayout, LayoutSetup} from '../../../../_metronic/layout/core'
 import Form from 'react-bootstrap/Form'
+import Dropdown from 'react-bootstrap/Dropdown'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -23,7 +24,7 @@ const AddCostSheetPage: React.FC = () => {
   const [data, setData] = useState({name:'', bill:'', note:'' })
 
   const [constructions, setConstructions] = useState([]);
-  const [selectedConstruction, setSelectedConstruction] = useState('');
+  const [selectedConstruction, setSelectedConstruction] = useState([]);
 
   
 
@@ -82,22 +83,16 @@ useEffect(() => {
     <form className="form" method="post" onSubmit={handleSubmit}>
       <h1>Dodavanje troška</h1>
     <div className="form-group row">
-        <div>
-          <label>Select a construction:</label>
-          
-          <select
-            value={selectedConstruction}
-            onChange={(e) => setSelectedConstruction(e.target.value)}
-          >
-            <option value="">Select a construction</option>
-            {constructions.map((construction:any) => (
-              <option key={construction.id} value={construction.id}>
-                {construction.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
+    <div className="col-lg-3">
+      <label>Gradilište</label>
+        <select className="form-select form-select-solid" aria-label="Odabir gridlista">
+        <option>Odaberite gradilište</option>
+        {constructions.map((construction:any) => (
+          <option key={construction.id} value={construction.id}>{construction.name}</option>
+          ))}
+        </select>
+        <div/>
+    </div>
 
         <div className="col-lg-4">
           <label>Trošak:</label>
@@ -119,8 +114,8 @@ useEffect(() => {
           onChange={handleChange}
           value={data.note}/>
           </div>
-        </div>
-    
+
+    </div>
        
 
     <br/>
