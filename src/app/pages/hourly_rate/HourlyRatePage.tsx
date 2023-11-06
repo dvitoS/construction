@@ -21,7 +21,7 @@ const HourlyRatePage: React.FC = () => {
   const [resetLoading, setResetLoading] = useState<boolean>(false)
   const [checked, setChecked] = useState(true);
 
-  const [data, setData] = useState('')
+  const [data, setData] = useState({ wage:'', overtimeHr:'',weekendHr:'',dailyWage:'',  nightHr:''})
 
   const [constructions, setConstructions] = useState([]);
   const [selectedConstruction, setSelectedConstruction] = useState([]);
@@ -73,6 +73,12 @@ const HourlyRatePage: React.FC = () => {
       });
   }, []);
 
+  const handleChange = (e:any) =>{
+    const name = e.target.name;
+    const value = e.target.value;
+    setData({...data, [name]:value})
+  }
+
   function handleSubmit(e:any) {
     e.preventDefault()
     
@@ -112,6 +118,58 @@ const HourlyRatePage: React.FC = () => {
           <div/>
         </div> 
       </div>
+      <br />
+    <div className="form-group row">
+      <div className="col-lg-1">
+        <label>Plaća:</label>
+          <input type="number"
+          name="wage"
+          className="form-control"
+          placeholder="Plaća"
+          onChange={handleChange}
+          value={data.wage}/>
+      </div>
+
+      <div className="col-lg-1">
+        <label>Prekovremeno:</label>
+          <input type="number"
+          name="overtimeHr"
+          className="form-control"
+          placeholder="Satnica prekovremenih"
+          onChange={handleChange}
+          value={data.overtimeHr}/>
+      </div>
+
+      <div className="col-lg-1">
+        <label>Vikend satnica:</label>
+          <input type="number"
+          name="weekendHr"
+          className="form-control"
+          placeholder="Satnica za vikend"
+          onChange={handleChange}
+          value={data.weekendHr}/>
+      </div>
+
+      <div className="col-lg-1">
+        <label>Dnevnica:</label>
+          <input type="number"
+          name="dailyWage"
+          className="form-control"
+          placeholder="Dnevnica ako ju ima"
+          onChange={handleChange}
+          value={data.dailyWage}/>
+      </div>
+
+      <div className="col-lg-1">
+      <label>Noćni rad:</label>
+        <input type="number"
+        name="nightHr"
+        className="form-control"
+        placeholder="Noćni rad"
+        onChange={handleChange}
+        value={data.nightHr}/>
+    </div>
+  </div>
     <br/>
       <div className="card-footer">
         <button type="submit" className="btn btn-primary font-weight-bold mr-2">Potvrdi</button>
