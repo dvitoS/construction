@@ -20,7 +20,15 @@ const HourlyRatePage: React.FC = () => {
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
   const [checked, setChecked] = useState(true);
+
   const [data, setData] = useState('')
+
+  const [constructions, setConstructions] = useState([]);
+  const [selectedConstruction, setSelectedConstruction] = useState([]);
+
+  const [workers, setWorkers] = useState([]);
+  const [selectedWorkers, setSelectedWorkers] = useState([]);
+
 
   const updateConfig = () => {
     setConfigLoading(true)
@@ -41,24 +49,74 @@ const HourlyRatePage: React.FC = () => {
     }, 1000)
   }
 
-  useEffect(()=> {
-    axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions.json')
-    .then(res => setData(res.data))
-    .catch(err => console.log(err));
-  }, [])
-
-  useEffect(()=> {
-    axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers.json')
-    .then(res => setData(res.data))
-    .catch(err => console.log(err));
-  }, [])
 
 
+  useEffect(() => {
+    const url = 'https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers';
+    axios.get(url)
+      .then((response) => {
+        setWorkers(response.data); // Set the response directly, assuming it's an array
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  useEffect(() => {
+    const url = 'https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions';
+    axios.get(url)
+      .then((response) => {
+        setConstructions(response.data); // Set the response directly, assuming it's an array
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  function handleSubmit(e:any) {
+    e.preventDefault()
+    
+    console.log(data)
+    if(e){
+      axios.post('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/hourlyrate', data)
+      .then(response => {
+        window.location.reload()
+        window.alert("Dodana nova satnica")
+        }).catch(error => {console.log(error.response)})
+   }
+  }
+  
 
   return (
-    <div>
-        <h1>Satnica</h1>
-    </div>
+    <form className="form" method="post" onSubmit={handleSubmit}>
+      <h1>Dodavanje troška</h1>
+      <div className="form-group row">
+        <div className="col-lg-3">
+          <label>Radnik</label>
+            <select className="form-select form-select-solid" aria-label="Odabir gridlista">
+            <option>Odaberite radnika</option>
+            {workers.map((worker:any) => (
+              <option key={worker.id} value={worker.id}>{worker.firstName}</option>
+              ))}
+            </select>
+            <div/>
+        </div> 
+        <div className="col-lg-3">
+          <label>Gradilište</label>
+            <select className="form-select form-select-solid" aria-label="Odabir gridlista">
+            <option>Odaberite gradilište</option>
+            {constructions.map((construction:any) => (
+              <option key={construction.id} value={construction.id}>{construction.name}</option>
+              ))}
+            </select>
+          <div/>
+        </div> 
+      </div>
+    <br/>
+      <div className="card-footer">
+        <button type="submit" className="btn btn-primary font-weight-bold mr-2">Potvrdi</button>
+      </div>
+    </form>
   )
 }
 
