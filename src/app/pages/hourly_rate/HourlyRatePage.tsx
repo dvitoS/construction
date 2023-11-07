@@ -122,54 +122,70 @@ const HourlyRatePage: React.FC = () => {
       </div>
       <br />
     <div className="form-group row">
-      <div className="col-lg-1">
+      <div className="col-lg-2">
         <label>Plaća:</label>
+        <div className="input-group">
           <input type="number"
           name="wage"
           className="form-control"
           placeholder="Plaća"
           onChange={handleChange}
           value={data.wage}/>
+          <div className="input-group-append"><span className="input-group-text">€</span></div>
+      </div>
       </div>
 
-      <div className="col-lg-1">
+
+      <div className="col-lg-2">
         <label>Prekovremeno:</label>
+        <div className="input-group">
           <input type="number"
           name="overtimeHr"
           className="form-control"
-          placeholder="Satnica prekovremenih"
+          placeholder="€"
           onChange={handleChange}
           value={data.overtimeHr}/>
+        <div className="input-group-append"><span className="input-group-text">€</span></div>
+        </div>
       </div>
-
-      <div className="col-lg-1">
+      <div className="col-lg-2">
         <label>Vikend satnica:</label>
+        <div className="input-group">
           <input type="number"
           name="weekendHr"
           className="form-control"
-          placeholder="Satnica za vikend"
+          placeholder="€"
           onChange={handleChange}
           value={data.weekendHr}/>
+          <div className="input-group-append"><span className="input-group-text">€</span></div>
+      </div>
       </div>
 
-      <div className="col-lg-1">
+      <div className="col-lg-2">
         <label>Dnevnica:</label>
+        <div className="input-group">
           <input type="number"
           name="dailyWage"
           className="form-control"
-          placeholder="Dnevnica ako ju ima"
+          placeholder="€"
           onChange={handleChange}
           value={data.dailyWage}/>
+          <div className="input-group-append"><span className="input-group-text">€</span></div>
+
+      </div>
       </div>
 
-      <div className="col-lg-1">
+      <div className="col-lg-2">
       <label>Noćni rad:</label>
+      <div className="input-group">
         <input type="number"
         name="nightHr"
         className="form-control"
-        placeholder="Noćni rad"
+        placeholder="€"
         onChange={handleChange}
         value={data.nightHr}/>
+        <div className="input-group-append"><span className="input-group-text">€</span></div>
+    </div>
     </div>
   </div>
     <br/>
