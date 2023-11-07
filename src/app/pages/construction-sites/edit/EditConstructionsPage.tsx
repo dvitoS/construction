@@ -69,7 +69,7 @@ const EditConstructionsPage: React.FC = () => {
     <form className="form" method="post" onSubmit={handleSubmit}>
     <div className="form-group row">
         <div className="col-lg-3">
-          <label>Ime:</label>
+          <label>Naziv:</label>
           <input type="text"
           name="name"
           className="form-control"
