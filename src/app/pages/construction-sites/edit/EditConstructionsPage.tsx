@@ -14,7 +14,7 @@ const EditConstructionsPage: React.FC = () => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [data, setData] = useState({name:'', id:'', proof:'', bill:'', address:'', note:'', charged:''})
+  const [data, setData] = useState({name:'', id:'', proof:'', bill:'', address:'', description:'', charged:''})
   const [gradiliste, setGradiliste] = useState([])
   const [dokaznica, setDokaznica] =useState('');
   const [racun, setRacun] =useState('');
@@ -124,15 +124,15 @@ const EditConstructionsPage: React.FC = () => {
      </div>
     
      <div className="col-lg-4">
-      <label>Napomena:</label>
+      <label>Opis/Napomena:</label>
         <textarea
         rows={5}
         cols={50}
-        name="note"
+        name="description"
         className="form-control"
         placeholder="Unesite napomenu"
         onChange={handleChange}
-        value={data.note}/>
+        value={data.description}/>
     </div>
 
        

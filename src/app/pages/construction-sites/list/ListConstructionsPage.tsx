@@ -58,7 +58,7 @@ const ListConstructionsPage: React.FC = ({}) => {
         <table className='table table-striped'>
           <thead>
             <tr>
-              <th>ID</th>
+              <th>Br.</th>
               <th>Ime</th>
             </tr>
           </thead>
@@ -66,7 +66,7 @@ const ListConstructionsPage: React.FC = ({}) => {
               {
                 data.map((d, i) => (
                   <tr key={i}>
-                    <td>{d.id}</td>
+                    <td>{i+1+"."}</td>
                     <td>{d.name}</td>
                     <td>
                       <button className='btn btn-sm btn-primary me-2'>Otvori</button>

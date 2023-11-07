@@ -58,7 +58,7 @@ const ListWorkersPage: React.FC = () => {
       <table className='table table-striped'>
         <thead>
           <tr>
-            <th>ID</th>
+            <th>Br.</th>
             <th>Ime</th>
             <th>Prezime</th>
           </tr>
@@ -67,7 +67,7 @@ const ListWorkersPage: React.FC = () => {
             {
               data.map((d, i) => (
                 <tr key={i}>
-                  <td>{d.id}</td>
+                  <td>{i+1+"."}</td>
                   <td>{d.firstName}</td>
                   <td>{d.lastName}</td>
                   <td>

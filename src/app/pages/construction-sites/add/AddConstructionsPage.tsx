@@ -10,7 +10,7 @@ const AddConstructionsPage: React.FC = () => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [data ,setData] = useState({name:'', proof:'', bill:'', address:'', charged:'', note:''})
+  const [data ,setData] = useState({name:'', proof:'', bill:'', address:'', charged:'', description:''})
 
 
   const updateConfig = () => {
@@ -114,15 +114,15 @@ const AddConstructionsPage: React.FC = () => {
        </div>
     
        <div className="col-lg-4">
-        <label>Napomena:</label>
+        <label>Opis/Napomena:</label>
           <textarea
           rows={5}
           cols={50}
-          name="note"
+          name="description"
           className="form-control"
           placeholder="Unesite napomenu"
           onChange={handleChange}
-          value={data.note}/>
+          value={data.description}/>
       </div>
 
        
