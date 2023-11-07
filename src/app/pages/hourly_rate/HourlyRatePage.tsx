@@ -21,13 +21,15 @@ const HourlyRatePage: React.FC = () => {
   const [resetLoading, setResetLoading] = useState<boolean>(false)
   const [checked, setChecked] = useState(true);
 
-  const [data, setData] = useState({ wage:'', overtimeHr:'',weekendHr:'',dailyWage:'',  nightHr:''})
+  const [data, setData] = useState({ idWorker:'', idConstruction:'', wage:'', overtimeHr:'',weekendHr:'',dailyWage:'',  nightHr:''})
+
+  const [workers, setWorkers] = useState([]);
+  const [selectedWorkers, setSelectedWorkers] = useState([]);
 
   const [constructions, setConstructions] = useState([]);
   const [selectedConstruction, setSelectedConstruction] = useState([]);
 
-  const [workers, setWorkers] = useState([]);
-  const [selectedWorkers, setSelectedWorkers] = useState([]);
+
 
 
   const updateConfig = () => {
@@ -82,7 +84,7 @@ const HourlyRatePage: React.FC = () => {
   function handleSubmit(e:any) {
     e.preventDefault()
     
-    console.log(data)
+   
     if(e){
       axios.post('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/hourlyrate', data)
       .then(response => {
@@ -99,7 +101,7 @@ const HourlyRatePage: React.FC = () => {
       <div className="form-group row">
         <div className="col-lg-3">
           <label>Radnik</label>
-            <select className="form-select form-select-solid" aria-label="Odabir gridlista">
+            <select name="idWorker" className="form-select form-select-solid" aria-label="Odabir gridlista" onChange={handleChange}>
             <option>Odaberite radnika</option>
             {workers.map((worker:any) => (
               <option key={worker.id} value={worker.id}>{worker.firstName}</option>
@@ -109,7 +111,7 @@ const HourlyRatePage: React.FC = () => {
         </div> 
         <div className="col-lg-3">
           <label>Gradilište</label>
-            <select className="form-select form-select-solid" aria-label="Odabir gridlista">
+            <select name="idConstruction" className="form-select form-select-solid" aria-label="Odabir gridlista" onChange={handleChange}>
             <option>Odaberite gradilište</option>
             {constructions.map((construction:any) => (
               <option key={construction.id} value={construction.id}>{construction.name}</option>
