@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { useId } from 'react';
 import {KTIcon, toAbsoluteUrl} from '../../../../_metronic/helpers'
 import {getLayoutFromLocalStorage, ILayout, LayoutSetup} from '../../../../_metronic/layout/core'
@@ -13,7 +13,7 @@ import axios from 'axios'
 
 
 
-const EditCostSheetPage: React.FC = () => {
+const ListCostSheetPage: React.FC = () => {
   const nameInputId = useId();
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
@@ -41,23 +41,12 @@ const EditCostSheetPage: React.FC = () => {
     }, 1000)
   }
 
-
-  useEffect(()=>{
-    axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/costsheet')
-    .then(res => setData(res.data))
-    .catch(err => console.log(err));
-  },[])
-  const handleInput = (event:any) => {
-  //setData({...data, [event.target.name]: event.target.value})		
-  }
-
-
   function handleSubmit(e:any) {
     e.preventDefault()
     
     console.log(data)
     if(e){
-      axios.put('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/costsheet', data)
+      axios.post('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/costsheet', data)
       .then(response => {
         window.location.reload()
         window.alert("Dodan novi troškovnik")
@@ -117,4 +106,4 @@ const EditCostSheetPage: React.FC = () => {
   )
 }
 
-export {EditCostSheetPage}
+export {ListCostSheetPage}

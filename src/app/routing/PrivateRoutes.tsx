@@ -9,8 +9,14 @@ import {WithChildren} from '../../_metronic/helpers'
 import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
 import WorkersPageWrapper from '../pages/workers/WorkersPageWrapper'
 import AddConstructionsPageWrapper from '../pages/construction-sites/add/AddConstructionsPageWrapper'
-import HourlyRatePageWrapper from '../pages/hourly_rate/HourlyRatePageWrapper'
+import HourlyRatePageWrapper from '../pages/hourly_rate/add/AddHourlyRatePageWrapper'
 import CostSheetPageWrapper from '../pages/cost_sheet/add/AddCostSheetPageWrapper'
+import AddHourlyRatePageWrapper from '../pages/hourly_rate/add/AddHourlyRatePageWrapper'
+import EditHourlyRatePageWrapper from '../pages/hourly_rate/edit/EditHourlyRatePageWrapper'
+import ListHourlyRatePageWrapper from '../pages/hourly_rate/list/ListHourlyRatePageWrapper'
+import AddCostSheetPageWrapper  from '../pages/cost_sheet/add/AddCostSheetPageWrapper'
+import EditCostSheetPageWrapper from '../pages/cost_sheet/edit/EditCostSheetPageWrapper'
+import ListCostSheetPageWrapper from '../pages/cost_sheet/list/ListCostSheetPageWrapper'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -42,6 +48,12 @@ const PrivateRoutes = () => {
         <Route path='list' element={<ListConstructionsPageWrapper />} />
         <Route path='hr' element={<HourlyRatePageWrapper />} />
         <Route path='menu-test' element={<MenuTestPage />} />
+        <Route path='add' element={<AddHourlyRatePageWrapper />} />
+        <Route path='edit/:id' element={<EditHourlyRatePageWrapper />} />
+        <Route path='list' element={<ListHourlyRatePageWrapper />} />
+        <Route path='add' element={<AddCostSheetPageWrapper />} />
+        <Route path='edit/:id' element={<EditCostSheetPageWrapper />} />
+        <Route path='list' element={<ListCostSheetPageWrapper />} />
         
         {/* Lazy Modules */}
         <Route
@@ -142,18 +154,50 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-          path='crafted/hourlyrate'
+          path='crafted/hourlyrate/add'
           element={
             <SuspensedView>
-              <HourlyRatePageWrapper />
+              <AddHourlyRatePageWrapper />
             </SuspensedView>
           }
         />
         <Route
-          path='crafted/costsheet'
+          path='crafted/hourlyrate/edit'
           element={
             <SuspensedView>
-              <CostSheetPageWrapper />
+              <EditHourlyRatePageWrapper />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='crafted/hourlyrate/list'
+          element={
+            <SuspensedView>
+              <ListHourlyRatePageWrapper />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='crafted/costsheet/add'
+          element={
+            <SuspensedView>
+              <AddCostSheetPageWrapper />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='crafted/costsheet/edit'
+          element={
+            <SuspensedView>
+              <EditCostSheetPageWrapper />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='crafted/costsheet/list'
+          element={
+            <SuspensedView>
+              <ListCostSheetPageWrapper />
             </SuspensedView>
           }
         />

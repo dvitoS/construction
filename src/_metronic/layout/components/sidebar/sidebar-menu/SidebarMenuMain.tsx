@@ -4,6 +4,8 @@ import {useIntl} from 'react-intl'
 import {KTIcon} from '../../../../helpers'
 import {SidebarMenuItemWithSub} from './SidebarMenuItemWithSub'
 import {SidebarMenuItem} from './SidebarMenuItem'
+import KTSVG from '../../../../assets/keenicons/duotone/fonts/keenicons-duotone.svg'
+
 
 const SidebarMenuMain = () => {
   const intl = useIntl()
@@ -26,7 +28,7 @@ const SidebarMenuMain = () => {
           
           <SidebarMenuItem
             to='/crafted/workers/list'
-            title='Popis radnika'
+            title='Lista radnika'
             hasBullet={true}
           />
         </SidebarMenuItemWithSub>
@@ -41,26 +43,47 @@ const SidebarMenuMain = () => {
           
           <SidebarMenuItem
             to='/crafted/constructions/list'
-            title='Popis gradilišta'
+            title='Lista gradilišta'
             hasBullet={true}
           />
-        </SidebarMenuItemWithSub>
-
-
-        <SidebarMenuItem
-          to='/crafted/hourlyrate'
-          title='Satnica'
-          hasBullet={true}
-        />  
-
-        <SidebarMenuItem
-          to='/crafted/costsheet'
-          title='Troškovnik'
-          hasBullet={true}
-        />  
-
+        </SidebarMenuItemWithSub>  
 
       </SidebarMenuItemWithSub>
+
+      <SidebarMenuItemWithSub
+        to='/crafted/pages'
+        title='Financije'
+        fontIcon='bi-archive'
+        icon='element-plus'
+      >
+       
+      <SidebarMenuItemWithSub to='/crafted/pages' title='Satnica' hasBullet={true}>
+        <SidebarMenuItem
+          to='/crafted/hourlyrate/add'
+          title='Dodaj satnicu'
+          hasBullet={true}
+        />
+        <SidebarMenuItem
+          to='/crafted/hourlyrate/list'
+          title='Lista satnica'
+          hasBullet={true}
+        />
+      </SidebarMenuItemWithSub>
+
+      <SidebarMenuItemWithSub to='/crafted/pages' title='Troškovnik' hasBullet={true}>
+        <SidebarMenuItem
+          to='/crafted/costsheet/add'
+          title='Dodaj troškovnik'
+          hasBullet={true}
+        />
+        <SidebarMenuItem
+          to='/crafted/costsheet/list'
+          title='Lista troškovnika'
+          hasBullet={true}
+        />
+      </SidebarMenuItemWithSub>
+    </SidebarMenuItemWithSub>
+
       <SidebarMenuItemWithSub
         to='/crafted/accounts'
         title='Accounts'

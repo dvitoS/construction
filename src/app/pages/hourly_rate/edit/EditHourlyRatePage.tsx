@@ -1,8 +1,8 @@
 import clsx from 'clsx'
 import React, {useState, useEffect} from 'react'
 import { useId } from 'react';
-import {KTIcon, toAbsoluteUrl} from '../../../../src/_metronic/helpers'
-import {getLayoutFromLocalStorage, ILayout, LayoutSetup} from '../../../../src/_metronic/layout/core'
+import {KTIcon, toAbsoluteUrl} from '../../../../_metronic/helpers'
+import {getLayoutFromLocalStorage, ILayout, LayoutSetup} from '../../../../_metronic/layout/core'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container';
@@ -13,7 +13,7 @@ import axios from 'axios'
 
 
 
-const HourlyRatePage: React.FC = () => {
+const EditHourlyRatePage: React.FC = () => {
   const nameInputId = useId();
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
@@ -196,4 +196,4 @@ const HourlyRatePage: React.FC = () => {
   )
 }
 
-export {HourlyRatePage}
+export {EditHourlyRatePage}
