@@ -10,7 +10,7 @@ const AddConstructionsPage: React.FC = () => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [data ,setData] = useState({name:'', proof:'', bill:'', address:'', description:'', charged:''})
+  const [data ,setData] = useState({name:'', proof:'', bill:'', address:'', description:'', charged:'', note:''})
 
 
   const updateConfig = () => {
@@ -58,7 +58,7 @@ const AddConstructionsPage: React.FC = () => {
     <h1>Unos Gradilišta </h1>
     <form className="form" method="post" onSubmit={handleSubmit}>
       <div className="form-group row">
-          <div className="col-lg-4">
+          <div className="col-lg-3">
             <label>Ime:</label>
             <input type="text"
             name="name"
@@ -68,7 +68,7 @@ const AddConstructionsPage: React.FC = () => {
             value={data.name}/>
           </div>
 
-          <div className="col-lg-4">
+          <div className="col-lg-3">
           <label>Adresa:</label>
           <input type="text"
           name="address"
@@ -79,7 +79,7 @@ const AddConstructionsPage: React.FC = () => {
         </div>
       </div>
       <div className="form-group row">
-        <div className="col-lg-4">
+        <div className="col-lg-2">
           <label>Dodaj dokaznicu:</label>
             <input type="date"
             name="proof"
@@ -89,7 +89,7 @@ const AddConstructionsPage: React.FC = () => {
             value={data.proof}/>
         </div>
 
-          <div className="col-lg-4">
+          <div className="col-lg-2">
             <label>Dodaj račun:</label>
               <input type="date"
               name="bill"
@@ -99,14 +99,17 @@ const AddConstructionsPage: React.FC = () => {
               value={data.bill}/>
           </div>
 
-          <div className="col-lg-4">
+          <div className="col-lg-2">
           <label>Naplaćeno:</label>
+          <div className="input-group">
             <input type="number"
             name="charged"
             className="form-control"
             placeholder="Naplaćeno"
             onChange={handleChange}
             value={data.charged}/>
+          <div className="input-group-append"><span className="input-group-text">€</span></div>
+        </div>
         </div>
        </div>
     
@@ -119,7 +122,7 @@ const AddConstructionsPage: React.FC = () => {
           className="form-control"
           placeholder="Unesite napomenu"
           onChange={handleChange}
-          value={data.description}/>
+          value={data.note}/>
       </div>
 
        

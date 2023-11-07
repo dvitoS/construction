@@ -109,16 +109,20 @@ const EditConstructionsPage: React.FC = () => {
             value={data.bill}/>
         </div>
 
-        <div className="col-lg-4">
-        <label>Naplaćeno:</label>
-          <input type="number"
-          name="charged"
-          className="form-control"
-          placeholder="Naplaćeno"
-          onChange={handleChange}
-          value={data.charged}/>
-      </div>
-     </div>
+
+        <div className="col-lg-2">
+      <label>Naplaćeno:</label>
+      <div className="input-group">
+        <input type="number"
+        name="charged"
+        className="form-control"
+        placeholder="Naplaćeno"
+        onChange={handleChange}
+        value={data.charged}/>
+      <div className="input-group-append"><span className="input-group-text">€</span></div>
+    </div>
+    </div>
+  </div>
     
      <div className="col-lg-4">
       <label>Napomena:</label>
