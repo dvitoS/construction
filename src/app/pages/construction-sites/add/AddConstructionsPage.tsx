@@ -10,7 +10,7 @@ const AddConstructionsPage: React.FC = () => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [data ,setData] = useState({name:'', proof:'', bill:'', address:'', description:'', charged:'', note:''})
+  const [data ,setData] = useState({name:'', proof:'', bill:'', address:'', charged:'', note:''})
 
 
   const updateConfig = () => {
@@ -59,7 +59,7 @@ const AddConstructionsPage: React.FC = () => {
     <form className="form" method="post" onSubmit={handleSubmit}>
       <div className="form-group row">
           <div className="col-lg-3">
-            <label>Ime:</label>
+            <label>Naziv:</label>
             <input type="text"
             name="name"
             className="form-control"
