@@ -32,11 +32,6 @@ const SidebarMenuMain = () => {
             hasBullet={true}
           />
 
-          <SidebarMenuItem
-            to='/crafted/workers/singleworker'
-            title='Pregled radika'
-            hasBullet={true}
-          />
         </SidebarMenuItemWithSub>
 
 
