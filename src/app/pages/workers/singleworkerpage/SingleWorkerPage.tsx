@@ -74,7 +74,7 @@ const SingleWorkerPage: React.FC<Props> = ({className}) => {
                 <td>@mdo</td>
             </tr>
             <tr>
-                <td col-span="4">
+                <td colSpan={4}>
                     <table className="table table-row-dashed table-row-gray-500 gy-5 gs-5 mb-0">
                         <thead>
                             <tr className="fw-bold fs-6 text-gray-800">
