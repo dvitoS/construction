@@ -145,7 +145,7 @@ const AddHourlyRatePage: React.FC = () => {
           placeholder="€"
           onChange={handleChange}
           value={data.overtimeHr}/>
-        <div className="input-group-append"><span className="input-group-text">€</span></div>
+        <div className="input-group-append"><span className="input-group-text">h</span></div>
         </div>
       </div>
       <div className="col-lg-2">
@@ -157,7 +157,7 @@ const AddHourlyRatePage: React.FC = () => {
           placeholder="€"
           onChange={handleChange}
           value={data.weekendHr}/>
-          <div className="input-group-append"><span className="input-group-text">€</span></div>
+          <div className="input-group-append"><span className="input-group-text">h</span></div>
       </div>
       </div>
 
