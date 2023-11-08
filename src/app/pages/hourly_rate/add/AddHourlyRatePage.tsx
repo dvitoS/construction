@@ -21,7 +21,7 @@ const AddHourlyRatePage: React.FC = () => {
   const [resetLoading, setResetLoading] = useState<boolean>(false)
   const [checked, setChecked] = useState(true);
 
-  const [data, setData] = useState({ idWorker:'', idConstruction:'', wage:'', overtimeHr:'',weekendHr:'',dailyWage:'',  nightHr:''})
+  const [data, setData] = useState({ idWorker:'', idConstruction:'', workHours:'', overtimeHr:'',weekendHr:'',dailyWage:'',  nightHr:''})
 
   const [workers, setWorkers] = useState([]);
   const [selectedWorkers, setSelectedWorkers] = useState([]);
@@ -123,15 +123,15 @@ const AddHourlyRatePage: React.FC = () => {
       <br />
     <div className="form-group row">
       <div className="col-lg-2">
-        <label>Plaća:</label>
+        <label>Radni sati:</label>
         <div className="input-group">
           <input type="number"
-          name="wage"
+          name="workHours"
           className="form-control"
-          placeholder="Plaća"
+          placeholder="h"
           onChange={handleChange}
-          value={data.wage}/>
-          <div className="input-group-append"><span className="input-group-text">€</span></div>
+          value={data.workHours}/>
+          <div className="input-group-append"><span className="input-group-text">h</span></div>
       </div>
       </div>
 
@@ -142,19 +142,19 @@ const AddHourlyRatePage: React.FC = () => {
           <input type="number"
           name="overtimeHr"
           className="form-control"
-          placeholder="€"
+          placeholder="h"
           onChange={handleChange}
           value={data.overtimeHr}/>
         <div className="input-group-append"><span className="input-group-text">h</span></div>
         </div>
       </div>
       <div className="col-lg-2">
-        <label>Vikend satnica:</label>
+        <label>Vikend sati:</label>
         <div className="input-group">
           <input type="number"
           name="weekendHr"
           className="form-control"
-          placeholder="€"
+          placeholder="h"
           onChange={handleChange}
           value={data.weekendHr}/>
           <div className="input-group-append"><span className="input-group-text">h</span></div>
@@ -167,10 +167,10 @@ const AddHourlyRatePage: React.FC = () => {
           <input type="number"
           name="dailyWage"
           className="form-control"
-          placeholder="€"
+          placeholder="h"
           onChange={handleChange}
           value={data.dailyWage}/>
-          <div className="input-group-append"><span className="input-group-text">€</span></div>
+          <div className="input-group-append"><span className="input-group-text">h</span></div>
 
       </div>
       </div>
@@ -181,10 +181,10 @@ const AddHourlyRatePage: React.FC = () => {
         <input type="number"
         name="nightHr"
         className="form-control"
-        placeholder="€"
+        placeholder="h"
         onChange={handleChange}
         value={data.nightHr}/>
-        <div className="input-group-append"><span className="input-group-text">€</span></div>
+        <div className="input-group-append"><span className="input-group-text">h</span></div>
     </div>
     </div>
   </div>

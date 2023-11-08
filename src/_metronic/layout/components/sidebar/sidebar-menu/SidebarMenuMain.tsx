@@ -31,6 +31,12 @@ const SidebarMenuMain = () => {
             title='Lista radnika'
             hasBullet={true}
           />
+
+          <SidebarMenuItem
+            to='/crafted/workers/singleworker'
+            title='Pregled radika'
+            hasBullet={true}
+          />
         </SidebarMenuItemWithSub>
 
 
