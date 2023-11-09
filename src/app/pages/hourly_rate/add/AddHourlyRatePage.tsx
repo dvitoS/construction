@@ -29,8 +29,10 @@ const AddHourlyRatePage: React.FC = () => {
   const [constructions, setConstructions] = useState([]);
   const [selectedConstruction, setSelectedConstruction] = useState([]);
 
-
-
+  const [selectedTime, setSelectedTime] = useState<string>('00:00');
+  const [selectedTimeOvertime, setSelectedTimeOvertime] = useState<string>('00:00');
+  const [selectedTimeWeekend, setSelectedTimeWeekend] = useState<string>('00:00');
+  const [selectedTimeNight, setSelectedTimeNight] = useState<string>('00:00');
 
   const updateConfig = () => {
     setConfigLoading(true)
@@ -93,6 +95,48 @@ const AddHourlyRatePage: React.FC = () => {
         }).catch(error => {console.log(error.response)})
    }
   }
+
+
+  const generateTimeIntervals = () => {
+    const intervals: string[] = [];
+    for (let hours = 0; hours <= 8; hours++) {
+      for (let minutes = 0; minutes < 60; minutes += 30) {
+        if (hours === 8 && minutes === 30) {
+          break; 
+        }
+        const formattedHours = hours.toString().padStart(2, '0');
+        const formattedMinutes = minutes.toString().padStart(2, '0');
+        intervals.push(`${formattedHours}:${formattedMinutes}`);
+      }
+    }
+    return intervals;
+  };
+
+  const timeIntervals = generateTimeIntervals();
+
+  const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = event.target.value;
+    setSelectedTime(selectedValue);
+    console.log(selectedValue);
+    
+  };
+
+  const handleSelectOvertime = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = event.target.value;
+    setSelectedTimeOvertime(selectedValue);
+  };
+
+  const handleSelectWeekend = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = event.target.value;
+    setSelectedTimeWeekend(selectedValue);
+  };
+
+  const handleSelectNight = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = event.target.value;
+    setSelectedTimeNight(selectedValue);
+  };
+
+
   
 
   return (
@@ -123,17 +167,16 @@ const AddHourlyRatePage: React.FC = () => {
       <br />
     <div className="form-group row">
       <div className="col-lg-2">
-        <label>Radni sati:</label>
-        <div className="input-group">
-          <input type="number"
-          name="workHours"
-          className="form-control"
-          placeholder="h"
-          onChange={handleChange}
-          value={data.workHours}/>
-          <div className="input-group-append"><span className="input-group-text">h</span></div>
+          <label>Radni sati:</label>
+          <select className="form-select form-select-solid" aria-label="Odabir sati" value={selectedTime} onChange={handleSelect}>
+            {timeIntervals.map((interval, index) => (
+              <option key={index} value={interval}>
+                {interval}
+              </option>
+            ))}
+          </select>
       </div>
-      </div>
+      
 
 
       <div className="col-lg-2">
