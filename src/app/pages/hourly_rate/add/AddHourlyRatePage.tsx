@@ -21,7 +21,7 @@ const AddHourlyRatePage: React.FC = () => {
   const [resetLoading, setResetLoading] = useState<boolean>(false)
   const [checked, setChecked] = useState(true);
 
-  const [data, setData] = useState({ idWorker:'', idConstruction:'', workHours:'', overtimeHr:'',weekendHr:'',dailyWage:'',  nightHr:''})
+  const [data, setData] = useState({ idWorker:'', idConstruction:'', workHours:'', overtimeHr:'', weekendHr:'', dailyWage:'',  nightHr:''})
 
   const [workers, setWorkers] = useState([]);
   const [selectedWorkers, setSelectedWorkers] = useState([]);
@@ -117,6 +117,7 @@ const AddHourlyRatePage: React.FC = () => {
   const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
     setSelectedTime(selectedValue);
+    setData({ ...data, workHours: selectedValue });
     console.log(selectedValue);
     
   };
@@ -124,16 +125,19 @@ const AddHourlyRatePage: React.FC = () => {
   const handleSelectOvertime = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
     setSelectedTimeOvertime(selectedValue);
+    setData({ ...data, overtimeHr: selectedValue });
   };
 
   const handleSelectWeekend = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
     setSelectedTimeWeekend(selectedValue);
+    setData({ ...data, weekendHr: selectedValue });
   };
 
   const handleSelectNight = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
     setSelectedTimeNight(selectedValue);
+    setData({ ...data, nightHr: selectedValue });
   };
 
 
@@ -168,7 +172,7 @@ const AddHourlyRatePage: React.FC = () => {
     <div className="form-group row">
       <div className="col-lg-2">
           <label>Radni sati:</label>
-          <select className="form-select form-select-solid" aria-label="Odabir sati" value={selectedTime} onChange={handleSelect}>
+          <select className="form-select form-select-solid" aria-label="Odabir sati" value={data.workHours} onChange={handleSelect}>
             {timeIntervals.map((interval, index) => (
               <option key={index} value={interval}>
                 {interval}
@@ -180,28 +184,24 @@ const AddHourlyRatePage: React.FC = () => {
 
 
       <div className="col-lg-2">
-        <label>Prekovremeno:</label>
-        <div className="input-group">
-          <input type="number"
-          name="overtimeHr"
-          className="form-control"
-          placeholder="h"
-          onChange={handleChange}
-          value={data.overtimeHr}/>
-        <div className="input-group-append"><span className="input-group-text">h</span></div>
-        </div>
+          <label>Prekovremeno:</label>
+          <select className="form-select form-select-solid" aria-label="Odabir sati" value={data.overtimeHr} onChange={handleSelectOvertime}>
+            {timeIntervals.map((interval, index) => (
+              <option key={index} value={interval}>
+                {interval}
+              </option>
+            ))}
+          </select>
       </div>
       <div className="col-lg-2">
-        <label>Vikend sati:</label>
-        <div className="input-group">
-          <input type="number"
-          name="weekendHr"
-          className="form-control"
-          placeholder="h"
-          onChange={handleChange}
-          value={data.weekendHr}/>
-          <div className="input-group-append"><span className="input-group-text">h</span></div>
-      </div>
+      <label>Vikend:</label>
+          <select className="form-select form-select-solid" aria-label="Odabir sati" value={data.weekendHr} onChange={handleSelectWeekend}>
+            {timeIntervals.map((interval, index) => (
+              <option key={index} value={interval}>
+                {interval}
+              </option>
+            ))}
+          </select>
       </div>
 
       <div className="col-lg-2">
@@ -220,16 +220,14 @@ const AddHourlyRatePage: React.FC = () => {
 
       <div className="col-lg-2">
       <label>Noćni rad:</label>
-      <div className="input-group">
-        <input type="number"
-        name="nightHr"
-        className="form-control"
-        placeholder="h"
-        onChange={handleChange}
-        value={data.nightHr}/>
-        <div className="input-group-append"><span className="input-group-text">h</span></div>
-    </div>
-    </div>
+          <select className="form-select form-select-solid" aria-label="Odabir sati" value={data.nightHr} onChange={handleSelectNight}>
+            {timeIntervals.map((interval, index) => (
+              <option key={index} value={interval}>
+                {interval}
+              </option>
+            ))}
+          </select>
+      </div>
   </div>
     <br/>
       <div className="card-footer">
