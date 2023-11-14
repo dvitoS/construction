@@ -18,7 +18,7 @@ import AddCostSheetPageWrapper  from '../pages/cost_sheet/add/AddCostSheetPageWr
 import EditCostSheetPageWrapper from '../pages/cost_sheet/edit/EditCostSheetPageWrapper'
 import ListCostSheetPageWrapper from '../pages/cost_sheet/list/ListCostSheetPageWrapper'
 import SingleWorkerPageWrapper from '../pages/workers/singleworkerpage/SingleWorkerPageWrapper'
-
+import TotalCostSheetPageWrapper from '../pages/cost_sheet/total/TotalCostSheetPageWrapper'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -58,6 +58,7 @@ const PrivateRoutes = () => {
         <Route path='add' element={<AddCostSheetPageWrapper />} />
         <Route path='edit/:id' element={<EditCostSheetPageWrapper />} />
         <Route path='list' element={<ListCostSheetPageWrapper />} />
+        <Route path='total' element={<TotalCostSheetPageWrapper />} />
        
        
         
@@ -220,6 +221,14 @@ const PrivateRoutes = () => {
           element={
             <SuspensedView>
               <ListCostSheetPageWrapper />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='crafted/costsheet/total'
+          element={
+            <SuspensedView>
+              <TotalCostSheetPageWrapper />
             </SuspensedView>
           }
         />

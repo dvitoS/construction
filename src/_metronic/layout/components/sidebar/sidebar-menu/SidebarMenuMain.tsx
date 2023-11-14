@@ -82,6 +82,11 @@ const SidebarMenuMain = () => {
           title='Lista troškovnika'
           hasBullet={true}
         />
+        <SidebarMenuItem
+          to='/crafted/costsheet/total'
+          title='Ukupni trošak'
+          hasBullet={true}
+        />
       </SidebarMenuItemWithSub>
     </SidebarMenuItemWithSub>
 
