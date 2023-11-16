@@ -14,7 +14,7 @@ const EditWorkersPage: React.FC = () => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [data, setData] = useState ({firstName:'', lastName:'', address:'', oib:'', email:'', mob:'', passport:'', fatherName:"", motherName:"", workingPermit:'', firstAidDate:'', workProtection:'', firstAid:'', geda:'', hr:'', overtimeHr:'',weekendHr:'',dailyWage:'', wage:'',nightHr:'', note:''});
+  const [data, setData] = useState ({firstName:'', lastName:'', address:'', oib:'', email:'', mob:'', passport:'', fatherName:"", motherName:"", workingPermit:'', firstAidDate:'', workProtection:'', firstAid:'', geda:'', hr:'', overtimeHr:'',weekendHr:'',dailyWage:'', wage:'',nightHr:'', note:'', tools:''});
   //const [data, setData] = useState ({firstName:'', lastName:''});
   const [workers, setWorkers] = useState<any[]>([])
   const { id } = useParams();
@@ -314,6 +314,16 @@ const EditWorkersPage: React.FC = () => {
               placeholder="Unesite napomenu"
               onChange={handleChange}
               value={data.note}/>
+
+            <label>Posuđeni alat:</label>
+              <textarea
+              rows={5}
+              cols={50}
+              name="tools"
+              className="form-control"
+              placeholder="Alat"
+              onChange={handleChange}
+              value={data.tools}/>
           </div>
           <br/>
           <div className="card-footer">

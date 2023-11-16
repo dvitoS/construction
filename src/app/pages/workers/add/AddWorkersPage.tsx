@@ -16,7 +16,7 @@ import axios from 'axios'
 
 const AddWorkersPage: React.FC = () => {
   const nameInputId = useId();
-  const [data, setData] = useState ({firstName:'', lastName:'', address:'', oib:'', passport:'', mob:'', email:'', fatherName:"", motherName:"", wage:'', overtimeHr:'',weekendHr:'',dailyWage:'',  nightHr:'', workingPermit:'', firstAidDate:'', workProtection:'', firstAid:'', geda:'', note:''});
+  const [data, setData] = useState ({firstName:'', lastName:'', address:'', oib:'', passport:'', mob:'', email:'', fatherName:"", motherName:"", wage:'', overtimeHr:'',weekendHr:'',dailyWage:'',  nightHr:'', workingPermit:'', firstAidDate:'', workProtection:'', firstAid:'', geda:'', note:'', tools:''});
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
@@ -321,6 +321,16 @@ const AddWorkersPage: React.FC = () => {
         placeholder="Unesite napomenu"
         onChange={handleChange}
         value={data.note}/>
+
+      <label>Posuđeni alat:</label>
+        <textarea
+        rows={5}
+        cols={50}
+        name="tools"
+        className="form-control"
+        placeholder="Alat"
+        onChange={handleChange}
+        value={data.tools}/>
     </div>
     <br/>
     <div className="card-footer">
