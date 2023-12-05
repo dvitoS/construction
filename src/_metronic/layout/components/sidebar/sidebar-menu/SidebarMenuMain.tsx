@@ -93,7 +93,7 @@ const SidebarMenuMain = () => {
       <SidebarMenuItemWithSub
         to='/crafted/accounts'
         title='Accounts'
-        icon='profile-circle'
+        icon='gear'
         fontIcon='bi-person'
       >
         <SidebarMenuItem to='/crafted/account/overview' title='Overview' hasBullet={true} />
