@@ -10,7 +10,7 @@ const AddConstructionsPage: React.FC = () => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [data ,setData] = useState({name:'', proof:'', bill:'', address:'', charged:'', description:''})
+  const [data ,setData] = useState({name:'', proof:'', bill:'', address:'', charged:'', description:'', started:'', finished:''})
 
 
   const updateConfig = () => {
@@ -113,6 +113,25 @@ const AddConstructionsPage: React.FC = () => {
                 value={data.charged}/>
               <div className="input-group-append"><span className="input-group-text">€</span></div>
             </div>
+            </div>
+            <div className="col-lg-2">
+              <label>Početak:</label>
+                <input type="date"
+                name="started"
+                className="form-control"
+                placeholder="Početak"
+                onChange={handleChange}
+                value={data.started}/>
+            </div>
+
+            <div className="col-lg-2">
+              <label>Kraj:</label>
+                <input type="date"
+                name="finished"
+                className="form-control"
+                placeholder="Kraj"
+                onChange={handleChange}
+                value={data.finished}/>
             </div>
            </div>
     
