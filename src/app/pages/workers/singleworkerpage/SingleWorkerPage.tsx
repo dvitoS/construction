@@ -115,7 +115,7 @@ const SingleWorkerPage: React.FC<Props> = ({className}) => {
                       data-bs-toggle='modal'
                       data-bs-target='#kt_modal_upgrade_plan'
                     >
-                      Upgrade to Pro
+                      Status
                     </a>
                   </div>
 
@@ -125,43 +125,26 @@ const SingleWorkerPage: React.FC<Props> = ({className}) => {
                       className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'
                     >
                       <KTIcon iconName='profile-circle' className='fs-4 me-1' />
-                      Developer
+                      Titula / Zanimanje
                     </a>
                     <a
                       href='#'
                       className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'
                     >
                       <KTIcon iconName='geolocation' className='fs-4 me-1' />
-                      SF, Bay Area
+                      Zagreb, Hrvatska
                     </a>
                     <a
                       href='#'
                       className='d-flex align-items-center text-gray-400 text-hover-primary mb-2'
                     >
                       <KTIcon iconName='sms' className='fs-4 me-1' />
-                      max@kt.com
+                      email@email.com
                     </a>
                   </div>
                 </div>
 
                 <div className='d-flex my-4'>
-                  <a href='#' className='btn btn-sm btn-light me-2' id='kt_user_follow_button'>
-                    <KTIcon iconName='check' className='fs-3 d-none' />
-
-                    <span className='indicator-label'>Follow</span>
-                    <span className='indicator-progress'>
-                      Please wait...
-                      <span className='spinner-border spinner-border-sm align-middle ms-2'></span>
-                    </span>
-                  </a>
-                  <a
-                    href='#'
-                    className='btn btn-sm btn-primary me-3'
-                    data-bs-toggle='modal'
-                    data-bs-target='#kt_modal_offer_a_deal'
-                  >
-                    Hire Me
-                  </a>
                   <div className='me-0'>
                     <button
                       className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'
@@ -182,45 +165,33 @@ const SingleWorkerPage: React.FC<Props> = ({className}) => {
                     <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3'>
                       <div className='d-flex align-items-center'>
                         <KTIcon iconName='arrow-up' className='fs-3 text-success me-2' />
-                        <div className='fs-2 fw-bolder'>4500$</div>
+                        <div className='fs-2 fw-bolder'>9500$</div>
                       </div>
 
-                      <div className='fw-bold fs-6 text-gray-400'>Earnings</div>
-                    </div>
-
-                    <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3'>
-                      <div className='d-flex align-items-center'>
-                        <KTIcon iconName='arrow-down' className='fs-3 text-danger me-2' />
-                        <div className='fs-2 fw-bolder'>75</div>
-                      </div>
-
-                      <div className='fw-bold fs-6 text-gray-400'>Projects</div>
+                      <div className='fw-bold fs-6 text-gray-400'>Isplaćeno</div>
                     </div>
 
                     <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3'>
                       <div className='d-flex align-items-center'>
                         <KTIcon iconName='arrow-up' className='fs-3 text-success me-2' />
-                        <div className='fs-2 fw-bolder'>60%</div>
+                        <div className='fs-2 fw-bolder'>75</div>
                       </div>
 
-                      <div className='fw-bold fs-6 text-gray-400'>Success Rate</div>
+                      <div className='fw-bold fs-6 text-gray-400'>Projekti</div>
+                    </div>
+
+                    <div className='border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3'>
+                      <div className='d-flex align-items-center'>
+                        <KTIcon iconName='arrow-up' className='fs-3 text-success me-2' />
+                        <div className='fs-2 fw-bolder'>568</div>
+                      </div>
+
+                      <div className='fw-bold fs-6 text-gray-400'>Radni sati</div>
                     </div>
                   </div>
                 </div>
 
-                <div className='d-flex align-items-center w-200px w-sm-300px flex-column mt-3'>
-                  <div className='d-flex justify-content-between w-100 mt-auto mb-2'>
-                    <span className='fw-bold fs-6 text-gray-400'>Profile Compleation</span>
-                    <span className='fw-bolder fs-6'>50%</span>
-                  </div>
-                  <div className='h-5px mx-3 w-100 bg-light mb-3'>
-                    <div
-                      className='bg-success rounded h-5px'
-                      role='progressbar'
-                      style={{width: '50%'}}
-                    ></div>
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>
@@ -256,11 +227,11 @@ const SingleWorkerPage: React.FC<Props> = ({className}) => {
       <div className='card mb-5 mb-xl-10' id='kt_profile_details_view'>
         <div className='card-header cursor-pointer'>
           <div className='card-title m-0'>
-            <h3 className='fw-bolder m-0'>Profile Details</h3>
+            <h3 className='fw-bolder m-0'>Informacije o zaposleniku</h3>
           </div>
 
           <Link to='/crafted/account/settings' className='btn btn-primary align-self-center'>
-            Edit Profile
+            Uredi profil
           </Link>
         </div>
 
@@ -274,70 +245,168 @@ const SingleWorkerPage: React.FC<Props> = ({className}) => {
           </div>
 
           <div className='row mb-7'>
-            <label className='col-lg-4 fw-bold text-muted'>Adresa</label>
+            <label className='col-lg-4 fw-bold text-muted'>Adresa stanovanja</label>
 
             <div className='col-lg-8 fv-row'>
-              <span className='fw-bold fs-6'>{data.address}</span>
+              <span className='fw-bold fs-6'>{data.address}ilica 129a</span>
             </div>
           </div>
-
           <div className='row mb-7'>
             <label className='col-lg-4 fw-bold text-muted'>
-              {data.mob}
-              <i
-                className='fas fa-exclamation-circle ms-1 fs-7'
-                data-bs-toggle='tooltip'
-                title='Phone number must be active'
-              ></i>
+              OIB
+            </label>
+                  
+            <div className='col-lg-8 d-flex align-items-center'>
+              <span className='fw-bolder fs-6 me-2'>1263748697</span>
+            </div>
+          </div>
+          <div className='row mb-7'>
+            <label className='col-lg-4 fw-bold text-muted'>
+              Putovnica
+            </label>
+                  
+            <div className='col-lg-8 d-flex align-items-center'>
+              <span className='fw-bolder fs-6 me-2'>12345678932</span>
+            </div>
+          </div>
+          <div className='row mb-7'>
+            <label className='col-lg-4 fw-bold text-muted'>
+              Broj mobitela
             </label>
 
             <div className='col-lg-8 d-flex align-items-center'>
               <span className='fw-bolder fs-6 me-2'>044 3276 454 935</span>
-
-              <span className='badge badge-success'>Verified</span>
             </div>
           </div>
 
           <div className='row mb-7'>
-            <label className='col-lg-4 fw-bold text-muted'>Company Site</label>
+            <label className='col-lg-4 fw-bold text-muted'>Email</label>
 
             <div className='col-lg-8'>
               <a href='#' className='fw-bold fs-6 text-dark text-hover-primary'>
-                keenthemes.com
+                email@email.com
               </a>
             </div>
           </div>
 
           <div className='row mb-7'>
             <label className='col-lg-4 fw-bold text-muted'>
-              Country
-              <i
-                className='fas fa-exclamation-circle ms-1 fs-7'
-                data-bs-toggle='tooltip'
-                title='Country of origination'
-              ></i>
+              Ime oca
             </label>
-
             <div className='col-lg-8'>
-              <span className='fw-bolder fs-6 text-dark'>Germany</span>
+              <span className='fw-bolder fs-6 text-dark'>Ivan</span>
             </div>
           </div>
 
           <div className='row mb-7'>
-            <label className='col-lg-4 fw-bold text-muted'>Communication</label>
+            <label className='col-lg-4 fw-bold text-muted'>
+              Ime majke
+            </label>
+            <div className='col-lg-8'>
+              <span className='fw-bolder fs-6 text-dark'>Matea</span>
+            </div>
+          </div>
+
+          <div className='row mb-7'>
+            <label className='col-lg-4 fw-bold text-muted'>Mjesečna plaća</label>
 
             <div className='col-lg-8'>
-              <span className='fw-bolder fs-6 text-dark'>Email, Phone</span>
+              <span className='fw-bolder fs-6 text-dark'>€990</span>
             </div>
           </div>
 
           <div className='row mb-10'>
-            <label className='col-lg-4 fw-bold text-muted'>Allow Changes</label>
+            <label className='col-lg-4 fw-bold text-muted'>Prekovremeno</label>
 
             <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>Yes</span>
+              <span className='fw-bold fs-6'>€50</span>
             </div>
           </div>
+
+          <div className='row mb-10'>
+            <label className='col-lg-4 fw-bold text-muted'>Vikend satnica</label>
+
+            <div className='col-lg-8'>
+              <span className='fw-bold fs-6'>€80</span>
+            </div>
+          </div>
+
+          <div className='row mb-10'>
+            <label className='col-lg-4 fw-bold text-muted'>Dnevnica</label>
+
+            <div className='col-lg-8'>
+              <span className='fw-bold fs-6'>€200</span>
+            </div>
+          </div>
+
+          <div className='row mb-10'>
+            <label className='col-lg-4 fw-bold text-muted'>Dnevnica</label>
+
+            <div className='col-lg-8'>
+              <span className='fw-bold fs-6'>€200</span>
+            </div>
+          </div>
+
+          <div className='row mb-10'>
+            <label className='col-lg-4 fw-bold text-muted'>Dnevnica</label>
+
+            <div className='col-lg-8'>
+              <span className='fw-bold fs-6'>€100</span>
+            </div>
+          </div>
+          <div className='row mb-10'>
+            <label className='col-lg-4 fw-bold text-muted'>Valjanost radne dozvole</label>
+
+            <div className='col-lg-8'>
+              <span className='fw-bold fs-6'>16/09/2024</span>
+            </div>
+          </div>
+          <div className='row mb-10'>
+            <label className='col-lg-4 fw-bold text-muted'>Valjanost lječničkog pregleda</label>
+
+            <div className='col-lg-8'>
+              <span className='fw-bold fs-6'>06/09/2024</span>
+            </div>
+          </div>
+
+          <div className='row mb-10'>
+            <label className='col-lg-4 fw-bold text-muted'>Zaštita na radu</label>
+
+            <div className='col-lg-8'>
+              <span className='fw-bold fs-6'>Ima</span>
+            </div>
+          </div>
+          <div className='row mb-10'>
+            <label className='col-lg-4 fw-bold text-muted'>Prva pomoć</label>
+
+            <div className='col-lg-8'>
+              <span className='fw-bold fs-6'>Ima</span>
+            </div>
+          </div>
+          <div className='row mb-10'>
+            <label className='col-lg-4 fw-bold text-muted'>GEDA</label>
+
+            <div className='col-lg-8'>
+              <span className='fw-bold fs-6'>Nema</span>
+            </div>
+          </div>
+          <div className='row mb-10'>
+            <label className='col-lg-4 fw-bold text-muted'>Napomena</label>
+
+            <div className='col-lg-8'>
+              <span className='fw-bold fs-6'>Izniman radnik, uredan i učinkovit</span>
+            </div>
+          </div>
+
+          <div className='row mb-10'>
+            <label className='col-lg-4 fw-bold text-muted'>Posuđeni alat</label>
+
+            <div className='col-lg-8'>
+              <span className='fw-bold fs-6'>Brusilica i kliješta</span>
+            </div>
+          </div>
+
+          
         </div>
       </div>
 
