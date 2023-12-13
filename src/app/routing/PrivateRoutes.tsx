@@ -19,6 +19,7 @@ import EditCostSheetPageWrapper from '../pages/cost_sheet/edit/EditCostSheetPage
 import ListCostSheetPageWrapper from '../pages/cost_sheet/list/ListCostSheetPageWrapper'
 import SingleWorkerPageWrapper from '../pages/workers/singleworkerpage/SingleWorkerPageWrapper'
 import TotalCostSheetPageWrapper from '../pages/cost_sheet/total/TotalCostSheetPageWrapper'
+import { WorkerSettingsPage } from '../pages/workers/WorkerSettingsPage/WorkerSettingsPage'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -27,12 +28,14 @@ const PrivateRoutes = () => {
   const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
   const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
   const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
+  const WorkerSettingsPageWrapper = lazy(() => import ('../pages/workers/WorkerSettingsPage/WorkerSettingsPageWrapper'))
   const AddWorkersPageWrapper = lazy(() => import ('../pages/workers/add/AddWorkersPageWrapper'))
   const EditWorkersPageWrapper = lazy(() => import ('../pages/workers/edit/EditWorkersPageWrapper'))
   const ListWorkersPageWrapper = lazy(() => import ('../pages/workers/list/ListWorkerPageWrapper'))
   const AddConstructionsPageWrapper = lazy(() => import ('../pages/construction-sites/add/AddConstructionsPageWrapper'))
   const EditConstructionsPageWrapper = lazy(() => import ('../pages/construction-sites/edit/EditConstructionsPageWrapper'))
   const ListConstructionsPageWrapper = lazy(() => import ('../pages/construction-sites/list/ListConstructionsPageWrapper'))
+  const SingleConstructionPageWrapper = lazy(() => import ('../pages/construction-sites/singleconstructionpage/SingleConstructionPageWrapper'))
 
   return (
     <Routes>
@@ -49,7 +52,7 @@ const PrivateRoutes = () => {
         <Route path='add' element={<AddConstructionsPageWrapper />} />
         <Route path='editc/:id' element={<EditConstructionsPageWrapper />} />
         <Route path='list' element={<ListConstructionsPageWrapper />} />
-        <Route path='singleconstruction/:id' element={<SingleWorkerPageWrapper/>} />
+        <Route path='singleconstruction/:id' element={<SingleConstructionPageWrapper/>} />        
         <Route path='hr' element={<HourlyRatePageWrapper />} />
         <Route path='menu-test' element={<MenuTestPage />} />
         <Route path='add' element={<AddHourlyRatePageWrapper />} />
@@ -59,7 +62,7 @@ const PrivateRoutes = () => {
         <Route path='edit/:id' element={<EditCostSheetPageWrapper />} />
         <Route path='list' element={<ListCostSheetPageWrapper />} />
         <Route path='total' element={<TotalCostSheetPageWrapper />} />
-       
+        <Route path='workersettings/:id' element={<WorkerSettingsPage />} />
        
         
         {/* Lazy Modules */}
@@ -143,6 +146,14 @@ const PrivateRoutes = () => {
             </SuspensedView>
           }
         />
+         <Route
+          path='workers/singleworker/workersettings'
+          element={
+            <SuspensedView>
+              <WorkerSettingsPageWrapper />
+            </SuspensedView>
+          }
+        />
 
         <Route
           path='crafted/constructions/add'
@@ -172,7 +183,7 @@ const PrivateRoutes = () => {
           path='crafted/constructions/singleconstruction'
           element={
             <SuspensedView>
-              <SingleWorkerPageWrapper />
+              <SingleConstructionPageWrapper />
             </SuspensedView>
           }
         />
