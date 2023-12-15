@@ -93,7 +93,7 @@ const handleInput = (event:any) => {
             <h3 className='fw-bolder m-0'>Informacije o zaposleniku</h3>
           </div>
 
-          <Link to='/worker/settings' className='btn btn-primary align-self-center'>
+          <Link to={'/worker/settings' + id} className='btn btn-primary align-self-center'>
             Uredi profil
           </Link>
         </div>
