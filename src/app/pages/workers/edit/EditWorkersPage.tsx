@@ -305,6 +305,16 @@ const EditWorkersPage: React.FC = () => {
             </div>
           </div>
           <div className="col-lg-4">
+          <label>Posuđeni alat:</label>
+            <textarea
+            rows={5}
+            cols={50}
+            name="tools"
+            className="form-control"
+            placeholder="Alat"
+            onChange={handleChange}
+            value={data.tools}/>
+
             <label>Napomena:</label>
               <textarea
               rows={5}
@@ -314,16 +324,6 @@ const EditWorkersPage: React.FC = () => {
               placeholder="Unesite napomenu"
               onChange={handleChange}
               value={data.note}/>
-
-            <label>Posuđeni alat:</label>
-              <textarea
-              rows={5}
-              cols={50}
-              name="tools"
-              className="form-control"
-              placeholder="Alat"
-              onChange={handleChange}
-              value={data.tools}/>
           </div>
           <br/>
           <div className="card-footer">
