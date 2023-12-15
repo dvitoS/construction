@@ -71,7 +71,7 @@ const ListWorkersPage: React.FC = () => {
                   <td>{d.firstName}</td>
                   <td>{d.lastName}</td>
                   <td>
-                    <Link to={'/singleworker/'+ d.id} className='btn btn-sm btn-primary me-2'>Otvori</Link>
+                    <Link to={'/worker/'+ d.id} className='btn btn-sm btn-primary me-2'>Otvori</Link>
                     <Link to={'/edit/'+ d.id} className="btn btn-sm btn-info me-2">Izmijeni</Link>
                     <button onClick={e => handleDelete(d.id)}  className='btn btn-sm btn-danger'>Izbriši</button>
                   </td>

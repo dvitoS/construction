@@ -204,7 +204,7 @@ const SingleWorkerPage: React.FC<Props> = ({className}) => {
                     `nav-link text-active-primary me-6 ` +
                     (location.pathname === '/crafted/account/overview' && 'active')
                   }
-                  to='/crafted/account/overview'
+                  to='/workers/singleworker/workeroverview'
                 >
                   Overview
                 </Link>
@@ -213,9 +213,9 @@ const SingleWorkerPage: React.FC<Props> = ({className}) => {
                 <Link
                   className={
                     `nav-link text-active-primary me-6 ` +
-                    (location.pathname === '/crafted/account/settings' && 'active')
+                    (location.pathname === '')
                   }
-                  to='/crafted/account/settings'
+                  to='/workers/singleworker/workersettings'
                 >
                   Settings
                 </Link>

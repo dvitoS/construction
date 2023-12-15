@@ -7,7 +7,6 @@ import {MenuTestPage} from '../pages/MenuTestPage'
 import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
 import {WithChildren} from '../../_metronic/helpers'
 import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
-import WorkersPageWrapper from '../pages/workers/WorkersPageWrapper'
 import AddConstructionsPageWrapper from '../pages/construction-sites/add/AddConstructionsPageWrapper'
 import HourlyRatePageWrapper from '../pages/hourly_rate/add/AddHourlyRatePageWrapper'
 import CostSheetPageWrapper from '../pages/cost_sheet/add/AddCostSheetPageWrapper'
@@ -19,7 +18,8 @@ import EditCostSheetPageWrapper from '../pages/cost_sheet/edit/EditCostSheetPage
 import ListCostSheetPageWrapper from '../pages/cost_sheet/list/ListCostSheetPageWrapper'
 import SingleWorkerPageWrapper from '../pages/workers/singleworkerpage/SingleWorkerPageWrapper'
 import TotalCostSheetPageWrapper from '../pages/cost_sheet/total/TotalCostSheetPageWrapper'
-import { WorkerSettingsPage } from '../pages/workers/WorkerSettingsPage/WorkerSettingsPage'
+import WorkerSettingsPageWrapper  from '../pages/workers/WorkerSettingsPage/WorkerSettingsPageWrapper'
+import WorkerOverviewPageWrapper from '../pages/workers/WorkerOverviewPage/WorkerOverviewPageWrapper'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -28,6 +28,7 @@ const PrivateRoutes = () => {
   const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
   const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
   const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
+  const WorkerOverviewPageWrapper = lazy(() => import('../pages/workers/WorkerOverviewPage/WorkerOverviewPageWrapper'))
   const WorkerSettingsPageWrapper = lazy(() => import ('../pages/workers/WorkerSettingsPage/WorkerSettingsPageWrapper'))
   const AddWorkersPageWrapper = lazy(() => import ('../pages/workers/add/AddWorkersPageWrapper'))
   const EditWorkersPageWrapper = lazy(() => import ('../pages/workers/edit/EditWorkersPageWrapper'))
@@ -62,7 +63,8 @@ const PrivateRoutes = () => {
         <Route path='edit/:id' element={<EditCostSheetPageWrapper />} />
         <Route path='list' element={<ListCostSheetPageWrapper />} />
         <Route path='total' element={<TotalCostSheetPageWrapper />} />
-        <Route path='workersettings/:id' element={<WorkerSettingsPage />} />
+        <Route path='worker/settings/:id' element={<WorkerSettingsPageWrapper />} />
+        <Route path='worker/:id' element={<WorkerOverviewPageWrapper />} />
        
         
         {/* Lazy Modules */}
@@ -138,19 +140,20 @@ const PrivateRoutes = () => {
             </SuspensedView>
           }
         />
-        <Route
-          path='crafted/workers/singleworker'
+ 
+         <Route
+          path='worker/settings'
           element={
             <SuspensedView>
-              <SingleWorkerPageWrapper />
+              <WorkerSettingsPageWrapper />
             </SuspensedView>
           }
         />
          <Route
-          path='workers/singleworker/workersettings'
+          path='worker'
           element={
             <SuspensedView>
-              <WorkerSettingsPageWrapper />
+              <WorkerOverviewPageWrapper />
             </SuspensedView>
           }
         />
