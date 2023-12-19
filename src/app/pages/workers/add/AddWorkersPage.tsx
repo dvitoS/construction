@@ -9,14 +9,37 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import axios from 'axios'
+import axios from 'axios';
+import internal from 'stream';
 
+interface FormData {
+  firstName: string;
+  lastName: string;
+  address: string;
+  oib: number;
+  passport: number;
+  mob: number;
+  email: string;
+  fatherName:string;
+  motherName:string;
+  wage:number; 
+  overtimeHr:number; 
+  weekendHr:number; 
+  dailyWage:number;  
+  nightHr:number; 
+  workingPermit:number;
+  firstAidDate:number;
+  workProtection:boolean; 
+  firstAid:boolean; 
+  geda:boolean;
+  note:string;
+  tools:string;
 
-
+}
 
 const AddWorkersPage: React.FC = () => {
   const nameInputId = useId();
-  const [data, setData] = useState ({firstName:'', lastName:'', address:'', oib:'', passport:'', mob:'', email:'', fatherName:"", motherName:"", wage:'', overtimeHr:'',weekendHr:'',dailyWage:'',  nightHr:'', workingPermit:'', firstAidDate:'', workProtection:'', firstAid:'', geda:'', note:'', tools:''});
+  const [data, setData] = useState<FormData>({firstName:'', lastName:'', address:'', oib:0, passport:0, mob:0, email:'', fatherName:"", motherName:"", wage:0, overtimeHr:0, weekendHr:0, dailyWage:0,  nightHr:0, workingPermit:0 , firstAidDate:0, workProtection:false, firstAid:false, geda:false, note:'', tools:''});
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
@@ -24,7 +47,7 @@ const AddWorkersPage: React.FC = () => {
   const [checked, setChecked] = useState(true);
   
 
-    function handleSubmit(e:any) {
+    function handleSubmit(e:React.FormEvent) {
         e.preventDefault()
         if(e){
           axios.post('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers', data)
@@ -32,16 +55,23 @@ const AddWorkersPage: React.FC = () => {
             window.location.reload()
             window.alert("Dodan novi radnik")
           }).catch(err => console.log(err));
+
         }
     }
   
     
+    const handleChange = (
+      e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    ) => {
+      const { name, value } = e.target;
 
-    const handleChange = (e:any) =>{
-        const name = e.target.name;
-        const value = e.target.value;
-        setData({...data, [name]:value})
-    }
+      setData((prevdata) => ({
+        ...prevdata,
+        [name]: name === 'oib' ? parseInt(value, 10) : value,
+        [name]: name === 'passport' ? parseInt(value, 10) : value,
+      }));
+    };
+
 
     const handleChangeCheckbox = (e:any) =>{
       const name = e.target.name;
@@ -116,6 +146,9 @@ const AddWorkersPage: React.FC = () => {
             <label>OIB:</label>
             <input type="number"
             name="oib"
+            min="0"
+            max="99999999999"
+            step="1"
             className="form-control"
             placeholder="OIB"
             onChange={handleChange}
@@ -128,6 +161,9 @@ const AddWorkersPage: React.FC = () => {
             <input        
             type="number"
             name="passport"
+            min="0"
+            max="999999999999"
+            step="1"
             className="form-control"
             placeholder="Br putovnice"
             onChange={handleChange}
@@ -312,7 +348,7 @@ const AddWorkersPage: React.FC = () => {
       </div>
     </div>
     <div className="col-lg-4">
-      <label>Posuđeni alat:</label>
+      {/* <label>Posuđeni alat:</label>
         <textarea
         rows={5}
         cols={50}
@@ -330,7 +366,7 @@ const AddWorkersPage: React.FC = () => {
         className="form-control"
         placeholder="Unesite napomenu"
         onChange={handleChange}
-        value={data.note}/>
+        value={data.note}/> */}
     </div>
     <br/>
     <div className="card-footer">
