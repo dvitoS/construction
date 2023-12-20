@@ -328,7 +328,7 @@ const AddWorkersPage: React.FC = () => {
           onChange={handleChangeCheckbox}
           className="form-check-input" 
           type="checkbox"  
-          required
+          
 
           />
           
@@ -346,7 +346,7 @@ const AddWorkersPage: React.FC = () => {
           onChange={handleChangeCheckbox}
           className="form-check-input" 
           type="checkbox" 
-          required
+          
 
           />
 
@@ -363,7 +363,7 @@ const AddWorkersPage: React.FC = () => {
           onChange={handleChangeCheckbox}
           className="form-check-input" 
           type="checkbox" 
-          required
+          
 
           />
 
