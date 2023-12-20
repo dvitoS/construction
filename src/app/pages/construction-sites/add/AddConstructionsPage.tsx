@@ -5,6 +5,10 @@ import {KTIcon, toAbsoluteUrl} from '../../../../_metronic/helpers'
 import {getLayoutFromLocalStorage, ILayout, LayoutSetup} from '../../../../_metronic/layout/core'
 import axios from 'axios';
 
+
+
+
+
 const AddConstructionsPage: React.FC = () => {
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
@@ -47,11 +51,18 @@ const AddConstructionsPage: React.FC = () => {
   }
   
 
-  const handleChange = (e:any) =>{
-      const name = e.target.name;
-      const value = e.target.value;
-      setData({...data, [name]:value})
-  }
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+
+    setData((prevdata) => ({
+      ...prevdata,
+      [name]: name === ''  ? parseInt(value, 10) : value,        
+
+    }));
+    console.log(value)
+  };
 
   return (
     <div className='card'>

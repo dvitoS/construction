@@ -18,7 +18,7 @@ interface FormData {
   address: string;
   oib: number;
   passport: number;
-  mob: number;
+  mob: string;
   email: string;
   fatherName:string;
   motherName:string;
@@ -27,19 +27,18 @@ interface FormData {
   weekendHr:number; 
   dailyWage:number;  
   nightHr:number; 
-  workingPermit:number;
-  firstAidDate:number;
+  workingPermit:any
+  firstAidDate:string;
   workProtection:boolean; 
   firstAid:boolean; 
   geda:boolean;
   note:string;
   tools:string;
-
 }
 
 const AddWorkersPage: React.FC = () => {
   const nameInputId = useId();
-  const [data, setData] = useState<FormData>({firstName:'', lastName:'', address:'', oib:0, passport:0, mob:0, email:'', fatherName:"", motherName:"", wage:0, overtimeHr:0, weekendHr:0, dailyWage:0,  nightHr:0, workingPermit:0 , firstAidDate:0, workProtection:false, firstAid:false, geda:false, note:'', tools:''});
+  const [data, setData] = useState<FormData>({firstName:'', lastName:'', address:'', oib:0, passport:0, mob:'', email:'', fatherName:"", motherName:"", wage:0, overtimeHr:0, weekendHr:0, dailyWage:0,  nightHr:0, workingPermit:'' , firstAidDate:'', workProtection:false, firstAid:false, geda:false, note:'', tools:''});
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
@@ -61,16 +60,17 @@ const AddWorkersPage: React.FC = () => {
   
     
     const handleChange = (
-      e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+      e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
     ) => {
       const { name, value } = e.target;
 
       setData((prevdata) => ({
         ...prevdata,
-        [name]: name === 'oib' ? parseInt(value, 10) : value,
-        [name]: name === 'passport' ? parseInt(value, 10) : value,
+        [name]: name === 'oib, passport'  ? parseInt(value, 10) : value,        
       }));
+      console.log(value)
     };
+    
 
 
     const handleChangeCheckbox = (e:any) =>{
@@ -115,6 +115,7 @@ const AddWorkersPage: React.FC = () => {
           name="firstName"
           className="form-control"
           placeholder="Ime radnika"
+          required
           onChange={handleChange}
           value={data.firstName}/>
         </div>
@@ -125,6 +126,7 @@ const AddWorkersPage: React.FC = () => {
           name="lastName"
           className="form-control"
           placeholder="Prezime radnika"
+          required
           onChange={handleChange}
           value={data.lastName}
           />
@@ -138,19 +140,22 @@ const AddWorkersPage: React.FC = () => {
           name="address"
           className="form-control"
           placeholder="Prebivalište radnika"
+          required
           onChange={handleChange}
           value={data.address}/>
         </div>
 
           <div className="col-lg-4">
             <label>OIB:</label>
-            <input type="number"
+            <input 
+            type="number"
             name="oib"
             min="0"
             max="99999999999"
             step="1"
             className="form-control"
             placeholder="OIB"
+            
             onChange={handleChange}
             value={data.oib}/>
           </div>
@@ -166,13 +171,22 @@ const AddWorkersPage: React.FC = () => {
             step="1"
             className="form-control"
             placeholder="Br putovnice"
+            required
             onChange={handleChange}
             value={data.passport}/>
         </div>
 
         <div className="col-lg-4">
           <label>Broj mobitela:</label>
-            <input type="tel" name="mob" className="form-control" placeholder="Br mobitela"/>
+            <input
+             type="tel"
+              name="mob"
+              className="form-control"
+              placeholder="Br mobitela"
+              required
+              onChange={handleChange}
+              value={data.mob}
+              />
         </div>
         <div className="col-lg-4">
           <label>E-mail:</label>
@@ -180,6 +194,7 @@ const AddWorkersPage: React.FC = () => {
               name="email"
               className="form-control"
               placeholder="email@email.com"
+              required
               onChange={handleChange}
               value={data.email}/>
         </div> 
@@ -192,6 +207,7 @@ const AddWorkersPage: React.FC = () => {
             name="fatherName"
             className="form-control"
             placeholder="Ime oca radnika"
+            required
             onChange={handleChange}
             value={data.fatherName}/>
         </div>
@@ -202,6 +218,7 @@ const AddWorkersPage: React.FC = () => {
             name="motherName"
             className="form-control"
             placeholder="Ime majke radnika"
+            required
             onChange={handleChange}
             value={data.motherName}/>
         </div>
@@ -285,6 +302,7 @@ const AddWorkersPage: React.FC = () => {
             name="workingPermit"
             className="form-control"
             placeholder="Radna dozvola"
+            required
             onChange={handleChange}
             value={data.workingPermit} />
         </div>
@@ -295,6 +313,7 @@ const AddWorkersPage: React.FC = () => {
             name="firstAidDate"
             className="form-control"
             placeholder="Liječnički pregled"
+            required
             onChange={handleChange}
             value={data.firstAidDate}/>
         </div>
@@ -309,6 +328,8 @@ const AddWorkersPage: React.FC = () => {
           onChange={handleChangeCheckbox}
           className="form-check-input" 
           type="checkbox"  
+          required
+
           />
           
           <label className="form-check-label" >
@@ -325,6 +346,8 @@ const AddWorkersPage: React.FC = () => {
           onChange={handleChangeCheckbox}
           className="form-check-input" 
           type="checkbox" 
+          required
+
           />
 
           <label className="form-check-label" >
@@ -340,6 +363,8 @@ const AddWorkersPage: React.FC = () => {
           onChange={handleChangeCheckbox}
           className="form-check-input" 
           type="checkbox" 
+          required
+
           />
 
           <label className="form-check-label" >
@@ -348,7 +373,7 @@ const AddWorkersPage: React.FC = () => {
       </div>
     </div>
     <div className="col-lg-4">
-      {/* <label>Posuđeni alat:</label>
+      <label>Posuđeni alat:</label>
         <textarea
         rows={5}
         cols={50}
@@ -363,10 +388,11 @@ const AddWorkersPage: React.FC = () => {
         rows={5}
         cols={50}
         name="note"
+        id='note'
         className="form-control"
         placeholder="Unesite napomenu"
         onChange={handleChange}
-        value={data.note}/> */}
+        value={data.note}/> 
     </div>
     <br/>
     <div className="card-footer">
