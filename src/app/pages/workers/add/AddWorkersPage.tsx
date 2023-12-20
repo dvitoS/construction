@@ -11,22 +11,23 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 import internal from 'stream';
+import { parse } from 'path';
 
 interface FormData {
   firstName: string;
   lastName: string;
   address: string;
-  oib: number;
-  passport: number;
+  oib: string;
+  passport: string;
   mob: string;
   email: string;
   fatherName:string;
   motherName:string;
-  wage:number; 
-  overtimeHr:number; 
-  weekendHr:number; 
-  dailyWage:number;  
-  nightHr:number; 
+  wage:string; 
+  overtimeHr:string; 
+  weekendHr:string; 
+  dailyWage:string;  
+  nightHr:string; 
   workingPermit:any
   firstAidDate:string;
   workProtection:boolean; 
@@ -38,7 +39,7 @@ interface FormData {
 
 const AddWorkersPage: React.FC = () => {
   const nameInputId = useId();
-  const [data, setData] = useState<FormData>({firstName:'', lastName:'', address:'', oib:0, passport:0, mob:'', email:'', fatherName:"", motherName:"", wage:0, overtimeHr:0, weekendHr:0, dailyWage:0,  nightHr:0, workingPermit:'' , firstAidDate:'', workProtection:false, firstAid:false, geda:false, note:'', tools:''});
+  const [data, setData] = useState<FormData>({firstName:'', lastName:'', address:'', oib:'', passport:'', mob:'', email:'', fatherName:"", motherName:"", wage:'', overtimeHr:'', weekendHr:'', dailyWage:'',  nightHr:'', workingPermit:'' , firstAidDate:'', workProtection:false, firstAid:false, geda:false, note:'', tools:''});
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
@@ -48,6 +49,7 @@ const AddWorkersPage: React.FC = () => {
 
     function handleSubmit(e:React.FormEvent) {
         e.preventDefault()
+
         if(e){
           axios.post('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers', data)
           .then(res => {
@@ -60,13 +62,15 @@ const AddWorkersPage: React.FC = () => {
   
     
     const handleChange = (
-      e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+      e:React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
     ) => {
-      const { name, value } = e.target;
+      const name = e.target.name
+      const value = e.target.value
 
-      setData((prevdata) => ({
-        ...prevdata,
-        [name]: name === 'oib, passport'  ? parseInt(value, 10) : value,        
+      setData((prevFormData) => ({
+        ...prevFormData,
+        setData,   
+        [name]: name === 'oib'  ? parseInt(value, 10) : value,     
       }));
       console.log(value)
     };
@@ -115,7 +119,7 @@ const AddWorkersPage: React.FC = () => {
           name="firstName"
           className="form-control"
           placeholder="Ime radnika"
-          required
+          
           onChange={handleChange}
           value={data.firstName}/>
         </div>
@@ -126,7 +130,7 @@ const AddWorkersPage: React.FC = () => {
           name="lastName"
           className="form-control"
           placeholder="Prezime radnika"
-          required
+          
           onChange={handleChange}
           value={data.lastName}
           />
@@ -140,7 +144,7 @@ const AddWorkersPage: React.FC = () => {
           name="address"
           className="form-control"
           placeholder="Prebivalište radnika"
-          required
+          
           onChange={handleChange}
           value={data.address}/>
         </div>
@@ -183,7 +187,7 @@ const AddWorkersPage: React.FC = () => {
               name="mob"
               className="form-control"
               placeholder="Br mobitela"
-              required
+              
               onChange={handleChange}
               value={data.mob}
               />
@@ -194,7 +198,7 @@ const AddWorkersPage: React.FC = () => {
               name="email"
               className="form-control"
               placeholder="email@email.com"
-              required
+              
               onChange={handleChange}
               value={data.email}/>
         </div> 
@@ -207,7 +211,7 @@ const AddWorkersPage: React.FC = () => {
             name="fatherName"
             className="form-control"
             placeholder="Ime oca radnika"
-            required
+            
             onChange={handleChange}
             value={data.fatherName}/>
         </div>
@@ -218,7 +222,7 @@ const AddWorkersPage: React.FC = () => {
             name="motherName"
             className="form-control"
             placeholder="Ime majke radnika"
-            required
+            
             onChange={handleChange}
             value={data.motherName}/>
         </div>
@@ -302,7 +306,7 @@ const AddWorkersPage: React.FC = () => {
             name="workingPermit"
             className="form-control"
             placeholder="Radna dozvola"
-            required
+            
             onChange={handleChange}
             value={data.workingPermit} />
         </div>
@@ -313,7 +317,7 @@ const AddWorkersPage: React.FC = () => {
             name="firstAidDate"
             className="form-control"
             placeholder="Liječnički pregled"
-            required
+            
             onChange={handleChange}
             value={data.firstAidDate}/>
         </div>
