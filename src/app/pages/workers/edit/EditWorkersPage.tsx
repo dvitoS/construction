@@ -25,12 +25,21 @@ const EditWorkersPage: React.FC = () => {
   const [checkboxes, setCheckbox] = useState<FormData>({workProtection:false, firstAid:false, geda:false});
 
 //Getting all workers from API
-    useEffect(()=>{
-      axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers/'+ id)
-      .then(res => setData(res.data))
-      .catch(err => console.log(err));
-      console.log(data);
-    },[])
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers/' + id);
+          setData(response.data);
+          console.log(response.data);  // Use response.data directly
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      fetchData();  // Call the asynchronous function immediately
+
+      // Dependencies array, if any
+    }, []);
     const handleInput = (event:any) => {
     //setData({...data, [event.target.name]: event.target.value})		
     }
@@ -199,7 +208,7 @@ const EditWorkersPage: React.FC = () => {
 
               <div className="col-lg-4">
                 <label htmlFor="mob">Broj mobitela:</label>
-                  <input type="tel" name="mob" className="form-control" placeholder="Br mobitela"/>
+                  <input type="tel" name="mob" id="mob" className="form-control" placeholder="Br mobitela"/>
               </div>
                <div className="col-lg-4">
                 <label>E-mail:</label>
@@ -310,7 +319,8 @@ const EditWorkersPage: React.FC = () => {
                   name="workingPermit"
                   className="form-control"
                   onChange={handleChange}
-                  /* value={data.workingPermit} */ />
+                  value={data?.workingPermit ? data.workingPermit.slice(0, 10) : ''}
+                  />
               </div>
 
               <div className="col-lg-4">
@@ -319,7 +329,7 @@ const EditWorkersPage: React.FC = () => {
                   name="firstAidDate"
                   className="form-control"
                   onChange={handleChange}
-                  value={data.firstAidDate}/>
+                  /* value={data.firstAidDate} *//>
               </div>
             </div>
           </div>
