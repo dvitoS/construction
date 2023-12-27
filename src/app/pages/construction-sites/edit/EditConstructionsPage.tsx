@@ -52,7 +52,7 @@ const EditConstructionsPage: React.FC = () => {
   
   function handleSubmit(event:any){
   event.preventDefault()
-  axios.put('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions.json', data)
+  axios.put('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions', data)
   .then(res => console.log(res.data))
   .catch(err => console.log(err))
   } 
@@ -106,7 +106,7 @@ const EditConstructionsPage: React.FC = () => {
                 className="form-control"
                 placeholder="Dokaznica"
                 onChange={handleChange}
-                value={data.proof}/>
+                value={data?.proof ? data.proof.slice(0, 10) : ''}/>
             </div>
 
               <div className="col-lg-2">
@@ -116,8 +116,8 @@ const EditConstructionsPage: React.FC = () => {
                   className="form-control"
                   placeholder="Racun"
                   onChange={handleChange}
-                  value={data.bill}/>
-              </div>
+                  value={data?.bill ? data.bill.slice(0, 10) : ''}/>
+                  </div>
 
               <div className="col-lg-2">
               <label>Naplaćeno:</label>
@@ -138,8 +138,8 @@ const EditConstructionsPage: React.FC = () => {
                 className="form-control"
                 placeholder="Početak"
                 onChange={handleChange}
-                value={data.started}/>
-            </div>
+                value={data?.started ? data.started.slice(0, 10) : ''}/>
+                </div>
 
             <div className="col-lg-2">
               <label>Kraj:</label>
@@ -148,8 +148,8 @@ const EditConstructionsPage: React.FC = () => {
                 className="form-control"
                 placeholder="Kraj"
                 onChange={handleChange}
-                value={data.finished}/>
-            </div>
+                value={data?.finished ? data.finished.slice(0, 10) : ''}/>
+                </div>
            </div>
     
            <div className="col-lg-4">
