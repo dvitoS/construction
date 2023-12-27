@@ -41,21 +41,32 @@ const EditConstructionsPage: React.FC = () => {
     }, 1000)
   }
 
-  useEffect(()=>{
-    axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions/'+ id)
-    .then(res => setData(res.data))
-    .catch(err => console.log(err));
-  },[])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions/' + id);
+        setData(response.data);
+        console.log(response.data);  // Use response.data directly
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();  // Call the asynchronous function immediately
+
+    // Dependencies array, if any
+  }, []);
   const handleInput = (event:any) => {
   //setData({...data, [event.target.name]: event.target.value})		
   }
   
   function handleSubmit(event:any){
   event.preventDefault()
-  axios.put('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions', data)
-  .then(res => console.log(res.data))
-  .catch(err => console.log(err))
-  } 
+  axios.put('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions/'+ id, data)
+  .then(res => {
+    window.alert("Izmjena spremljena")
+  }).catch(err => console.log(err));
+  }
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
