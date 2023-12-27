@@ -36,7 +36,7 @@ const EditWorkersPage: React.FC = () => {
             firstAid: response.data.firstAid,
             geda: response.data.geda,
           }));
-          console.log(response.data);  // Use response.data directly
+          //console.log(response.data);  // Use response.data directly
         } catch (error) {
           console.log(error);
         }
