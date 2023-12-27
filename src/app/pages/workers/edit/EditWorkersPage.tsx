@@ -14,15 +14,17 @@ const EditWorkersPage: React.FC = () => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [data, setData] = useState ({firstName:'', lastName:'', address:'', oib:'', email:'', mob:'', passport:'', fatherName:"", motherName:"", workingPermit:'', firstAidDate:'', workProtection:'', firstAid:'', geda:'', hr:'', overtimeHr:'',weekendHr:'',dailyWage:'', wage:'',nightHr:'', note:'', tools:''});
+  const [data, setData] = useState ({firstName:'', lastName:'', address:'', oib:'', email:'', mob:'', passport:'', fatherName:"", motherName:"", workingPermit:'', firstAidDate:'', workProtection:true, firstAid:false, geda:true, hr:'', overtimeHr:'',weekendHr:'',dailyWage:'', wage:'',nightHr:'', note:'', tools:''});
   //const [data, setData] = useState ({firstName:'', lastName:''});
   const [workers, setWorkers] = useState<any[]>([])
   const { id } = useParams();
+  const [ischecked, setIsChecked] = useState(false)
 //Getting all workers from API
     useEffect(()=>{
       axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers/'+ id)
       .then(res => setData(res.data))
       .catch(err => console.log(err));
+      console.log(data)
     },[])
     const handleInput = (event:any) => {
     //setData({...data, [event.target.name]: event.target.value})		
@@ -30,7 +32,7 @@ const EditWorkersPage: React.FC = () => {
     
     function handleSubmit(event:any){
     event.preventDefault()
-    axios.put('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers/', data)
+    axios.put('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers/'+ id, data)
     .then(res => console.log(res.data))
     .catch(err => console.log(err))
     } 
@@ -45,9 +47,9 @@ const EditWorkersPage: React.FC = () => {
     const name = e.target.name;
     const value = e.target.value;
     if(e.target.checked == true){
-      setData({...data, [name]:"true"})
+      setData({...data, [name]:true})
     }else{
-      setData({...data, [name]:""})
+      setData({...data, [name]:false})
     }
   }
 
@@ -262,7 +264,7 @@ const EditWorkersPage: React.FC = () => {
             <div className="form-check form-check-custom form-check-solid">
                 <input 
                 name="workProtection" 
-                value="false"
+                value=""
                 onChange={handleChangeCheckbox}
                 className="form-check-input" 
                 type="checkbox"  
@@ -278,7 +280,7 @@ const EditWorkersPage: React.FC = () => {
             <div className="form-check form-check-custom form-check-solid">
                 <input  
                 name="firstAid" 
-                value="false"
+                value=""
                 onChange={handleChangeCheckbox}
                 className="form-check-input" 
                 type="checkbox" 
@@ -293,10 +295,11 @@ const EditWorkersPage: React.FC = () => {
             <div className="form-check form-check-custom form-check-solid">
                 <input  
                 name="geda" 
-                value="false"
                 onChange={handleChangeCheckbox}
                 className="form-check-input" 
                 type="checkbox" 
+                value=''
+                
                 />
 
                 <label className="form-check-label" >
