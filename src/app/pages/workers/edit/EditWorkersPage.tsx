@@ -19,9 +19,7 @@ const EditWorkersPage: React.FC = () => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [data, setData] = useState ({firstName:'', lastName:'', address:'', oib:'', email:'', mob:'', passport:'', fatherName:"", motherName:"", workingPermit:'', firstAidDate:'', workProtection:true, firstAid:false, geda:true, hr:'', overtimeHr:'',weekendHr:'',dailyWage:'', wage:'',nightHr:'', note:'', tools:''});
-  //const [data, setData] = useState ({firstName:'', lastName:''});
-  const [workers, setWorkers] = useState<any[]>([])
+  const [data, setData] = useState ({firstName:'', lastName:'', address:'', oib:'', email:'', mob:'', passport:'', fatherName:"", motherName:"", workingPermit:'', firstAidDate:'', workProtection:false, firstAid:false, geda:false, hr:'', overtimeHr:'',weekendHr:'',dailyWage:'', wage:'',nightHr:'', note:'', tools:''});
   const { id } = useParams();
   const [ischecked, setIsChecked] = useState(false)
   const [checkboxes, setCheckbox] = useState<FormData>({workProtection:false, firstAid:false, geda:false});
@@ -31,7 +29,7 @@ const EditWorkersPage: React.FC = () => {
       axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers/'+ id)
       .then(res => setData(res.data))
       .catch(err => console.log(err));
-      console.log(data)
+      console.log(data);
     },[])
     const handleInput = (event:any) => {
     //setData({...data, [event.target.name]: event.target.value})		
@@ -312,7 +310,7 @@ const EditWorkersPage: React.FC = () => {
                   name="workingPermit"
                   className="form-control"
                   onChange={handleChange}
-                  value={data.workingPermit} />
+                  /* value={data.workingPermit} */ />
               </div>
 
               <div className="col-lg-4">
@@ -330,10 +328,10 @@ const EditWorkersPage: React.FC = () => {
             <div className="form-check form-check-custom form-check-solid">
                 <input 
                 name="workProtection" 
-                value=""
                 onChange={handleChangeCheckbox}
                 className="form-check-input" 
                 type="checkbox"  
+                checked={data?.workProtection || false}
                 />
           
                 <label className="form-check-label" >
@@ -346,10 +344,10 @@ const EditWorkersPage: React.FC = () => {
             <div className="form-check form-check-custom form-check-solid">
                 <input  
                 name="firstAid" 
-                value=""
                 onChange={handleChangeCheckbox}
                 className="form-check-input" 
                 type="checkbox" 
+                checked={data?.firstAid || false}
                 />
 
                 <label className="form-check-label" >
@@ -364,7 +362,7 @@ const EditWorkersPage: React.FC = () => {
                 onChange={handleChangeCheckbox}
                 className="form-check-input" 
                 type="checkbox" 
-                value='false'
+                checked={data?.geda || false}
                 
                 />
 
