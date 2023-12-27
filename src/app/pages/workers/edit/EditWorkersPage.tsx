@@ -8,6 +8,11 @@ import {useEffect} from 'react'
 import {Dropdown} from 'react-bootstrap'
 import { Link, useParams } from 'react-router-dom'
 
+interface FormData {
+  workProtection: boolean; 
+  firstAid: boolean; 
+  geda: boolean;
+}
 
 const EditWorkersPage: React.FC = () => {
   const [tab, setTab] = useState('Sidebar')
@@ -19,6 +24,8 @@ const EditWorkersPage: React.FC = () => {
   const [workers, setWorkers] = useState<any[]>([])
   const { id } = useParams();
   const [ischecked, setIsChecked] = useState(false)
+  const [checkboxes, setCheckbox] = useState<FormData>({workProtection:false, firstAid:false, geda:false});
+
 //Getting all workers from API
     useEffect(()=>{
       axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers/'+ id)
@@ -30,18 +37,76 @@ const EditWorkersPage: React.FC = () => {
     //setData({...data, [event.target.name]: event.target.value})		
     }
     
-    function handleSubmit(event:any){
-    event.preventDefault()
-    axios.put('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers/'+ id, data)
-    .then(res => console.log(res.data))
-    .catch(err => console.log(err))
-    } 
+   
 
     const handleChange = (e:any) =>{
       const name = e.target.name;
       const value = e.target.value;
       setData({...data, [name]:value})
   }
+
+  function converttoint(a:string){
+    //var x = parseInt(a,10);
+    var x = +a;
+    if(isNaN(x)){
+      console.log("X je",x);
+    return null;
+    }
+    return x;
+  }
+
+  function handleSubmit(e:React.FormEvent) {
+    e.preventDefault()
+    const target = e.target as typeof e.target & {
+      firstName: {value: string};
+      lastName: {value: string};
+      address: {value: string};
+      oib: {value: string};
+      passport: {value: string};
+      mob: {value: string};
+      email: {value: string};
+      fatherName:{value: string};
+      motherName:{value: string};
+      wage:{value: string}; 
+      overtimeHr:{value: string}; 
+      weekendHr:{value: string}; 
+      dailyWage:{value: string};  
+      nightHr:{value: string}; 
+      workingPermit:{value: string}
+      firstAidDate:{value: string};
+      note:{value: string};
+      tools:{value: string};
+    }
+    if(e){
+      const data = {
+      firstName: target.firstName.value,
+      lastName: target.lastName.value, 
+      address: target.address.value,
+      oib: converttoint(target.oib.value),
+      passport: converttoint(target.passport.value),
+      mob: target.mob.value,
+      email: target.email.value,
+      fatherName: target.fatherName.value,
+      motherName: target.motherName.value,
+      wage: converttoint(target.wage.value),
+      overtimeHr: converttoint(target.overtimeHr.value),
+      weekendHr: converttoint(target.weekendHr.value),
+      dailyWage: converttoint(target.dailyWage.value),
+      nightHr: converttoint(target.nightHr.value),
+      workingPermit: target.workingPermit.value,
+      tools:target.tools.value,
+      note: target.note.value
+      }
+      const request = {...data, ...checkboxes};
+      /* console.log(request); */
+      axios.put('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers/'+ id, request)
+      .then(res => {
+        window.location.reload()
+        window.alert("Dodan novi radnik")
+      }).catch(err => console.log(err));
+      
+    }
+}
 
   const handleChangeCheckbox = (e:any) =>{
     const name = e.target.name;
@@ -299,7 +364,7 @@ const EditWorkersPage: React.FC = () => {
                 onChange={handleChangeCheckbox}
                 className="form-check-input" 
                 type="checkbox" 
-                value={ischecked}
+                value='false'
                 
                 />
 

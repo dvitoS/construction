@@ -19,7 +19,7 @@ interface FormData {
 
 const AddWorkersPage: React.FC = () => {
   const nameInputId = useId();
-  const [checkboxes, setData] = useState<FormData>({workProtection:false, firstAid:false, geda:false});
+  const [checkboxes, setCheckbox] = useState<FormData>({workProtection:false, firstAid:false, geda:false});
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
@@ -93,9 +93,9 @@ const AddWorkersPage: React.FC = () => {
     const handleChangeCheckbox = (e:any) =>{
       const name = e.target.name;
       if(e.target.checked == true){
-        setData({...checkboxes, [name]:true})
+        setCheckbox({...checkboxes, [name]:true})
       }else{
-        setData({...checkboxes, [name]:false})
+        setCheckbox({...checkboxes, [name]:false})
       }
     }
 
