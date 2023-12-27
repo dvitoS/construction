@@ -51,6 +51,7 @@ const EditWorkersPage: React.FC = () => {
     }else{
       setData({...data, [name]:false})
     }
+    setIsChecked(current => !current);
   }
 
   const updateConfig = () => {
@@ -298,7 +299,7 @@ const EditWorkersPage: React.FC = () => {
                 onChange={handleChangeCheckbox}
                 className="form-check-input" 
                 type="checkbox" 
-                value=''
+                value={ischecked}
                 
                 />
 
