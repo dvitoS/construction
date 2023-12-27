@@ -112,15 +112,15 @@ const EditWorkersPage: React.FC = () => {
       const request = {...data, ...prevData};
       /* console.log(request); */
       //console.log("Data in handleChangeCheckbox:", JSON.stringify(request, null, 2));
-      console.log("Data in Checkboxes:", JSON.stringify(prevData, null, 2));
+      //console.log("Data in Checkboxes:", JSON.stringify(prevData, null, 2));
 
 
-/*       axios.put('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers/'+ id, request)
+      axios.put('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers/'+ id, request)
       .then(res => {
         const alertMessage = `Uređen profil radnika: ${data.firstName} ${data.lastName}`;
        //window.location.reload();
         window.alert(alertMessage);
-      }).catch(err => console.log(err)); */
+      }).catch(err => console.log(err));
       
     }
 }
