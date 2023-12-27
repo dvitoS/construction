@@ -46,9 +46,6 @@ const EditWorkersPage: React.FC = () => {
 
       // Dependencies array, if any
     }, []);
-    const handleInput = (event:any) => {
-    //setData({...data, [event.target.name]: event.target.value})		
-    }
     
   function converttoint(a:string){
     //var x = parseInt(a,10);
@@ -118,25 +115,12 @@ const EditWorkersPage: React.FC = () => {
       axios.put('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers/'+ id, request)
       .then(res => {
         const alertMessage = `Uređen profil radnika: ${data.firstName} ${data.lastName}`;
-       //window.location.reload();
         window.alert(alertMessage);
+        window.location.href = 'http://localhost:3011/metronic8/react/demo1/crafted/workers/list';
       }).catch(err => console.log(err));
       
     }
 }
-
-/*       const handleChangeCheckbox = (e:any) => {
-        const name = e.target.name;
-        const isChecked = e.target.checked;
-
-        setPrevData((prevData) => ({
-          ...prevData,
-          [name]: isChecked,
-        }));
-        console.log([name] + isChecked);
-      }; */
-
-
      const handleChangeCheckbox = (e:any) =>{
       const name = e.target.name;
       if(e.target.checked){
@@ -152,7 +136,7 @@ const EditWorkersPage: React.FC = () => {
     setConfigLoading(true)
     try {
       LayoutSetup.setConfig(config)
-      /* window.location.reload() */
+       window.location.reload();
     } catch (error) {
       setConfig(getLayoutFromLocalStorage())
       setConfigLoading(false)
@@ -163,7 +147,7 @@ const EditWorkersPage: React.FC = () => {
     setResetLoading(true)
     setTimeout(() => {
       setConfig(getLayoutFromLocalStorage())
-      setResetLoading(false)
+      setResetLoading(true)
     }, 1000)
   }
   return (
