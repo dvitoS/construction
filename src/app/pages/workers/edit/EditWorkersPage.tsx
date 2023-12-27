@@ -8,11 +8,6 @@ import {useEffect} from 'react'
 import {Dropdown} from 'react-bootstrap'
 import { Link, useParams } from 'react-router-dom'
 
-interface FormData {
-  workProtection: boolean; 
-  firstAid: boolean; 
-  geda: boolean;
-}
 
 const EditWorkersPage: React.FC = () => {
   const [tab, setTab] = useState('Sidebar')
@@ -20,16 +15,27 @@ const EditWorkersPage: React.FC = () => {
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
   const [data, setData] = useState ({firstName:'', lastName:'', address:'', oib:'', email:'', mob:'', passport:'', fatherName:"", motherName:"", workingPermit:'', firstAidDate:'', workProtection:false, firstAid:false, geda:false, hr:'', overtimeHr:'',weekendHr:'',dailyWage:'', wage:'',nightHr:'', note:'', tools:''});
+  const [prevData, setPrevData] = useState({
+    // Initialize prevData with the initial state
+    workProtection: false,
+    firstAid: false,
+    geda: false,
+  });
   const { id } = useParams();
-  const [ischecked, setIsChecked] = useState(false)
-  const [checkboxes, setCheckbox] = useState<FormData>({workProtection:false, firstAid:false, geda:false});
-
+  const [checked, setChecked] = useState(true);
 //Getting all workers from API
     useEffect(() => {
+
       const fetchData = async () => {
         try {
           const response = await axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers/' + id);
           setData(response.data);
+          setPrevData(prevData => ({
+            ...prevData,
+            workProtection: response.data.workProtection,
+            firstAid: response.data.firstAid,
+            geda: response.data.geda,
+          }));
           console.log(response.data);  // Use response.data directly
         } catch (error) {
           console.log(error);
@@ -44,14 +50,6 @@ const EditWorkersPage: React.FC = () => {
     //setData({...data, [event.target.name]: event.target.value})		
     }
     
-   
-
-    const handleChange = (e:any) =>{
-      const name = e.target.name;
-      const value = e.target.value;
-      setData({...data, [name]:value})
-  }
-
   function converttoint(a:string){
     //var x = parseInt(a,10);
     var x = +a;
@@ -81,8 +79,11 @@ const EditWorkersPage: React.FC = () => {
       nightHr:{value: string}; 
       workingPermit:{value: string}
       firstAidDate:{value: string};
-      note:{value: string};
+      workProtection: {checked: boolean};
+      firstAid: {checked: boolean};
+      geda: {checked: boolean};
       tools:{value: string};
+      note:{value: string};
     }
     if(e){
       const data = {
@@ -101,36 +102,57 @@ const EditWorkersPage: React.FC = () => {
       dailyWage: converttoint(target.dailyWage.value),
       nightHr: converttoint(target.nightHr.value),
       workingPermit: target.workingPermit.value,
+      workProtection: target.workProtection.checked,
+      firstAid: target.firstAid.checked,
+      geda: target.geda.checked,
       tools:target.tools.value,
       note: target.note.value
       }
-      const request = {...data, ...checkboxes};
+      
+      const request = {...data, ...prevData};
       /* console.log(request); */
-      axios.put('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers/'+ id, request)
+      //console.log("Data in handleChangeCheckbox:", JSON.stringify(request, null, 2));
+      console.log("Data in Checkboxes:", JSON.stringify(prevData, null, 2));
+
+
+/*       axios.put('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers/'+ id, request)
       .then(res => {
-        window.location.reload()
-        window.alert("Dodan novi radnik")
-      }).catch(err => console.log(err));
+        const alertMessage = `Uređen profil radnika: ${data.firstName} ${data.lastName}`;
+       //window.location.reload();
+        window.alert(alertMessage);
+      }).catch(err => console.log(err)); */
       
     }
 }
 
-  const handleChangeCheckbox = (e:any) =>{
-    const name = e.target.name;
-    const value = e.target.value;
-    if(e.target.checked == true){
-      setData({...data, [name]:true})
-    }else{
-      setData({...data, [name]:false})
-    }
-    setIsChecked(current => !current);
-  }
+/*       const handleChangeCheckbox = (e:any) => {
+        const name = e.target.name;
+        const isChecked = e.target.checked;
+
+        setPrevData((prevData) => ({
+          ...prevData,
+          [name]: isChecked,
+        }));
+        console.log([name] + isChecked);
+      }; */
+
+
+     const handleChangeCheckbox = (e:any) =>{
+      const name = e.target.name;
+      if(e.target.checked){
+
+        setPrevData({...prevData, [name]:true})
+      }else{
+        setPrevData({...prevData, [name]:false})
+      }
+    } 
+
 
   const updateConfig = () => {
     setConfigLoading(true)
     try {
       LayoutSetup.setConfig(config)
-      window.location.reload()
+      /* window.location.reload() */
     } catch (error) {
       setConfig(getLayoutFromLocalStorage())
       setConfigLoading(false)
@@ -145,20 +167,19 @@ const EditWorkersPage: React.FC = () => {
     }, 1000)
   }
   return (
-    
     <div>
       <form className="form" method="post" onSubmit={handleSubmit}>
           <div className="card-body">
             <div className="form-group row">
               <div className="col-lg-4">
-                <label>Ime:</label>
+                <label>Ime</label>
                 <input 
                 type="text"
                 name="firstName"
                 className="form-control"
                 placeholder="Ime radnika"
-                onChange={handleChange}
-                value={data.firstName}/>
+                
+                defaultValue={data.firstName}/>
               </div>
 
               <div className="col-lg-4">
@@ -167,8 +188,8 @@ const EditWorkersPage: React.FC = () => {
                 name="lastName"
                 className="form-control"
                 placeholder="Prezime radnika"
-                onChange={handleChange}
-                value={data.lastName}
+                
+                defaultValue={data.lastName}
                 />
               </div>
             </div>
@@ -180,8 +201,8 @@ const EditWorkersPage: React.FC = () => {
                 name="address"
                 className="form-control"
                 placeholder="Prebivalište radnika"
-                onChange={handleChange}
-                value={data.address}/>
+                
+                defaultValue={data.address}/>
               </div>
 
                 <div className="col-lg-4">
@@ -190,8 +211,8 @@ const EditWorkersPage: React.FC = () => {
                   name="oib"
                   className="form-control"
                   placeholder="OIB"
-                  onChange={handleChange}
-                  value={data.oib}/>
+                  
+                  defaultValue={data.oib}/>
                 </div>
           
 
@@ -202,13 +223,13 @@ const EditWorkersPage: React.FC = () => {
                   name="passport"
                   className="form-control"
                   placeholder="Br putovnice"
-                  onChange={handleChange}
-                  value={data.passport}/>
+                  
+                  defaultValue={data.passport}/>
               </div>
 
               <div className="col-lg-4">
                 <label htmlFor="mob">Broj mobitela:</label>
-                  <input type="tel" name="mob" id="mob" className="form-control" placeholder="Br mobitela"/>
+                  <input type="tel" name="mob" id="mob" className="form-control" placeholder="Br mobitela" defaultValue={data.mob}/>
               </div>
                <div className="col-lg-4">
                 <label>E-mail:</label>
@@ -216,8 +237,8 @@ const EditWorkersPage: React.FC = () => {
                     name="email"
                     className="form-control"
                     placeholder="email@email.com"
-                    onChange={handleChange}
-                    value={data.email}/>
+                    
+                    defaultValue={data.email}/>
               </div> 
             </div>
 
@@ -228,8 +249,8 @@ const EditWorkersPage: React.FC = () => {
                   name="fatherName"
                   className="form-control"
                   placeholder="Ime oca radnika"
-                  onChange={handleChange}
-                  value={data.fatherName}/>
+                  
+                  defaultValue={data.fatherName}/>
               </div>
 
               <div className="col-lg-4">
@@ -238,8 +259,8 @@ const EditWorkersPage: React.FC = () => {
                   name="motherName"
                   className="form-control"
                   placeholder="Ime majke radnika"
-                  onChange={handleChange}
-                  value={data.motherName}/>
+                  
+                  defaultValue={data.motherName}/>
               </div>
             </div>
             <div>PLAĆA I SATNICA</div>
@@ -251,8 +272,8 @@ const EditWorkersPage: React.FC = () => {
                   name="wage"
                   className="form-control"
                   placeholder="Plaća"
-                  onChange={handleChange}
-                  value={data.wage}/>
+                  
+                  defaultValue={data.wage}/>
                   <div className="input-group-append"><span className="input-group-text">€</span></div>
               </div>
               </div>
@@ -265,8 +286,8 @@ const EditWorkersPage: React.FC = () => {
                   name="overtimeHr"
                   className="form-control"
                   placeholder="€"
-                  onChange={handleChange}
-                  value={data.overtimeHr}/>
+                  
+                  defaultValue={data.overtimeHr}/>
                 <div className="input-group-append"><span className="input-group-text">€</span></div>
                 </div>
               </div>
@@ -277,8 +298,8 @@ const EditWorkersPage: React.FC = () => {
                   name="weekendHr"
                   className="form-control"
                   placeholder="€"
-                  onChange={handleChange}
-                  value={data.weekendHr}/>
+                  
+                  defaultValue={data.weekendHr}/>
                   <div className="input-group-append"><span className="input-group-text">€</span></div>
               </div>
               </div>
@@ -290,8 +311,8 @@ const EditWorkersPage: React.FC = () => {
                   name="dailyWage"
                   className="form-control"
                   placeholder="€"
-                  onChange={handleChange}
-                  value={data.dailyWage}/>
+                  
+                  defaultValue={data.dailyWage}/>
                   <div className="input-group-append"><span className="input-group-text">€</span></div>
 
               </div>
@@ -304,8 +325,8 @@ const EditWorkersPage: React.FC = () => {
                 name="nightHr"
                 className="form-control"
                 placeholder="€"
-                onChange={handleChange}
-                value={data.nightHr}/>
+                
+                defaultValue={data.nightHr}/>
                 <div className="input-group-append"><span className="input-group-text">€</span></div>
             </div>
             </div>
@@ -318,8 +339,8 @@ const EditWorkersPage: React.FC = () => {
                   <input type="date"
                   name="workingPermit"
                   className="form-control"
-                  onChange={handleChange}
-                  value={data?.workingPermit ? data.workingPermit.slice(0, 10) : ''}
+                  
+                  defaultValue={data?.workingPermit ? data.workingPermit.slice(0, 10) : ''}
                   />
               </div>
 
@@ -328,8 +349,8 @@ const EditWorkersPage: React.FC = () => {
                   <input type="date"
                   name="firstAidDate"
                   className="form-control"
-                  onChange={handleChange}
-                  /* value={data.firstAidDate} *//>
+                  
+                  /* defaultValue={data.firstAidDate} *//>
               </div>
             </div>
           </div>
@@ -341,7 +362,7 @@ const EditWorkersPage: React.FC = () => {
                 onChange={handleChangeCheckbox}
                 className="form-check-input" 
                 type="checkbox"  
-                checked={data?.workProtection || false}
+                checked={prevData.workProtection}
                 />
           
                 <label className="form-check-label" >
@@ -357,7 +378,7 @@ const EditWorkersPage: React.FC = () => {
                 onChange={handleChangeCheckbox}
                 className="form-check-input" 
                 type="checkbox" 
-                checked={data?.firstAid || false}
+                checked={prevData.firstAid}
                 />
 
                 <label className="form-check-label" >
@@ -372,8 +393,7 @@ const EditWorkersPage: React.FC = () => {
                 onChange={handleChangeCheckbox}
                 className="form-check-input" 
                 type="checkbox" 
-                checked={data?.geda || false}
-                
+                checked={prevData.geda} 
                 />
 
                 <label className="form-check-label" >
@@ -389,8 +409,8 @@ const EditWorkersPage: React.FC = () => {
             name="tools"
             className="form-control"
             placeholder="Alat"
-            onChange={handleChange}
-            value={data.tools}/>
+            
+            defaultValue={data.tools}/>
 
             <label>Napomena:</label>
               <textarea
@@ -399,8 +419,8 @@ const EditWorkersPage: React.FC = () => {
               name="note"
               className="form-control"
               placeholder="Unesite napomenu"
-              onChange={handleChange}
-              value={data.note}/>
+              
+              defaultValue={data.note}/>
           </div>
           <br/>
           <div className="card-footer">
