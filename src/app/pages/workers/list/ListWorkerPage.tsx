@@ -83,6 +83,14 @@ const daysUntilWorkingPermit = (dateString: string): number => {
   return Math.ceil((workingPermitDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
 };
 
+// Helper function to calculate the difference in days for the firstAidDate
+const daysUntilFirstAidDate = (dateString: string): number => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const firstAidDate = new Date(dateString);
+  return Math.ceil((firstAidDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+};
+
   const handleDelete = (id: any) => {
     const confirm = window.confirm("Jeste li sigurni da želite izbrisati stavku?");
     if (confirm) {
@@ -104,6 +112,7 @@ const daysUntilWorkingPermit = (dateString: string): number => {
               <th className={`table-sort-${sortOrder}`} onClick={() => handleSort('firstName')}><strong>Ime</strong></th>
               <th className={`table-sort-${sortOrder}`} onClick={() => handleSort('lastName')}><strong>Prezime</strong></th>
               <th className={`table-sort-${sortOrder}`} onClick={() => handleSort('workingPermit')}><strong>Radna dozvola</strong></th>
+              <th><strong>Liječnički pregled</strong></th>
               <th><strong>Prva pomoć</strong></th>
               <th><strong>Zaštita na radu</strong></th>
               <th><strong>GEDA</strong></th>
@@ -112,25 +121,33 @@ const daysUntilWorkingPermit = (dateString: string): number => {
           </thead>
           <tbody>
             {sortedData.map((d, i) => {
-              const daysLeft = daysUntilWorkingPermit(d.workingPermit);
-
+              const daysLeftWorkingPermit = daysUntilWorkingPermit(d.workingPermit);
+              const daysLeftFirstAid = daysUntilFirstAidDate(d.firstAidDate);
+            
               // Determine the background color for the workingPermit cell
-              let textStyle = {};
-              if (daysLeft <= 45 && daysLeft >= 30) {
-                textStyle = { color: 'rgba(255, 140, 0)', fontWeight: 'bold' }; // Solid orange and bold for 15 days before
-              } else if (daysLeft <= 30 && daysLeft >= 0) {
-                textStyle = { color: 'rgba(255, 0, 0, 1)', fontWeight: 'bold' }; // Solid red and bold for 5 days before
-              } else if (daysLeft < 0) {
-                textStyle = { color: 'rgba(255, 0, 0, 1)', fontWeight: 'bold' }; // Solid red and bold for past dates
+              let workingPermitTextStyle = {};
+              if (daysLeftWorkingPermit <= 45 && daysLeftWorkingPermit >= 30) {
+                workingPermitTextStyle = { color: 'rgba(255, 140, 0)', fontWeight: 'bold' }; // Solid orange and bold for 15 days before
+              } else if (daysLeftWorkingPermit <= 30 && daysLeftWorkingPermit >= 0) {
+                workingPermitTextStyle = { color: 'rgba(255, 0, 0, 1)', fontWeight: 'bold' }; // Solid red and bold for 5 days before
+              } else if (daysLeftWorkingPermit < 0) {
+                workingPermitTextStyle = { color: 'rgba(255, 0, 0, 1)', fontWeight: 'bold' }; // Solid red and bold for past dates
               }
-
+              let firstAidTextStyle = {};
+              if (daysLeftFirstAid <= 45 && daysLeftFirstAid >= 30) {
+                firstAidTextStyle = { color: 'rgba(255, 140, 0)', fontWeight: 'bold' }; // Orange for 30-45 days before
+              } else if (daysLeftFirstAid <= 30 && daysLeftFirstAid >= 0) {
+                firstAidTextStyle = { color: 'rgba(255, 0, 0, 1)', fontWeight: 'bold' }; // Red for 0-30 days before
+              } else if (daysLeftFirstAid < 0) {
+                firstAidTextStyle = { color: 'rgba(255, 0, 0, 1)', fontWeight: 'bold' }; // Red for past dates
+              }
               return (
                 <tr key={i}>
                   <td>{i + 1 + "."}</td>
                   <td>{d.firstName}</td>
                   <td>{d.lastName}</td>
-                  <td style={{ textAlign: 'center', ...textStyle }}>{d.workingPermit.slice(0, 10)}</td>
-                  <td style={{ textAlign: 'center' }}>{d.firstAidDate.slice(0, 10)}</td>
+                  <td style={{ textAlign: 'center', ...workingPermitTextStyle }}>{d.workingPermit.slice(0, 10)}</td>
+                  <td style={{ textAlign: 'center', ...firstAidTextStyle }}>{d.firstAidDate.slice(0, 10)}</td>
                   <td style={{ textAlign: 'center' }}> {d.workProtection ? <p>Da</p> : <p>Ne</p>}</td>
                   <td style={{ textAlign: 'center' }}>{d.firstAid ? <p>Da</p> : <p>Ne</p>}</td>
                   <td style={{ textAlign: 'center' }}>{d.geda ? <p>Da</p> : <p>Ne</p>}</td>
