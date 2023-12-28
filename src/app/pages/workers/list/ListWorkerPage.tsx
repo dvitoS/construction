@@ -10,7 +10,7 @@ const ListWorkersPage: React.FC = () => {
   const [configLoading, setConfigLoading] = useState<boolean>(false);
   const [resetLoading, setResetLoading] = useState<boolean>(false);
   const [data, setData] = useState<any[]>([]);
-  const [sortOrder, setSortOrder] = useState('desc'); // 'asc' or 'desc'
+  const [sortOrder, setSortOrder] = useState('asc'); // 'asc' or 'desc'
   const [sortedColumn, setSortedColumn] = useState<'firstName' | 'lastName' | 'workingPermit'>('workingPermit');
 
   interface Worker {
