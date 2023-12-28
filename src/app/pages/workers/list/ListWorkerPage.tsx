@@ -31,6 +31,10 @@ const ListWorkersPage: React.FC = () => {
     setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
   }
 
+  const handleSortWorkProtection = () => {
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+  }
+  
   const sortedData = [...data].sort((a, b) => {
     const aValue = sortOrder === 'asc' ? a.firstName.toLowerCase() : a.lastName.toLowerCase();
     const bValue = sortOrder === 'asc' ? b.firstName.toLowerCase() : b.lastName.toLowerCase();
@@ -85,7 +89,7 @@ const ListWorkersPage: React.FC = () => {
               <th className="table-sort-desc" onClick={handleSortLastName}><strong>Prezime</strong></th>
               <th className="table-sort-desc" onClick={handleSortWorkPermitDate}><strong>Radna dozvola</strong></th>
               <th className="table-sort-desc" onClick={handleSortFirstAidDate}><strong>Prva pomoć</strong></th>
-              <th><strong>Zaštita na radu</strong></th>
+              <th className="table-sort-desc" onClick={handleSortWorkProtection}><strong>Zaštita na radu</strong></th>
               <th><strong>Prva pomoć</strong></th>
               <th><strong>GEDA</strong></th>
               <th colSpan={3}><strong>AKCIJA</strong></th>
