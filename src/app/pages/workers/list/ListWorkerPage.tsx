@@ -71,12 +71,16 @@ const ListWorkersPage: React.FC = () => {
       <div className='w-75 rounded bg-white border shadow p-4'>
         <table className='table table-striped'>
           <thead>
-            <tr>
-              <th>Br.</th>
-              <th className="table-sort-desc" onClick={handleSortFirstName}>Ime</th>
-              <th className="table-sort-desc" onClick={handleSortLastName}>Prezime</th>
-              <th>Radna dozvola</th>
-              {/* ... (other headers) */}
+            <tr style={{ textAlign: 'center' }}>
+              <th><strong>Br.</strong></th>
+              <th className="table-sort-desc" onClick={handleSortFirstName}><strong>Ime</strong></th>
+              <th className="table-sort-desc" onClick={handleSortLastName}><strong>Prezime</strong></th>
+              <th><strong>Radna dozvola</strong></th>
+              <th><strong>Prva pomoć</strong></th>
+              <th><strong>Zaštita na radu</strong></th>
+              <th><strong>Prva pomoć</strong></th>
+              <th><strong>GEDA</strong></th>
+              <th colSpan={3}><strong>AKCIJA</strong></th>
             </tr>
           </thead>
            <tbody>
@@ -85,12 +89,12 @@ const ListWorkersPage: React.FC = () => {
             <td>{i + 1 + "."}</td>
             <td>{d.firstName}</td>
             <td>{d.lastName}</td>
-            <td>{d.workingPermit.slice(0, 10)}</td>
-            <td></td>
-            <td> {d.workProtection ? <p>Da</p> : <p>Ne</p>}</td>
-            <td>{d.firstAid ? <p>Da</p> : <p>Ne</p>}</td>
-            <td>{d.geda ? <p>Da</p> : <p>Ne</p>}</td>
-            <td>
+            <td style={{ textAlign: 'center' }}>{d.workingPermit.slice(0, 10)}</td>
+            <td style={{ textAlign: 'center' }}></td>
+            <td style={{ textAlign: 'center' }}> {d.workProtection ? <p>Da</p> : <p>Ne</p>}</td>
+            <td style={{ textAlign: 'center' }}>{d.firstAid ? <p>Da</p> : <p>Ne</p>}</td>
+            <td style={{ textAlign: 'center' }}>{d.geda ? <p>Da</p> : <p>Ne</p>}</td>
+            <td style={{ textAlign: 'center' }}>
               <Link to={'/worker/' + d.id} className='btn btn-sm btn-primary me-2'>Otvori</Link>
               <Link to={'/edit/' + d.id} className="btn btn-sm btn-info me-2">Izmijeni</Link>
               <button onClick={e => handleDelete(d.id)} className='btn btn-sm btn-danger'>Izbriši</button>
