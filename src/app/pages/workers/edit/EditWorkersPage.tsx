@@ -74,7 +74,7 @@ const EditWorkersPage: React.FC = () => {
       weekendHr:{value: string}; 
       dailyWage:{value: string};  
       nightHr:{value: string}; 
-      workingPermit:{value: string}
+      workingPermit:{value: string};
       firstAidDate:{value: string};
       workProtection: {checked: boolean};
       firstAid: {checked: boolean};
@@ -98,6 +98,7 @@ const EditWorkersPage: React.FC = () => {
       weekendHr: converttoint(target.weekendHr.value),
       dailyWage: converttoint(target.dailyWage.value),
       nightHr: converttoint(target.nightHr.value),
+      firstAidDate: target.firstAidDate.value,
       workingPermit: target.workingPermit.value,
       workProtection: target.workProtection.checked,
       firstAid: target.firstAid.checked,
@@ -107,7 +108,7 @@ const EditWorkersPage: React.FC = () => {
       }
       
       const request = {...data, ...prevData};
-      /* console.log(request); */
+      console.log(request);
       //console.log("Data in handleChangeCheckbox:", JSON.stringify(request, null, 2));
       //console.log("Data in Checkboxes:", JSON.stringify(prevData, null, 2));
 
@@ -117,7 +118,7 @@ const EditWorkersPage: React.FC = () => {
         const alertMessage = `Uređen profil radnika: ${data.firstName} ${data.lastName}`;
         window.alert(alertMessage);
         window.location.href = 'http://localhost:3011/metronic8/react/demo1/crafted/workers/list';
-      }).catch(err => console.log(err));
+      }).catch(err => console.log(err)); 
       
     }
 }
@@ -334,7 +335,8 @@ const EditWorkersPage: React.FC = () => {
                   name="firstAidDate"
                   className="form-control"
                   
-                  /* defaultValue={data.firstAidDate} *//>
+                  defaultValue={data?.firstAidDate ? data.firstAidDate.slice(0, 10) : ''}
+                  />
               </div>
             </div>
           </div>

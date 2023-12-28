@@ -53,7 +53,7 @@ const AddWorkersPage: React.FC = () => {
           weekendHr:{value: string}; 
           dailyWage:{value: string};  
           nightHr:{value: string}; 
-          workingPermit:{value: string}
+          workingPermit:{value: string};
           firstAidDate:{value: string};
           note:{value: string};
           tools:{value: string};
@@ -75,6 +75,7 @@ const AddWorkersPage: React.FC = () => {
           dailyWage: converttoint(target.dailyWage.value),
           nightHr: converttoint(target.nightHr.value),
           workingPermit: target.workingPermit.value,
+          firstAidDate: target.firstAidDate.value,
           tools:target.tools.value,
           note: target.note.value
           }
