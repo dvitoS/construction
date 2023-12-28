@@ -261,6 +261,7 @@ const AddWorkersPage: React.FC = () => {
               name="workingPermit"
               className="form-control"
               placeholder="Radna dozvola"
+              required
                />
           </div>
 
@@ -270,6 +271,7 @@ const AddWorkersPage: React.FC = () => {
               name="firstAidDate"
               className="form-control"
               placeholder="Liječnički pregled"
+              required
               />
           </div>
         </div>

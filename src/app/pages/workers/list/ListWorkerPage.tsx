@@ -18,6 +18,7 @@ const ListWorkersPage: React.FC = () => {
     firstName: string;
     lastName: string;
     workingPermit: string;
+    firstAidDate: string;
     workProtection: string;
     firstAid: string;
     geda: string;
@@ -115,9 +116,9 @@ const daysUntilWorkingPermit = (dateString: string): number => {
 
               // Determine the background color for the workingPermit cell
               let textStyle = {};
-              if (daysLeft <= 15 && daysLeft >= 5) {
+              if (daysLeft <= 45 && daysLeft >= 30) {
                 textStyle = { color: 'rgba(255, 140, 0)', fontWeight: 'bold' }; // Solid orange and bold for 15 days before
-              } else if (daysLeft <= 5 && daysLeft >= 0) {
+              } else if (daysLeft <= 30 && daysLeft >= 0) {
                 textStyle = { color: 'rgba(255, 0, 0, 1)', fontWeight: 'bold' }; // Solid red and bold for 5 days before
               } else if (daysLeft < 0) {
                 textStyle = { color: 'rgba(255, 0, 0, 1)', fontWeight: 'bold' }; // Solid red and bold for past dates
@@ -129,7 +130,7 @@ const daysUntilWorkingPermit = (dateString: string): number => {
                   <td>{d.firstName}</td>
                   <td>{d.lastName}</td>
                   <td style={{ textAlign: 'center', ...textStyle }}>{d.workingPermit.slice(0, 10)}</td>
-                  <td style={{ textAlign: 'center' }}></td>
+                  <td style={{ textAlign: 'center' }}>{d.firstAidDate.slice(0, 10)}</td>
                   <td style={{ textAlign: 'center' }}> {d.workProtection ? <p>Da</p> : <p>Ne</p>}</td>
                   <td style={{ textAlign: 'center' }}>{d.firstAid ? <p>Da</p> : <p>Ne</p>}</td>
                   <td style={{ textAlign: 'center' }}>{d.geda ? <p>Da</p> : <p>Ne</p>}</td>
