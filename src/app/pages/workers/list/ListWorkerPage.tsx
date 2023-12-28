@@ -10,7 +10,7 @@ const ListWorkersPage: React.FC = () => {
   const [configLoading, setConfigLoading] = useState<boolean>(false);
   const [resetLoading, setResetLoading] = useState<boolean>(false);
   const [data, setData] = useState<any[]>([]);
-  const [sortOrder, setSortOrder] = useState('asc'); // 'asc' or 'desc'
+  const [sortOrder, setSortOrder] = useState('desc'); // 'asc' or 'desc'
   const [sortedColumn, setSortedColumn] = useState<'firstName' | 'lastName' | 'workingPermit'>('workingPermit');
 
   interface Worker {
@@ -115,8 +115,10 @@ const daysUntilWorkingPermit = (dateString: string): number => {
 
               // Determine the background color for the workingPermit cell
               let textStyle = {};
-              if (daysLeft <= 5 && daysLeft >= 0) {
-                textStyle = { color: 'rgba(255, 140, 0)', fontWeight: 'bold' }; // Solid orange and bold for 5 days before
+              if (daysLeft <= 15 && daysLeft >= 5) {
+                textStyle = { color: 'rgba(255, 140, 0)', fontWeight: 'bold' }; // Solid orange and bold for 15 days before
+              } else if (daysLeft <= 5 && daysLeft >= 0) {
+                textStyle = { color: 'rgba(255, 0, 0, 1)', fontWeight: 'bold' }; // Solid red and bold for 5 days before
               } else if (daysLeft < 0) {
                 textStyle = { color: 'rgba(255, 0, 0, 1)', fontWeight: 'bold' }; // Solid red and bold for past dates
               }
