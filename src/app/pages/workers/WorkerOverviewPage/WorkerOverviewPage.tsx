@@ -93,7 +93,7 @@ const handleInput = (event:any) => {
             <h3 className='fw-bolder m-0'>Informacije o zaposleniku</h3>
           </div>
 
-          <Link to={'/worker/settings' + id} className='btn btn-primary align-self-center'>
+          <Link to={'/worker/settings/' + id} className='btn btn-primary align-self-center'>
             Uredi profil
           </Link>
         </div>
@@ -111,7 +111,7 @@ const handleInput = (event:any) => {
             <label className='col-lg-4 fw-bold text-muted'>Adresa stanovanja</label>
 
             <div className='col-lg-8 fv-row'>
-              <span className='fw-bold fs-6'>{data.address}ilica 129a</span>
+              <span className='fw-bold fs-6'>{data.address}</span>
             </div>
           </div>
           <div className='row mb-7'>
@@ -120,7 +120,7 @@ const handleInput = (event:any) => {
             </label>
                   
             <div className='col-lg-8 d-flex align-items-center'>
-              <span className='fw-bolder fs-6 me-2'>1263748697</span>
+              <span className='fw-bolder fs-6 me-2'>{data.oib}</span>
             </div>
           </div>
           <div className='row mb-7'>
@@ -129,7 +129,7 @@ const handleInput = (event:any) => {
             </label>
                   
             <div className='col-lg-8 d-flex align-items-center'>
-              <span className='fw-bolder fs-6 me-2'>12345678932</span>
+              <span className='fw-bolder fs-6 me-2'>{data.passport}</span>
             </div>
           </div>
           <div className='row mb-7'>
@@ -138,7 +138,7 @@ const handleInput = (event:any) => {
             </label>
 
             <div className='col-lg-8 d-flex align-items-center'>
-              <span className='fw-bolder fs-6 me-2'>044 3276 454 935</span>
+              <span className='fw-bolder fs-6 me-2'>{data.mob}</span>
             </div>
           </div>
 
@@ -147,7 +147,7 @@ const handleInput = (event:any) => {
 
             <div className='col-lg-8'>
               <a href='#' className='fw-bold fs-6 text-dark text-hover-primary'>
-                email@email.com
+              {data.email}
               </a>
             </div>
           </div>
@@ -157,7 +157,7 @@ const handleInput = (event:any) => {
               Ime oca
             </label>
             <div className='col-lg-8'>
-              <span className='fw-bolder fs-6 text-dark'>Ivan</span>
+              <span className='fw-bolder fs-6 text-dark'>{data.fatherName}</span>
             </div>
           </div>
 
@@ -166,7 +166,7 @@ const handleInput = (event:any) => {
               Ime majke
             </label>
             <div className='col-lg-8'>
-              <span className='fw-bolder fs-6 text-dark'>Matea</span>
+              <span className='fw-bolder fs-6 text-dark'>{data.motherName}</span>
             </div>
           </div>
 
@@ -174,7 +174,7 @@ const handleInput = (event:any) => {
             <label className='col-lg-4 fw-bold text-muted'>Mjesečna plaća</label>
 
             <div className='col-lg-8'>
-              <span className='fw-bolder fs-6 text-dark'>€990</span>
+              <span className='fw-bolder fs-6 text-dark'>{data.wage}€</span>
             </div>
           </div>
 
@@ -182,7 +182,7 @@ const handleInput = (event:any) => {
             <label className='col-lg-4 fw-bold text-muted'>Prekovremeno</label>
 
             <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>€50</span>
+              <span className='fw-bold fs-6'>{data.overtimeHr}€</span>
             </div>
           </div>
 
@@ -190,7 +190,7 @@ const handleInput = (event:any) => {
             <label className='col-lg-4 fw-bold text-muted'>Vikend satnica</label>
 
             <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>€80</span>
+              <span className='fw-bold fs-6'>{data.weekendHr}€</span>
             </div>
           </div>
 
@@ -198,37 +198,30 @@ const handleInput = (event:any) => {
             <label className='col-lg-4 fw-bold text-muted'>Dnevnica</label>
 
             <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>€200</span>
+              <span className='fw-bold fs-6'>{data.dailyWage}€</span>
             </div>
           </div>
 
           <div className='row mb-10'>
-            <label className='col-lg-4 fw-bold text-muted'>Dnevnica</label>
+            <label className='col-lg-4 fw-bold text-muted'>Noćni rad</label>
 
             <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>€200</span>
+              <span className='fw-bold fs-6'>{data.nightHr}€</span>
             </div>
           </div>
 
-          <div className='row mb-10'>
-            <label className='col-lg-4 fw-bold text-muted'>Dnevnica</label>
-
-            <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>€100</span>
-            </div>
-          </div>
           <div className='row mb-10'>
             <label className='col-lg-4 fw-bold text-muted'>Valjanost radne dozvole</label>
 
             <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>16/09/2024</span>
+              <span className='fw-bold fs-6'>{data.workingPermit}</span>
             </div>
           </div>
           <div className='row mb-10'>
             <label className='col-lg-4 fw-bold text-muted'>Valjanost lječničkog pregleda</label>
 
             <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>06/09/2024</span>
+              <span className='fw-bold fs-6'>{data.firstAidDate}</span>
             </div>
           </div>
 
@@ -236,36 +229,36 @@ const handleInput = (event:any) => {
             <label className='col-lg-4 fw-bold text-muted'>Zaštita na radu</label>
 
             <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>Ima</span>
+              <span className='fw-bold fs-6'>{data.workProtection}</span>
             </div>
           </div>
           <div className='row mb-10'>
             <label className='col-lg-4 fw-bold text-muted'>Prva pomoć</label>
 
             <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>Ima</span>
+              <span className='fw-bold fs-6'>{data.firstAid}</span>
             </div>
           </div>
           <div className='row mb-10'>
             <label className='col-lg-4 fw-bold text-muted'>GEDA</label>
 
             <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>Nema</span>
+              <span className='fw-bold fs-6'>{data.geda}</span>
             </div>
           </div>
-          <div className='row mb-10'>
-            <label className='col-lg-4 fw-bold text-muted'>Napomena</label>
-
-            <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>Izniman radnik, uredan i učinkovit</span>
-            </div>
-          </div>
-
           <div className='row mb-10'>
             <label className='col-lg-4 fw-bold text-muted'>Posuđeni alat</label>
 
             <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>Brusilica i kliješta</span>
+              <span className='fw-bold fs-6'>{data.tools}</span>
+            </div>
+          </div>
+
+          <div className='row mb-10'>
+            <label className='col-lg-4 fw-bold text-muted'>Napomena</label>
+
+            <div className='col-lg-8'>
+              <span className='fw-bold fs-6'>{data.note}</span>
             </div>
           </div>
 
