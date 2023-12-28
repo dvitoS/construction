@@ -15,7 +15,6 @@ const ListWorkersPage: React.FC = () => {
   const [data, setData] = useState<any[]>([]);
   const [sortOrder, setSortOrder] = useState('desc'); // Initial sorting order
 
-
   const handleSortFirstName = () => {
     setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
   };
@@ -24,11 +23,20 @@ const ListWorkersPage: React.FC = () => {
     setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
   };
 
+  const handleSortWorkPermitDate = () => {
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+  }
+
+  const handleSortFirstAidDate = () => {
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+  }
+
   const sortedData = [...data].sort((a, b) => {
     const aValue = sortOrder === 'asc' ? a.firstName.toLowerCase() : a.lastName.toLowerCase();
     const bValue = sortOrder === 'asc' ? b.firstName.toLowerCase() : b.lastName.toLowerCase();
     return aValue.localeCompare(bValue);
   });
+
 
   const updateConfig = () => {
     setConfigLoading(true);
@@ -75,8 +83,8 @@ const ListWorkersPage: React.FC = () => {
               <th><strong>Br.</strong></th>
               <th className="table-sort-desc" onClick={handleSortFirstName}><strong>Ime</strong></th>
               <th className="table-sort-desc" onClick={handleSortLastName}><strong>Prezime</strong></th>
-              <th><strong>Radna dozvola</strong></th>
-              <th><strong>Prva pomoć</strong></th>
+              <th className="table-sort-desc" onClick={handleSortWorkPermitDate}><strong>Radna dozvola</strong></th>
+              <th className="table-sort-desc" onClick={handleSortFirstAidDate}><strong>Prva pomoć</strong></th>
               <th><strong>Zaštita na radu</strong></th>
               <th><strong>Prva pomoć</strong></th>
               <th><strong>GEDA</strong></th>
