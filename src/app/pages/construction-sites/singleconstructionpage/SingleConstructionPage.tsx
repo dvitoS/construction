@@ -37,7 +37,7 @@ const SingleConstructionPage: React.FC = ({}) => {
 
 
   useEffect(()=> {
-    axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions.json')
+    axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions/')
     .then(res => setData(res.data))
     .catch(err => console.log(err));
   }, [])
