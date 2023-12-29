@@ -20,6 +20,7 @@ import SingleWorkerPageWrapper from '../pages/workers/singleworkerpage/SingleWor
 import TotalCostSheetPageWrapper from '../pages/cost_sheet/total/TotalCostSheetPageWrapper'
 import WorkerSettingsPageWrapper  from '../pages/workers/WorkerSettingsPage/WorkerSettingsPageWrapper'
 import WorkerOverviewPageWrapper from '../pages/workers/WorkerOverviewPage/WorkerOverviewPageWrapper'
+import ConstructionOverviewPageWrapper from '../pages/construction-sites/ConstructionOverviewPage/ConstructionOverviewPageWrapper'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -36,7 +37,7 @@ const PrivateRoutes = () => {
   const AddConstructionsPageWrapper = lazy(() => import ('../pages/construction-sites/add/AddConstructionsPageWrapper'))
   const EditConstructionsPageWrapper = lazy(() => import ('../pages/construction-sites/edit/EditConstructionsPageWrapper'))
   const ListConstructionsPageWrapper = lazy(() => import ('../pages/construction-sites/list/ListConstructionsPageWrapper'))
-  const SingleConstructionPageWrapper = lazy(() => import ('../pages/construction-sites/singleconstructionpage/SingleConstructionPageWrapper'))
+  const ConstructionOverviewPageWrapper = lazy(() => import ('../pages/construction-sites/ConstructionOverviewPage/ConstructionOverviewPageWrapper'))
 
   return (
     <Routes>
@@ -53,7 +54,7 @@ const PrivateRoutes = () => {
         <Route path='add' element={<AddConstructionsPageWrapper />} />
         <Route path='editc/:id' element={<EditConstructionsPageWrapper />} />
         <Route path='list' element={<ListConstructionsPageWrapper />} />
-        <Route path='singleconstruction/:id' element={<SingleConstructionPageWrapper/>} />        
+        <Route path='construction/:id' element={<ConstructionOverviewPageWrapper/>} />        
         <Route path='hr' element={<HourlyRatePageWrapper />} />
         <Route path='menu-test' element={<MenuTestPage />} />
         <Route path='add' element={<AddHourlyRatePageWrapper />} />
@@ -183,10 +184,10 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-          path='crafted/constructions/singleconstruction'
+          path='construction'
           element={
             <SuspensedView>
-              <SingleConstructionPageWrapper />
+              <ConstructionOverviewPageWrapper />
             </SuspensedView>
           }
         />

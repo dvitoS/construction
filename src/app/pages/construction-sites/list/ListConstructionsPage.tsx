@@ -69,8 +69,8 @@ const ListConstructionsPage: React.FC = ({}) => {
                     <td>{i+1+"."}</td>
                     <td>{d.name}</td>
                     <td>
-                      <Link to={'/singleconstruction/' + d.id} className='btn btn-sm btn-primary me-2'>Otvori</Link>
-                      <Link to={'/editc/'+ d.id} className="btn btn-sm btn-info me-2">Izmijeni</Link>
+                      <Link to={'/construction/' + d.id} className='btn btn-sm btn-primary me-2'>Otvori</Link>
+                      <Link to={'/edit/'+ d.id} className="btn btn-sm btn-info me-2">Izmijeni</Link>
                       <button onClick={e => handleDelete(d.id)}  className='btn btn-sm btn-danger'>Izbriši</button>
                     </td>
                   </tr>
