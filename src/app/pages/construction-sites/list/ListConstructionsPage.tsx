@@ -48,6 +48,7 @@ const ListConstructionsPage: React.FC = ({}) => {
     if(confirm){
       axios.delete('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions/' + id)
       .then(res => {
+        window.location.reload();
       }).catch(err => console.log(err));
     }
   } 
