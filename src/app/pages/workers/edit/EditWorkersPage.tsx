@@ -14,7 +14,7 @@ const EditWorkersPage: React.FC = () => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [data, setData] = useState ({firstName:'', lastName:'', address:'', oib:'', email:'', mob:'', passport:'', fatherName:"", motherName:"", workingPermit:'', firstAidDate:'', workProtection:false, firstAid:false, geda:false, hr:'', overtimeHr:'',weekendHr:'',dailyWage:'', wage:'',nightHr:'', note:'', tools:''});
+  const [data, setData] = useState ({firstName:'', lastName:'', address:'', oib:'', email:'', mob:'', passport:'', fatherName:"", motherName:"", workingPermit:'', firstAidDate:'', workProtection:false, firstAid:false, geda:false, hr:'', overtimeHr:'',weekendHr:'', wage:'',nightHr:'', note:'', tools:''});
   const [prevData, setPrevData] = useState({
     // Initialize prevData with the initial state
     workProtection: false,
@@ -290,17 +290,8 @@ const EditWorkersPage: React.FC = () => {
               </div>
 
               <div className="col-lg-2">
-                <label>Dnevnica:</label>
-                <div className="input-group">
-                  <input type="number"
-                  name="dailyWage"
-                  className="form-control"
-                  placeholder="€"
-                  
-                  defaultValue={data.dailyWage}/>
-                  <div className="input-group-append"><span className="input-group-text">€</span></div>
-
-              </div>
+                
+              
               </div>
 
               <div className="col-lg-2">

@@ -50,8 +50,7 @@ const AddWorkersPage: React.FC = () => {
           motherName:{value: string};
           wage:{value: string}; 
           overtimeHr:{value: string}; 
-          weekendHr:{value: string}; 
-          dailyWage:{value: string};  
+          weekendHr:{value: string};   
           nightHr:{value: string}; 
           workingPermit:{value: string};
           firstAidDate:{value: string};
@@ -72,7 +71,6 @@ const AddWorkersPage: React.FC = () => {
           wage: converttoint(target.wage.value),
           overtimeHr: converttoint(target.overtimeHr.value),
           weekendHr: converttoint(target.weekendHr.value),
-          dailyWage: converttoint(target.dailyWage.value),
           nightHr: converttoint(target.nightHr.value),
           workingPermit: target.workingPermit.value,
           firstAidDate: target.firstAidDate.value,
@@ -228,18 +226,6 @@ const AddWorkersPage: React.FC = () => {
               className="form-control"
               placeholder="€"/>
               <div className="input-group-append"><span className="input-group-text">€</span></div>
-          </div>
-          </div>
-
-          <div className="col-lg-2">
-            <label>Dnevnica:</label>
-            <div className="input-group">
-              <input type="number"
-              name="dailyWage"
-              className="form-control"
-              placeholder="€"/>
-              <div className="input-group-append"><span className="input-group-text">€</span></div>
-
           </div>
           </div>
 

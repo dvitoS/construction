@@ -162,16 +162,15 @@ const EditHourlyRatePage: React.FC = () => {
       </div>
 
       <div className="col-lg-2">
-        <label>Dnevnica:</label>
+      <label>Dnevnica:</label>
         <div className="input-group">
           <input type="number"
           name="dailyWage"
           className="form-control"
-          placeholder="h"
+          placeholder="€"
           onChange={handleChange}
           value={data.dailyWage}/>
-          <div className="input-group-append"><span className="input-group-text">h</span></div>
-
+          <div className="input-group-append"><span className="input-group-text">€</span></div>
       </div>
       </div>
 
