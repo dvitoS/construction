@@ -7,6 +7,7 @@ import axios from 'axios'
 import {useEffect} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 
+
 const ListConstructionsPage: React.FC = ({}) => {
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
@@ -60,6 +61,12 @@ const ListConstructionsPage: React.FC = ({}) => {
             <tr>
               <th>Br.</th>
               <th>Ime</th>
+              <th>Adresa</th>
+              <th>Početak</th>
+              <th>Kraj</th>
+              <th>Dokaznica</th>
+              <th>Račun</th>
+              <th>Napomena</th>
             </tr>
           </thead>
           <tbody>
@@ -68,6 +75,15 @@ const ListConstructionsPage: React.FC = ({}) => {
                   <tr key={i}>
                     <td>{i+1+"."}</td>
                     <td>{d.name}</td>
+                    <td>{d.address}</td>
+                    <td>{d.proof ? d.started.slice(0, 10) : 'Nema'}</td>
+                    <td>{d.proof ? d.finished.slice(0, 10) : 'Nema'}</td>
+                    <td>{d.proof ? d.proof.slice(0, 10) : 'Nema'}</td>
+                    <td>{d.proof ? d.bill.slice(0, 10) : 'Nema'}</td>
+                    <td>
+                    <button type="button" className="btn btn-primary" data-toggle="tooltip" data-trigger="focus" data-html="true" title={d.description}>
+                        Napomena
+                    </button></td>
                     <td>
                       <Link to={'/construction/' + d.id} className='btn btn-sm btn-primary me-2'>Otvori</Link>
                       <Link to={'/editc/'+ d.id} className="btn btn-sm btn-info me-2">Izmijeni</Link>
