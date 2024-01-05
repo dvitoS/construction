@@ -192,7 +192,7 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-          path='hourlyrate/add'
+          path='crafted/hourlyrate/add'
           element={
             <SuspensedView>
               <AddHourlyRatePageWrapper />
@@ -200,7 +200,7 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-          path='hourlyrate/edit'
+          path='crafted/hourlyrate/edit'
           element={
             <SuspensedView>
               <EditHourlyRatePageWrapper />
@@ -208,7 +208,7 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-          path='hourlyrate/list'
+          path='crafted/hourlyrate/list'
           element={
             <SuspensedView>
               <ListHourlyRatePageWrapper />
@@ -216,7 +216,7 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-          path='costsheet/add'
+          path='crafted/costsheet/add'
           element={
             <SuspensedView>
               <AddCostSheetPageWrapper />
@@ -224,7 +224,7 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-          path='costsheet/edit'
+          path='crafted/costsheet/edit'
           element={
             <SuspensedView>
               <EditCostSheetPageWrapper />
@@ -232,7 +232,7 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-          path='costsheet/list'
+          path='crafted/costsheet/list'
           element={
             <SuspensedView>
               <ListCostSheetPageWrapper />
@@ -240,7 +240,7 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-          path='costsheet/total'
+          path='crafted/costsheet/total'
           element={
             <SuspensedView>
               <TotalCostSheetPageWrapper />
