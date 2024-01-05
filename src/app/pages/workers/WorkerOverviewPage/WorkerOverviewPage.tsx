@@ -229,21 +229,21 @@ const handleInput = (event:any) => {
             <label className='col-lg-4 fw-bold text-muted'>Zaštita na radu</label>
 
             <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>{data.workProtection}</span>
+              <span className='fw-bold fs-6'>{data.workProtection ? <p>Da</p> : <p>Ne</p>}</span>
             </div>
           </div>
           <div className='row mb-10'>
             <label className='col-lg-4 fw-bold text-muted'>Prva pomoć</label>
 
             <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>{data.firstAid}</span>
+              <span className='fw-bold fs-6'>{data.firstAid ? <p>Da</p> : <p>Ne</p>}</span>
             </div>
           </div>
           <div className='row mb-10'>
             <label className='col-lg-4 fw-bold text-muted'>GEDA</label>
 
             <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>{data.geda}</span>
+              <span className='fw-bold fs-6'>{data.geda ? <p>Da</p> : <p>Ne</p>}</span>
             </div>
           </div>
           <div className='row mb-10'>
