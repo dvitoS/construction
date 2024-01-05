@@ -37,7 +37,7 @@ const ListConstructionsPage: React.FC = ({}) => {
 
 
   useEffect(()=> {
-    axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions.json')
+    axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/constructions/' + data)
     .then(res => setData(res.data))
     .catch(err => console.log(err));
   }, [])
@@ -70,7 +70,7 @@ const ListConstructionsPage: React.FC = ({}) => {
                     <td>{d.name}</td>
                     <td>
                       <Link to={'/construction/' + d.id} className='btn btn-sm btn-primary me-2'>Otvori</Link>
-                      <Link to={'/edit/'+ d.id} className="btn btn-sm btn-info me-2">Izmijeni</Link>
+                      <Link to={'/editc/'+ d.id} className="btn btn-sm btn-info me-2">Izmijeni</Link>
                       <button onClick={e => handleDelete(d.id)}  className='btn btn-sm btn-danger'>Izbriši</button>
                     </td>
                   </tr>

@@ -15,7 +15,7 @@ const ConstructionOverviewPage: React.FC<any> = ({className}) => {
     const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
     const [configLoading, setConfigLoading] = useState<boolean>(false)
     const [resetLoading, setResetLoading] = useState<boolean>(false)
-    const [data, setData] = useState ({firstName:'', lastName:'', address:'', oib:'', email:'', mob:'', passport:'', fatherName:"", motherName:"", workingPermit:'', firstAidDate:'', workProtection:'', firstAid:'', geda:'', hr:'', overtimeHr:'',weekendHr:'',dailyWage:'', wage:'',nightHr:'', note:'', tools:''});
+    const [data, setData] = useState ({name:'', proof:'', bill:'', address:'', charged:'', description:'', started:'', finished:''});
     const { id } = useParams();
 
     const location = useLocation()
@@ -85,7 +85,7 @@ const ConstructionOverviewPage: React.FC<any> = ({className}) => {
       <div className='card mb-5 mb-xl-10' id='kt_profile_details_view'>
         <div className='card-header cursor-pointer'>
           <div className='card-title m-0'>
-            <h3 className='fw-bolder m-0'>Informacije o zaposleniku</h3>
+            <h3 className='fw-bolder m-0'>Informacije o gradilištu</h3>
           </div>
   
           <Link to={'/worker/settings/' + id} className='btn btn-primary align-self-center'>
@@ -95,15 +95,15 @@ const ConstructionOverviewPage: React.FC<any> = ({className}) => {
   
         <div className='card-body p-9'>
           <div className='row mb-7'>
-            <label className='col-lg-4 fw-bold text-muted'>Ime i prezime</label>
+            <label className='col-lg-4 fw-bold text-muted'>Ime gradilišta</label>
   
             <div className='col-lg-8'>
-              <span className='fw-bolder fs-6 text-dark'>{data.firstName} {data.lastName}</span>
+              <span className='fw-bolder fs-6 text-dark'>{data.name}</span>
             </div>
           </div>
   
           <div className='row mb-7'>
-            <label className='col-lg-4 fw-bold text-muted'>Adresa stanovanja</label>
+            <label className='col-lg-4 fw-bold text-muted'>Adresa</label>
   
             <div className='col-lg-8 fv-row'>
               <span className='fw-bold fs-6'>{data.address}</span>
@@ -111,151 +111,60 @@ const ConstructionOverviewPage: React.FC<any> = ({className}) => {
           </div>
           <div className='row mb-7'>
             <label className='col-lg-4 fw-bold text-muted'>
-              OIB
+              Dokaznica
             </label>
                     
             <div className='col-lg-8 d-flex align-items-center'>
-              <span className='fw-bolder fs-6 me-2'>{data.oib}</span>
+              <span className='fw-bolder fs-6 me-2'>{data.proof}</span>
             </div>
           </div>
           <div className='row mb-7'>
             <label className='col-lg-4 fw-bold text-muted'>
-              Putovnica
+              Račun
             </label>
                     
             <div className='col-lg-8 d-flex align-items-center'>
-              <span className='fw-bolder fs-6 me-2'>{data.passport}</span>
+              <span className='fw-bolder fs-6 me-2'>{data.bill}</span>
             </div>
           </div>
           <div className='row mb-7'>
             <label className='col-lg-4 fw-bold text-muted'>
-              Broj mobitela
+              Naplaćeno
             </label>
   
             <div className='col-lg-8 d-flex align-items-center'>
-              <span className='fw-bolder fs-6 me-2'>{data.mob}</span>
+              <span className='fw-bolder fs-6 me-2'>{data.charged}</span>
             </div>
           </div>
   
           <div className='row mb-7'>
-            <label className='col-lg-4 fw-bold text-muted'>Email</label>
+            <label className='col-lg-4 fw-bold text-muted'>Započeto</label>
   
             <div className='col-lg-8'>
               <a href='#' className='fw-bold fs-6 text-dark text-hover-primary'>
-              {data.email}
+              {data.started}
               </a>
             </div>
           </div>
   
           <div className='row mb-7'>
             <label className='col-lg-4 fw-bold text-muted'>
-              Ime oca
+              Završeno
             </label>
             <div className='col-lg-8'>
-              <span className='fw-bolder fs-6 text-dark'>{data.fatherName}</span>
+              <span className='fw-bolder fs-6 text-dark'>{data.finished}</span>
             </div>
           </div>
   
           <div className='row mb-7'>
             <label className='col-lg-4 fw-bold text-muted'>
-              Ime majke
+              Opis/Napomena
             </label>
             <div className='col-lg-8'>
-              <span className='fw-bolder fs-6 text-dark'>{data.motherName}</span>
+              <span className='fw-bolder fs-6 text-dark'>{data.description}</span>
             </div>
           </div>
   
-          <div className='row mb-7'>
-            <label className='col-lg-4 fw-bold text-muted'>Mjesečna plaća</label>
-  
-            <div className='col-lg-8'>
-              <span className='fw-bolder fs-6 text-dark'>{data.wage}€</span>
-            </div>
-          </div>
-  
-          <div className='row mb-10'>
-            <label className='col-lg-4 fw-bold text-muted'>Prekovremeno</label>
-  
-            <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>{data.overtimeHr}€</span>
-            </div>
-          </div>
-  
-          <div className='row mb-10'>
-            <label className='col-lg-4 fw-bold text-muted'>Vikend satnica</label>
-  
-            <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>{data.weekendHr}€</span>
-            </div>
-          </div>
-  
-          <div className='row mb-10'>
-            <label className='col-lg-4 fw-bold text-muted'>Dnevnica</label>
-  
-            <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>{data.dailyWage}€</span>
-            </div>
-          </div>
-  
-          <div className='row mb-10'>
-            <label className='col-lg-4 fw-bold text-muted'>Noćni rad</label>
-  
-            <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>{data.nightHr}€</span>
-            </div>
-          </div>
-  
-          <div className='row mb-10'>
-            <label className='col-lg-4 fw-bold text-muted'>Valjanost radne dozvole</label>
-  
-            <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>{data.workingPermit}</span>
-            </div>
-          </div>
-          <div className='row mb-10'>
-            <label className='col-lg-4 fw-bold text-muted'>Valjanost lječničkog pregleda</label>
-  
-            <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>{data.firstAidDate}</span>
-            </div>
-          </div>
-  
-          <div className='row mb-10'>
-            <label className='col-lg-4 fw-bold text-muted'>Zaštita na radu</label>
-  
-            <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>{data.workProtection}</span>
-            </div>
-          </div>
-          <div className='row mb-10'>
-            <label className='col-lg-4 fw-bold text-muted'>Prva pomoć</label>
-  
-            <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>{data.firstAid}</span>
-            </div>
-          </div>
-          <div className='row mb-10'>
-            <label className='col-lg-4 fw-bold text-muted'>GEDA</label>
-  
-            <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>{data.geda}</span>
-            </div>
-          </div>
-          <div className='row mb-10'>
-            <label className='col-lg-4 fw-bold text-muted'>Posuđeni alat</label>
-  
-            <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>{data.tools}</span>
-            </div>
-          </div>
-  
-          <div className='row mb-10'>
-            <label className='col-lg-4 fw-bold text-muted'>Napomena</label>
-  
-            <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>{data.note}</span>
-            </div>
-          </div>
   
             
         </div>
