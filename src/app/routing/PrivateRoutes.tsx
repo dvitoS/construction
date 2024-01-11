@@ -49,7 +49,7 @@ const PrivateRoutes = () => {
         <Route path='dashboard' element={<DashboardWrapper />} />
         <Route path='builder' element={<BuilderPageWrapper />} />
         <Route path='add' element={<AddWorkersPageWrapper />} />
-        <Route path='/edit/:id' element={<EditWorkersPageWrapper />} />
+        <Route path='/worker/edit/:id' element={<EditWorkersPageWrapper />} />
         <Route path='list' element={<ListWorkersPageWrapper />} />
         <Route path='singleworker/:id' element={<SingleWorkerPageWrapper/>} />
         <Route path='add' element={<AddConstructionsPageWrapper />} />
@@ -127,7 +127,7 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-          path='workers/edit'
+          path='worker/edit'
           element={
             <SuspensedView>
               <EditWorkersPageWrapper />
