@@ -1,5 +1,5 @@
 import {lazy, FC, Suspense} from 'react'
-import {Route, Routes, Navigate} from 'react-router-dom'
+import {Route, Routes, Navigate, useParams} from 'react-router-dom'
 import {MasterLayout} from '../../_metronic/layout/MasterLayout'
 import TopBarProgress from 'react-topbar-progress-indicator'
 import {DashboardWrapper} from '../pages/dashboard/DashboardWrapper'
@@ -21,6 +21,7 @@ import TotalCostSheetPageWrapper from '../pages/cost_sheet/total/TotalCostSheetP
 import WorkerSettingsPageWrapper  from '../pages/workers/WorkerSettingsPage/WorkerSettingsPageWrapper'
 import WorkerOverviewPageWrapper from '../pages/workers/WorkerOverviewPage/WorkerOverviewPageWrapper'
 import ConstructionOverviewPageWrapper from '../pages/construction-sites/ConstructionOverviewPage/ConstructionOverviewPageWrapper'
+import EditWorkersPageWrapper from '../pages/workers/edit/EditWorkersPageWrapper'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -48,7 +49,7 @@ const PrivateRoutes = () => {
         <Route path='dashboard' element={<DashboardWrapper />} />
         <Route path='builder' element={<BuilderPageWrapper />} />
         <Route path='add' element={<AddWorkersPageWrapper />} />
-        <Route path='edit/:id' element={<EditWorkersPageWrapper />} />
+        <Route path='/edit/:id' element={<EditWorkersPageWrapper />} />
         <Route path='list' element={<ListWorkersPageWrapper />} />
         <Route path='singleworker/:id' element={<SingleWorkerPageWrapper/>} />
         <Route path='add' element={<AddConstructionsPageWrapper />} />
