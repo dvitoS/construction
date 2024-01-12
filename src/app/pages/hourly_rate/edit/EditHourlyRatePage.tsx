@@ -54,10 +54,10 @@ const EditHourlyRatePage: React.FC = () => {
 
 
   useEffect(() => {
-    const url = 'https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers';
+    const url = 'https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/hourlyrate/';
     axios.get(url)
       .then((response) => {
-        setWorkers(response.data); // Set the response directly, assuming it's an array
+        setData(response.data); // Set the response directly, assuming it's an array
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
