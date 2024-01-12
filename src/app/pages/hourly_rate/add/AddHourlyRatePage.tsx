@@ -144,8 +144,12 @@ const AddHourlyRatePage: React.FC = () => {
   
 
   return (
+  <div className='card'>
+    <div className='card-header'>
+      <div className="card-title m-0"><h3 className="fw-bolder m-0">Unos Gradilišta </h3></div>
+    </div>
+    <div className='card-body'>
     <form className="form" method="post" onSubmit={handleSubmit}>
-      <h1>Dodavanje troška</h1>
       <div className="form-group row">
         <div className="col-lg-3">
           <label>Radnik</label>
@@ -234,6 +238,8 @@ const AddHourlyRatePage: React.FC = () => {
         <button type="submit" className="btn btn-primary font-weight-bold mr-2">Potvrdi</button>
       </div>
     </form>
+    </div>
+</div>
   )
 }
 

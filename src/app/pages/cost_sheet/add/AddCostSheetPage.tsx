@@ -80,6 +80,11 @@ useEffect(() => {
 }, []);
 
   return (
+  <div className='card'>
+    <div className='card-header'>
+      <div className="card-title m-0"><h3 className="fw-bolder m-0">Unos Gradilišta </h3></div>
+    </div>
+    <div className='card-body'></div>
     <form className="form" method="post" onSubmit={handleSubmit}>
       <h1>Dodavanje troška</h1>
     <div className="form-group row">
@@ -123,6 +128,8 @@ useEffect(() => {
           <button type="submit" className="btn btn-primary font-weight-bold mr-2">Potvrdi</button>
         </div>
   </form>
+  </div>
+
   )
 }
 

@@ -99,8 +99,12 @@ const AddWorkersPage: React.FC = () => {
     }
 
   return (
+<div className='card'>
+    <div className='card-header'>
+      <div className="card-title m-0"><h3 className="fw-bolder m-0">Unos Radnika</h3></div>
+    </div>
+    <div className='card-body'>
       <div>
-      <h1>Unos Radnika</h1>
       <form className="form" method="post" onSubmit={handleSubmit}>
       <div className="card-body">
         <div className="form-group row">
@@ -334,6 +338,8 @@ const AddWorkersPage: React.FC = () => {
       </div>
       </form>
       </div>
+  </div>
+</div>
   )
 }
 export {AddWorkersPage}
