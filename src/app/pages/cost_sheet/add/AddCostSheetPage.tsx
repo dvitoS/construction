@@ -84,7 +84,7 @@ useEffect(() => {
     <div className='card-header'>
       <div className="card-title m-0"><h3 className="fw-bolder m-0">Unos Gradilišta </h3></div>
     </div>
-    <div className='card-body'></div>
+    <div className='card-body'>
     <form className="form" method="post" onSubmit={handleSubmit}>
       <h1>Dodavanje troška</h1>
     <div className="form-group row">
@@ -129,6 +129,7 @@ useEffect(() => {
         </div>
   </form>
   </div>
+</div>
 
   )
 }
