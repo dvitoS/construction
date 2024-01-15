@@ -156,7 +156,7 @@ const AddHourlyRatePage: React.FC = () => {
             <select name="idWorker" className="form-select form-select-solid" aria-label="Odabir gridlista" onChange={handleChange}>
             <option>Odaberite radnika</option>
             {workers.map((worker:any) => (
-              <option key={worker.id} value={worker.id}>{worker.firstName}</option>
+              <option key={worker.id} value={worker.name}>{worker.firstName}</option>
               ))}
             </select>
             <div/>
@@ -166,7 +166,7 @@ const AddHourlyRatePage: React.FC = () => {
             <select name="idConstruction" className="form-select form-select-solid" aria-label="Odabir gridlista" onChange={handleChange}>
             <option>Odaberite gradilište</option>
             {constructions.map((construction:any) => (
-              <option key={construction.id} value={construction.id}>{construction.name}</option>
+              <option key={construction.id} value={construction.name}>{construction.name}</option>
               ))}
             </select>
           <div/>
