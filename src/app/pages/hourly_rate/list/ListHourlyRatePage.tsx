@@ -86,7 +86,7 @@ const ListHourlyRatePage: React.FC = () => {
 
   return (
     <div className='d-flex flex-column  align-items-center bg-light vh-100'>
-    <h1>Lista satnica</h1>
+    <h1>Lista radnih sati</h1>
     <div className='w-75 rounded bg-white border shadow p-4'>
       <table className='table table-striped'>
         <thead>

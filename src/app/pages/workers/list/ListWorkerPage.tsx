@@ -134,7 +134,7 @@ const daysUntilFirstAidDate = (dateString: string): number => {
 
   return (
     <div className='d-flex flex-column align-items-center bg-light vh-100'>
-      <h1>Lista radnika</h1>
+      <h1>Popis radnika</h1>
       <div className='w-100 rounded bg-white border shadow p-4'>
         <table className='table table-striped'>
           <thead>
