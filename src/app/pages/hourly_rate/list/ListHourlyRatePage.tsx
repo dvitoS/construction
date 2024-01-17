@@ -22,7 +22,7 @@ const ListHourlyRatePage: React.FC = () => {
   const [resetLoading, setResetLoading] = useState<boolean>(false)
   const [checked, setChecked] = useState(true);
 
-  const [data, setData] = useState({ idWorker:'', idConstruction:'', wage:'', overtimeHr:'',weekendHr:'',dailyWage:'',  nightHr:''})
+  //const [data, setData] = useState({ idWorker:'lfekfe', idConstruction:'32mpkmfpekw32', wage:'2', overtimeHr:'3',weekendHr:'4',dailyWage:'5',  nightHr:''})
 
   const [workers, setWorkers] = useState([]);
   const [selectedWorkers, setSelectedWorkers] = useState([]);
@@ -30,7 +30,39 @@ const ListHourlyRatePage: React.FC = () => {
   const [constructions, setConstructions] = useState([]);
   const [selectedConstruction, setSelectedConstruction] = useState([]);
 
-
+  const dummyData = [
+    {
+      id: '1',
+      workerName: 'John Doe',
+      constructionSite: 'Site A',
+      wage: '100',
+      overtimeHours: '2',
+      weekendHours: '5',
+      dailyWage: '120',
+      nightHours: '3'
+    },
+    {
+      id: '2',
+      workerName: 'Jane Smith',
+      constructionSite: 'Site B',
+      wage: '110',
+      overtimeHours: '3',
+      weekendHours: '4',
+      dailyWage: '130',
+      nightHours: '2'
+    },
+    {
+      id: '3',
+      workerName: 'Jim Beam',
+      constructionSite: 'Site C',
+      wage: '105',
+      overtimeHours: '1',
+      weekendHours: '6',
+      dailyWage: '115',
+      nightHours: '4'
+    }
+  ];
+  const [data, setData] = useState(dummyData);
 
 
   const updateConfig = () => {
@@ -85,38 +117,45 @@ const ListHourlyRatePage: React.FC = () => {
   
 
   return (
-    <div className='d-flex flex-column  align-items-center bg-light vh-100'>
-    <h1>Lista satnica</h1>
-    <div className='w-75 rounded bg-white border shadow p-4'>
-      <table className='table table-striped'>
-        <thead>
-          <tr>
-            <th>Br.</th>
-            <th>Naziv</th>
-            <th>Adresa</th>
-          </tr>
-        </thead>
-        <tbody>
-            {
-              /* data.map((d, i) => (
-                <tr key={i}>
-                  <td>{i+1+"."}</td>
-                  <td>{d.firstName}</td>
-                  <td>{d.lastName}</td>
-                  <td>
-                    <button className='btn btn-sm btn-primary me-2'>Otvori</button>
-                    <Link to={'/edit/'+ d.id} className="btn btn-sm btn-info me-2">Izmijeni</Link>
-                    <button onClick={e => handleDelete(d.id)}  className='btn btn-sm btn-danger'>Izbriši</button>
-                  </td>
-                </tr>
-              )) */
-            }
-        </tbody>
-      </table>
-        
-
+    <div className='d-flex flex-column align-items-center bg-light vh-100'>
+      <h1>Lista radnih sati</h1>
+      <div className='w-100 rounded bg-white border shadow p-4'>
+        <table className='table table-striped'>
+          <thead>
+            <tr>
+              <th>Br.</th>
+              <th>Radnik</th>
+              <th>Gradilište</th>
+              <th>Plaća</th>
+              <th>Prekovremeni</th>
+              <th>Vikend sati</th>
+              <th>Dnevncica</th>
+              <th>Noćni sati</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((d, i) => (
+              <tr key={i}>
+                <td>{i + 1}</td>
+                <td>{d.workerName}</td>
+                <td>{d.constructionSite}</td>
+                <td>{d.wage} €</td>
+                <td>{d.overtimeHours} h</td>
+                <td>{d.weekendHours} h</td>
+                <td>{d.dailyWage} €</td>
+                <td>{d.nightHours} h</td>
+                <td>
+                  <button className='btn btn-sm btn-primary me-2'>Otvori</button>
+                  <Link to={`/edit/${d.id}`} className="btn btn-sm btn-info me-2">Izmijeni</Link>
+                  <button onClick={() => handleDelete(d.id)} className='btn btn-sm btn-danger'>Izbriši</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>  )
+  );
 }
 
 export {ListHourlyRatePage}

@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect, useRef, RefObject } from 'react';
 import {getLayoutFromLocalStorage, ILayout, LayoutSetup} from '../../../../_metronic/layout/core'
 import axios from 'axios'
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Overlay from 'react-bootstrap/Overlay';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 const ListWorkersPage: React.FC = () => {
   const [tab, setTab] = useState('Sidebar');
@@ -12,6 +13,10 @@ const ListWorkersPage: React.FC = () => {
   const [data, setData] = useState<any[]>([]);
   const [sortOrder, setSortOrder] = useState('asc'); // 'asc' or 'desc'
   const [sortedColumn, setSortedColumn] = useState<'firstName' | 'lastName' | 'workingPermit'>('workingPermit');
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const toolTooltipRefs = useRef<{ [key: string]: React.RefObject<HTMLElement> }>({});
+  const noteTooltipRefs = useRef<{ [key: string]: React.RefObject<HTMLElement> }>({});
+
 
   interface Worker {
     id: number;
@@ -75,6 +80,32 @@ const ListWorkersPage: React.FC = () => {
       .catch(err => console.log(err));
   }, []);
 
+  const ensureToolTooltipRef = (itemId: string) => {
+    if (!toolTooltipRefs.current[itemId]) {
+      toolTooltipRefs.current[itemId] = React.createRef();
+    }
+    return toolTooltipRefs.current[itemId];
+  };
+
+  const ensureNoteTooltipRef = (itemId: string) => {
+    if (!noteTooltipRefs.current[itemId]) {
+      noteTooltipRefs.current[itemId] = React.createRef();
+    }
+    return noteTooltipRefs.current[itemId];
+  };
+
+    const handleTooltipClick = (itemId: string) => {
+      setActiveId(itemId);
+    };
+
+    const handleTooltipClose = () => {
+      setActiveId(null);
+    };
+
+    const isTooltipOpen = (itemId: string) => {
+      return activeId === itemId;
+    };
+
  // Helper function to calculate the difference in days
 const daysUntilWorkingPermit = (dateString: string): number => {
   const today = new Date();
@@ -103,7 +134,7 @@ const daysUntilFirstAidDate = (dateString: string): number => {
 
   return (
     <div className='d-flex flex-column align-items-center bg-light vh-100'>
-      <h1>Lista radnika</h1>
+      <h1>Popis radnika</h1>
       <div className='w-100 rounded bg-white border shadow p-4'>
         <table className='table table-striped'>
           <thead>
@@ -116,6 +147,8 @@ const daysUntilFirstAidDate = (dateString: string): number => {
               <th><strong>Prva pomoć</strong></th>
               <th><strong>Zaštita na radu</strong></th>
               <th><strong>GEDA</strong></th>
+              <th><strong>Alat</strong></th>
+              <th><strong>Napomena</strong></th>
               <th colSpan={3}><strong>AKCIJA</strong></th>
             </tr>
           </thead>
@@ -148,9 +181,42 @@ const daysUntilFirstAidDate = (dateString: string): number => {
                   <td>{d.lastName}</td>
                   <td style={{ textAlign: 'center', ...workingPermitTextStyle }}>{d.workingPermit.slice(0, 10)}</td>
                   <td style={{ textAlign: 'center', ...firstAidTextStyle }}>{d.firstAidDate.slice(0, 10)}</td>
-                  <td style={{ textAlign: 'center' }}> {d.workProtection ? <p>Da</p> : <p>Ne</p>}</td>
-                  <td style={{ textAlign: 'center' }}>{d.firstAid ? <p>Da</p> : <p>Ne</p>}</td>
-                  <td style={{ textAlign: 'center' }}>{d.geda ? <p>Da</p> : <p>Ne</p>}</td>
+                  <td className="text-center"> {d.workProtection ? <p>Da</p> : <p>Ne</p>}</td>
+                  <td className="text-center">{d.firstAid ? <p>Da</p> : <p>Ne</p>}</td>
+                  <td className="text-center">{d.geda ? <p>Da</p> : <p>Ne</p>}</td>
+                  <td className="text-center">
+                  <i className="fa fa-tools fa-2x" ref={ensureToolTooltipRef(`tool-${d.id}`)}
+                      onMouseEnter={() => handleTooltipClick(`tool-${d.id}`)}
+                      onMouseLeave={handleTooltipClose}></i>
+                    {isTooltipOpen(`tool-${d.id}`) &&
+                      <Overlay
+                        show={true}
+                        target={ensureToolTooltipRef(`tool-${d.id}`).current}
+                        placement="top"
+                      >
+                        {(props) => (
+                          <Tooltip id={`tool-${d.id}`} {...props}>
+                            {d.tools}
+                          </Tooltip>
+                        )}
+                      </Overlay>}</td>
+                  <td className="text-center">
+                  <i className="fa fa-exclamation-circle fa-2x" ref={ensureNoteTooltipRef(`note-${d.id}`)}
+                      onMouseEnter={() => handleTooltipClick(`note-${d.id}`)}
+                      onMouseLeave={handleTooltipClose}></i>
+                    {isTooltipOpen(`note-${d.id}`) &&
+                      <Overlay
+                        show={true}
+                        target={ensureNoteTooltipRef(`note-${d.id}`).current}
+                        placement="top"
+                      >
+                        {(props) => (
+                          <Tooltip id={`note-${d.id}`} {...props}>
+                            {d.note}
+                          </Tooltip>
+                        )}
+                      </Overlay>}
+                 </td>
                   <td style={{ textAlign: 'center' }}>
                     <Link to={'/worker/' + d.firstName} className='btn btn-sm btn-primary me-2'>Otvori</Link>
                     <Link to={'/worker/edit/' + d.firstName} className="btn btn-sm btn-info me-2">Izmijeni</Link>

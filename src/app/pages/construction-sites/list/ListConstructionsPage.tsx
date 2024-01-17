@@ -6,12 +6,9 @@ import {getLayoutFromLocalStorage, ILayout, LayoutSetup} from '../../../../_metr
 import axios from 'axios'
 import {Link, useNavigate} from 'react-router-dom'
 
-import Button from 'react-bootstrap/Button';
 import Overlay from 'react-bootstrap/Overlay';
 import Tooltip from 'react-bootstrap/Tooltip';
-  type ButtonRefs = {
-    [key: string]: RefObject<HTMLButtonElement>;
-  };
+
 
 const ListConstructionsPage: React.FC = ({}) => {
   const [tab, setTab] = useState('Sidebar')
@@ -19,11 +16,8 @@ const ListConstructionsPage: React.FC = ({}) => {
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
   const [data, setData] = useState<any[]>([])
-  const navigate = useNavigate();
-  const [show, setShow] = useState(false);
-  const target = useRef(null);
   const [activeId, setActiveId] = useState<string | null>(null);
-  const buttonRefs = useRef<{ [key: string]: React.RefObject<HTMLButtonElement> }>({});
+  const tooltipRefs = useRef<{ [key: string]: React.RefObject<HTMLButtonElement> }>({});
 
   const updateConfig = () => {
     setConfigLoading(true)
@@ -53,14 +47,14 @@ const ListConstructionsPage: React.FC = ({}) => {
       .catch(err => console.log('Error fetching data:', err));
   }, []);
   
-  const ensureButtonRef = (itemId: string) => {
-    if (!buttonRefs.current[itemId]) {
-      buttonRefs.current[itemId] = React.createRef();
+  const ensureTooltipRef = (itemId: string) => {
+    if (!tooltipRefs.current[itemId]) {
+      tooltipRefs.current[itemId] = React.createRef();
     }
-    return buttonRefs.current[itemId];
+    return tooltipRefs.current[itemId];
   };
 
-  const handleButtonClick = (itemId: string) => {
+  const handleTooltipClick = (itemId: string) => {
     setActiveId(itemId);
   };
 
@@ -85,7 +79,7 @@ const ListConstructionsPage: React.FC = ({}) => {
   return (
     <div className='d-flex flex-column  align-items-center bg-light vh-100'>
       <h1>Lista gradilišta</h1>
-      <div className='w-75 rounded bg-white border shadow p-4'>
+      <div className='w-100 rounded bg-white border shadow p-4'>
         <table className='table table-striped'>
           <thead>
             <tr>
@@ -112,13 +106,13 @@ const ListConstructionsPage: React.FC = ({}) => {
                     <td className="text-center">{d.proof ? d.proof.slice(0, 10) : 'Nema'}</td>
                     <td className="text-center">{d.proof ? d.bill.slice(0, 10) : 'Nema'}</td>
                     <td className="text-center">
-                     <i className="fa fa-exclamation-circle fa-2x" ref={ensureButtonRef(`button-${d.id}`)}
-                      onMouseEnter={() => handleButtonClick(d.id)}
+                     <i className="fa fa-exclamation-circle fa-2x" ref={ensureTooltipRef(`note-${d.id}`)}
+                      onMouseEnter={() => handleTooltipClick(d.id)}
                       onMouseLeave={handleTooltipClose}></i>
                     {isTooltipOpen(d.id) &&
                       <Overlay
                         show={true}
-                        target={ensureButtonRef(`button-${d.id}`).current}
+                        target={ensureTooltipRef(`note-${d.id}`).current}
                         placement="top"
                       >
                         {(props) => (
