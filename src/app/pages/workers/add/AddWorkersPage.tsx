@@ -47,10 +47,6 @@ const AddWorkersPage: React.FC = () => {
 
 
 
-  const handleDelete = () => {
-    setIsVisible(false);
-  };
-
   const handleCreateClick = () => {
     // Create a new form field and add it to the state
     const newField = {

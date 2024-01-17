@@ -15,6 +15,27 @@ const AddConstructionsPage: React.FC = () => {
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
   const [data ,setData] = useState({name:'', proof:'', bill:'', address:'', charged:'', description:'', started:'', finished:''})
+  const [formFields, setFormFields] = useState([
+    {
+      id: 1,
+    },
+  ]);
+
+
+
+  const handleCreateClick = () => {
+    // Create a new form field and add it to the state
+    const newField = {
+      id: formFields.length + 1,
+    };
+
+    setFormFields([...formFields, newField]);
+  };
+
+  const handleDeleteClick = () => {
+    // Delete the last form field
+    setFormFields(formFields.slice(0, -1));
+  };
 
 
   const updateConfig = () => {
@@ -70,6 +91,10 @@ const AddConstructionsPage: React.FC = () => {
         <div className="card-title m-0"><h3 className="fw-bolder m-0">Unos Gradilišta </h3></div>
       </div>
       <div className='card-body'>
+      <div>
+      {formFields.map((field) => (
+        <div key={field.id} data-repeater-list="kt_docs_repeater_advanced">
+          <div data-repeater-item>
       <form className="form" method="post" onSubmit={handleSubmit}>
           <div className="form-group row">
               <div className="col-lg-3">
@@ -165,6 +190,22 @@ const AddConstructionsPage: React.FC = () => {
                 <button type="submit" className="btn btn-primary font-weight-bold mr-2">Potvrdi</button>
               </div>
         </form>
+        </div>
+            </div>
+          ))}
+        </div>
+        <div className="form-group">
+          <a data-repeater-create onClick={handleCreateClick} className="btn btn-flex btn-light-primary">
+            <i className="ki-duotone ki-plus fs-3"></i>
+            Add
+          </a>
+          {formFields.length > 1 && (
+            <a onClick={handleDeleteClick} className="btn btn-flex btn-light-danger ml-2">
+              <i className="ki-duotone ki-trash fs-3"></i>
+              Delete Last
+            </a>
+          )}
+        </div>
       </div>
   </div>
   )
