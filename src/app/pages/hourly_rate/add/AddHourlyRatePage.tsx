@@ -33,6 +33,26 @@ const AddHourlyRatePage: React.FC = () => {
   const [selectedTimeOvertime, setSelectedTimeOvertime] = useState<string>('00:00');
   const [selectedTimeWeekend, setSelectedTimeWeekend] = useState<string>('00:00');
   const [selectedTimeNight, setSelectedTimeNight] = useState<string>('00:00');
+  const [formFields, setFormFields] = useState([
+    {
+      id: 1,
+    },
+  ]);
+
+  const handleCreateClick = () => {
+    // Create a new form field and add it to the state
+    const newField = {
+      id: formFields.length + 1,
+    };
+
+    setFormFields([...formFields, newField]);
+  };
+
+  const handleDeleteClick = () => {
+    // Delete the last form field
+    setFormFields(formFields.slice(0, -1));
+  };
+
 
   const updateConfig = () => {
     setConfigLoading(true)
@@ -149,7 +169,11 @@ const AddHourlyRatePage: React.FC = () => {
       <div className="card-title m-0"><h3 className="fw-bolder m-0">Unos Gradilišta </h3></div>
     </div>
     <div className='card-body'>
-    <form className="form" method="post" onSubmit={handleSubmit}>
+    <div>
+      {formFields.map((field) => (
+        <div key={field.id} data-repeater-list="kt_docs_repeater_advanced">
+          <div data-repeater-item>
+      <form className="form" method="post" onSubmit={handleSubmit}>
       <div className="form-group row">
         <div className="col-lg-3">
           <label>Radnik</label>
@@ -232,14 +256,43 @@ const AddHourlyRatePage: React.FC = () => {
             ))}
           </select>
       </div>
+      <div className="form-group">
+      <a data-repeater-create onClick={handleCreateClick} className="btn btn-flex btn-light-primary">
+        <i className="ki-duotone ki-plus fs-3"></i>
+        Add
+      </a>
+      {formFields.length > 1 && (
+        <a onClick={handleDeleteClick} className="btn btn-flex btn-light-danger ml-2">
+          <i className="ki-duotone ki-trash fs-3"></i>
+          Delete Last
+        </a>
+      )}
+    </div>
   </div>
     <br/>
       <div className="card-footer">
         <button type="submit" className="btn btn-primary font-weight-bold mr-2">Potvrdi</button>
       </div>
-    </form>
+      </form>
+      </div>
+        </div>
+      ))}
     </div>
+    <div className="form-group">
+      <a data-repeater-create onClick={handleCreateClick} className="btn btn-flex btn-light-primary">
+        <i className="ki-duotone ki-plus fs-3"></i>
+        Add
+      </a>
+      {formFields.length > 1 && (
+        <a onClick={handleDeleteClick} className="btn btn-flex btn-light-danger ml-2">
+          <i className="ki-duotone ki-trash fs-3"></i>
+          Delete Last
+        </a>
+      )}
+    </div>
+  </div>
 </div>
+
   )
 }
 

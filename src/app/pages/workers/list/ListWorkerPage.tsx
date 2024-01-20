@@ -218,8 +218,8 @@ const daysUntilFirstAidDate = (dateString: string): number => {
                       </Overlay>}
                  </td>
                   <td style={{ textAlign: 'center' }}>
-                    <Link to={'/worker/' + d.firstName} className='btn btn-sm btn-primary me-2'>Otvori</Link>
-                    <Link to={'/worker/edit/' + d.firstName} className="btn btn-sm btn-info me-2">Izmijeni</Link>
+                    <Link to={'/worker/' + d.id} className='btn btn-sm btn-primary me-2'>Otvori</Link>
+                    <Link to={'/worker/edit/' + d.id} className="btn btn-sm btn-info me-2">Izmijeni</Link>
                     <button onClick={e => handleDelete(d.id)} className='btn btn-sm btn-danger'>Izbriši</button>
                   </td>
                 </tr>

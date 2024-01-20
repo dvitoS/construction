@@ -9,6 +9,7 @@ import axios from 'axios';
 
 
 
+
 const AddConstructionsPage: React.FC = () => {
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
@@ -32,11 +33,11 @@ const AddConstructionsPage: React.FC = () => {
     setFormFields([...formFields, newField]);
   };
 
-  const handleDeleteClick = () => {
-    // Delete the last form field
-    setFormFields(formFields.slice(0, -1));
+  const handleDeleteClick = (index: number) => {
+    // Delete the current form field based on the provided index
+    const updatedFormFields = formFields.filter((field, i) => i !== index);
+    setFormFields(updatedFormFields);
   };
-
 
   const updateConfig = () => {
     setConfigLoading(true)
@@ -90,12 +91,12 @@ const AddConstructionsPage: React.FC = () => {
       <div className='card-header'>
         <div className="card-title m-0"><h3 className="fw-bolder m-0">Unos Gradilišta </h3></div>
       </div>
-      <div className='card-body'>
-      <div>
-      {formFields.map((field) => (
-        <div key={field.id} data-repeater-list="kt_docs_repeater_advanced">
-          <div data-repeater-item>
-      <form className="form" method="post" onSubmit={handleSubmit}>
+      <div id="kt_docs_repeater_advanced">
+      <div data-repeater-list="kt_docs_repeater_advanced">
+      {formFields.map((field, index) => (
+          <div key={field.id} data-repeater-list="kt_docs_repeater_advanced">
+            <div data-repeater-item>
+          <form className="form" method="post" onSubmit={handleSubmit}>
           <div className="form-group row">
               <div className="col-lg-3">
                 <label>Naziv:</label>
@@ -182,29 +183,28 @@ const AddConstructionsPage: React.FC = () => {
               onChange={handleChange}
               value={data.description}/>
           </div>
-
-       
-
           <br/>
-          <div className="card-footer">
-                <button type="submit" className="btn btn-primary font-weight-bold mr-2">Potvrdi</button>
-              </div>
-        </form>
-        </div>
-            </div>
-          ))}
-        </div>
-        <div className="form-group">
-          <a data-repeater-create onClick={handleCreateClick} className="btn btn-flex btn-light-primary">
-            <i className="ki-duotone ki-plus fs-3"></i>
-            Add
-          </a>
-          {formFields.length > 1 && (
-            <a onClick={handleDeleteClick} className="btn btn-flex btn-light-danger ml-2">
-              <i className="ki-duotone ki-trash fs-3"></i>
-              Delete Last
+
+          </form>
+          <div className="form-group">
+            <a data-repeater-create onClick={handleCreateClick} className="btn btn-flex btn-light-primary">
+              <i className="ki-duotone ki-plus fs-3"></i>
+              Add
             </a>
-          )}
+            {formFields.length > 1 && (
+              <a onClick={() => handleDeleteClick(index)} className="btn btn-flex btn-light-danger ml-2">
+              <i className="ki-duotone ki-trash fs-3"></i>
+              Delete Current
+            </a>
+            )}
+          </div>
+        </div>
+        </div>
+      ))}
+      </div>
+  
+        <div className="card-footer">
+              <button type="submit" className="btn btn-primary font-weight-bold mr-2">Potvrdi</button>
         </div>
       </div>
   </div>

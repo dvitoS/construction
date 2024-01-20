@@ -144,8 +144,6 @@ const AddWorkersPage: React.FC = () => {
       <div>
       <div id="kt_docs_repeater_advanced">
       <div data-repeater-list="kt_docs_repeater_advanced">
-      <div data-repeater-item>
-      <form className="form" method="post" onSubmit={handleSubmit}>
       <div>
         {formFields.map((field) => (
           <div key={field.id} data-repeater-list="kt_docs_repeater_advanced">
@@ -402,8 +400,6 @@ const AddWorkersPage: React.FC = () => {
             <button type="submit" className="btn btn-primary font-weight-bold mr-2">Potvrdi</button>
           </div>
         </div>
-      </div>
-      </form>
       </div>
       </div>
       </div>
