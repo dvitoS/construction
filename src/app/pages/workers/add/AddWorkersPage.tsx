@@ -10,7 +10,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 import internal from 'stream';
-import Flatpickr from 'flatpickr';
 import jquery from 'jquery';
 
 

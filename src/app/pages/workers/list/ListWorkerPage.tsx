@@ -4,6 +4,8 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Overlay from 'react-bootstrap/Overlay';
 import Tooltip from 'react-bootstrap/Tooltip';
+import {faHelmetSafety, faBriefcaseMedical, faTractor} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const ListWorkersPage: React.FC = () => {
   const [tab, setTab] = useState('Sidebar');
@@ -144,9 +146,7 @@ const daysUntilFirstAidDate = (dateString: string): number => {
               <th className={`table-sort-${sortOrder}`} onClick={() => handleSort('lastName')}><strong>Prezime</strong></th>
               <th className={`table-sort-${sortOrder}`} onClick={() => handleSort('workingPermit')}><strong>Radna dozvola</strong></th>
               <th><strong>Liječnički pregled</strong></th>
-              <th><strong>Prva pomoć</strong></th>
-              <th><strong>Zaštita na radu</strong></th>
-              <th><strong>GEDA</strong></th>
+              <th><strong>Certifikati</strong></th>
               <th><strong>Alat</strong></th>
               <th><strong>Napomena</strong></th>
               <th colSpan={3}><strong>AKCIJA</strong></th>
@@ -181,9 +181,7 @@ const daysUntilFirstAidDate = (dateString: string): number => {
                   <td>{d.lastName}</td>
                   <td style={{ textAlign: 'center', ...workingPermitTextStyle }}>{d.workingPermit.slice(0, 10)}</td>
                   <td style={{ textAlign: 'center', ...firstAidTextStyle }}>{d.firstAidDate.slice(0, 10)}</td>
-                  <td className="text-center"> {d.workProtection ? <p>Da</p> : <p>Ne</p>}</td>
-                  <td className="text-center">{d.firstAid ? <p>Da</p> : <p>Ne</p>}</td>
-                  <td className="text-center">{d.geda ? <p>Da</p> : <p>Ne</p>}</td>
+                  <td className="text-center">{d.workProtection ? <FontAwesomeIcon icon={faHelmetSafety} style={{color: "#a3a3a3"}} />   : <i></i>}<a> </a>{d.firstAid ? <FontAwesomeIcon icon={faBriefcaseMedical} style={{color: "#a3a3a3"}} /> : <i></i>}<a> </a>{d.geda ? <FontAwesomeIcon icon={faTractor} style={{color: "#a3a3a3"}} /> : <i></i>} </td>
                   <td className="text-center">
                   <i className="fa fa-tools fa-2x" ref={ensureToolTooltipRef(`tool-${d.id}`)}
                       onMouseEnter={() => handleTooltipClick(`tool-${d.id}`)}

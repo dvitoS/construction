@@ -70,13 +70,13 @@ useEffect(()=> {
   axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers' + data)
   .then(res => setData(res.data))
   .catch(err => console.log(err));
-}, [])
+}, [20])
 
 useEffect(()=>{
   axios.get('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers/'+ id)
   .then(res => setData(res.data))
   .catch(err => console.log(err));
-},[])
+},[21])
 const handleInput = (event:any) => {
 //setData({...data, [event.target.name]: event.target.value})		
 }

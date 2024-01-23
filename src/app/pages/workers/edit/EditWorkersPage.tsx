@@ -164,7 +164,7 @@ const EditWorkersPage: React.FC = () => {
                 className="form-control"
                 placeholder="Ime radnika"
                 
-                defaultValue={data.firstName}/>
+                value={data.firstName}/>
               </div>
 
               <div className="col-lg-4">
@@ -174,7 +174,7 @@ const EditWorkersPage: React.FC = () => {
                 className="form-control"
                 placeholder="Prezime radnika"
                 
-                defaultValue={data.lastName}
+                value={data.lastName}
                 />
               </div>
             </div>
@@ -187,7 +187,7 @@ const EditWorkersPage: React.FC = () => {
                 className="form-control"
                 placeholder="Prebivalište radnika"
                 
-                defaultValue={data.address}/>
+                value={data.address}/>
               </div>
 
                 <div className="col-lg-4">
@@ -197,7 +197,7 @@ const EditWorkersPage: React.FC = () => {
                   className="form-control"
                   placeholder="OIB"
                   
-                  defaultValue={data.oib}/>
+                  value={data.oib}/>
                 </div>
           
 
@@ -209,12 +209,12 @@ const EditWorkersPage: React.FC = () => {
                   className="form-control"
                   placeholder="Br putovnice"
                   
-                  defaultValue={data.passport}/>
+                  value={data.passport}/>
               </div>
 
               <div className="col-lg-4">
                 <label htmlFor="mob">Broj mobitela:</label>
-                  <input type="tel" name="mob" id="mob" className="form-control" placeholder="Br mobitela" defaultValue={data.mob}/>
+                  <input type="tel" name="mob" id="mob" className="form-control" placeholder="Br mobitela"  value={data.mob}/>
               </div>
                <div className="col-lg-4">
                 <label>E-mail:</label>
@@ -223,7 +223,7 @@ const EditWorkersPage: React.FC = () => {
                     className="form-control"
                     placeholder="email@email.com"
                     
-                    defaultValue={data.email}/>
+                    value={data.email}/>
               </div> 
             </div>
 
@@ -235,7 +235,7 @@ const EditWorkersPage: React.FC = () => {
                   className="form-control"
                   placeholder="Ime oca radnika"
                   
-                  defaultValue={data.fatherName}/>
+                  value={data.fatherName}/>
               </div>
 
               <div className="col-lg-4">
@@ -245,7 +245,7 @@ const EditWorkersPage: React.FC = () => {
                   className="form-control"
                   placeholder="Ime majke radnika"
                   
-                  defaultValue={data.motherName}/>
+                  value={data.motherName}/>
               </div>
             </div>
             <div>PLAĆA I SATNICA</div>
@@ -258,7 +258,7 @@ const EditWorkersPage: React.FC = () => {
                   className="form-control"
                   placeholder="Plaća"
                   
-                  defaultValue={data.wage}/>
+                  value={data.wage}/>
                   <div className="input-group-append"><span className="input-group-text">€</span></div>
               </div>
               </div>
@@ -272,7 +272,7 @@ const EditWorkersPage: React.FC = () => {
                   className="form-control"
                   placeholder="€"
                   
-                  defaultValue={data.overtimeHr}/>
+                  value={data.overtimeHr}/>
                 <div className="input-group-append"><span className="input-group-text">€</span></div>
                 </div>
               </div>
@@ -284,7 +284,7 @@ const EditWorkersPage: React.FC = () => {
                   className="form-control"
                   placeholder="€"
                   
-                  defaultValue={data.weekendHr}/>
+                  value={data.weekendHr}/>
                   <div className="input-group-append"><span className="input-group-text">€</span></div>
               </div>
               </div>
@@ -302,7 +302,7 @@ const EditWorkersPage: React.FC = () => {
                 className="form-control"
                 placeholder="€"
                 
-                defaultValue={data.nightHr}/>
+                value={data.nightHr}/>
                 <div className="input-group-append"><span className="input-group-text">€</span></div>
             </div>
             </div>
@@ -316,7 +316,7 @@ const EditWorkersPage: React.FC = () => {
                   name="workingPermit"
                   className="form-control"
                   
-                  defaultValue={data?.workingPermit ? data.workingPermit.slice(0, 10) : ''}
+                   value={data?.workingPermit ? data.workingPermit.slice(0, 10) : ''}
                   />
               </div>
 
@@ -326,7 +326,7 @@ const EditWorkersPage: React.FC = () => {
                   name="firstAidDate"
                   className="form-control"
                   
-                  defaultValue={data?.firstAidDate ? data.firstAidDate.slice(0, 10) : ''}
+                   value={data?.firstAidDate ? data.firstAidDate.slice(0, 10) : ''}
                   />
               </div>
             </div>
@@ -387,7 +387,7 @@ const EditWorkersPage: React.FC = () => {
             className="form-control"
             placeholder="Alat"
             
-            defaultValue={data.tools}/>
+             value={data.tools}/>
 
             <label>Napomena:</label>
               <textarea
@@ -397,7 +397,7 @@ const EditWorkersPage: React.FC = () => {
               className="form-control"
               placeholder="Unesite napomenu"
               
-              defaultValue={data.note}/>
+               value={data.note}/>
           </div>
           <br/>
           <div className="card-footer">
