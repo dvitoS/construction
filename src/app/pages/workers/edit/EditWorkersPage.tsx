@@ -72,7 +72,6 @@ const EditWorkersPage: React.FC = () => {
       wage:{value: string}; 
       overtimeHr:{value: string}; 
       weekendHr:{value: string}; 
-      dailyWage:{value: string};  
       nightHr:{value: string}; 
       workingPermit:{value: string};
       firstAidDate:{value: string};
@@ -96,7 +95,6 @@ const EditWorkersPage: React.FC = () => {
       wage: converttoint(target.wage.value),
       overtimeHr: converttoint(target.overtimeHr.value),
       weekendHr: converttoint(target.weekendHr.value),
-      dailyWage: converttoint(target.dailyWage.value),
       nightHr: converttoint(target.nightHr.value),
       firstAidDate: target.firstAidDate.value,
       workingPermit: target.workingPermit.value,
@@ -117,7 +115,7 @@ const EditWorkersPage: React.FC = () => {
       .then(res => {
         const alertMessage = `Uređen profil radnika: ${data.firstName} ${data.lastName}`;
         window.alert(alertMessage);
-        window.location.href = 'http://localhost:3011/metronic8/react/demo1/crafted/workers/list';
+        window.location.href = 'http://localhost:3011/metronic8/react/demo1/workers/list';
       }).catch(err => console.log(err)); 
       
     }
