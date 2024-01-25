@@ -26,9 +26,13 @@ const ListHourlyRatePage: React.FC = () => {
 
   const [workers, setWorkers] = useState([]);
   const [selectedWorkers, setSelectedWorkers] = useState([]);
+  const [filter, setFilter] = useState('');
 
   const [constructions, setConstructions] = useState([]);
   const [selectedConstruction, setSelectedConstruction] = useState([]);
+  
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(25);
 
   const dummyData = [
     {
@@ -64,6 +68,21 @@ const ListHourlyRatePage: React.FC = () => {
   ];
   const [data, setData] = useState(dummyData);
 
+
+  
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+
+  const handleItemsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setItemsPerPage(parseInt(e.target.value, 10));
+    setCurrentPage(1); // Reset to the first page when changing items per page
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   const updateConfig = () => {
     setConfigLoading(true)
@@ -114,12 +133,28 @@ const ListHourlyRatePage: React.FC = () => {
       }).catch(err => console.log(err));
     }
   } 
+
+
+/*   const filteredData = data.filter(
+    (d) =>
+      d.name.toLowerCase().includes(filter.toLowerCase()) ||
+      d.address.toLowerCase().includes(filter.toLowerCase())
+  ).filter(filterByDate); */
   
 
   return (
     <div className='d-flex flex-column align-items-center bg-light vh-100'>
       <h1>Lista radnih sati</h1>
-      <div className='w-100 rounded bg-white border shadow p-4'>
+      <div className='w-100 rounded bg-white border shadow p-4 '>
+        <div className='col-lg-3'>
+          <input
+              type="text"
+              className='form-control me-3'
+              placeholder="Pretraži po imenu ili adresi"
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+            />
+        </div>
         <table className='table table-striped'>
           <thead>
             <tr>
@@ -153,6 +188,29 @@ const ListHourlyRatePage: React.FC = () => {
             ))}
           </tbody>
         </table>
+        <div className='col-lg-1'>
+          <select
+            className='form-select me-3'
+            value={itemsPerPage}
+            onChange={handleItemsPerPageChange}
+          >
+            <option value={25}>25</option>
+            <option value={50}>50</option>
+          </select>
+        </div>
+        <div className='d-flex justify-content-center'>
+          <nav>
+            <ul className='pagination'>
+              {Array.from({ length: Math.ceil(dummyData.length / itemsPerPage) }).map((_, index) => (
+                <li key={index} className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}>
+                  <button className='page-link' onClick={() => handlePageChange(index + 1)}>
+                    {index + 1}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
   );
