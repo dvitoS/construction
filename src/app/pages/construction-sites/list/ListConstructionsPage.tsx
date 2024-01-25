@@ -18,6 +18,15 @@ const ListConstructionsPage: React.FC = ({}) => {
   const [data, setData] = useState<any[]>([])
   const [activeId, setActiveId] = useState<string | null>(null);
   const tooltipRefs = useRef<{ [key: string]: React.RefObject<HTMLButtonElement> }>({});
+  const [filter, setFilter] = useState('');
+  
+
+  const filteredData = data.filter(d =>
+    d.name.toLowerCase().includes(filter.toLowerCase()) ||
+    d.address.toLowerCase().includes(filter.toLowerCase())
+    // Add more conditions based on other columns if needed
+  );
+
 
   const updateConfig = () => {
     setConfigLoading(true)
@@ -80,6 +89,13 @@ const ListConstructionsPage: React.FC = ({}) => {
     <div className='d-flex flex-column  align-items-center bg-light vh-100'>
       <h1>Lista gradilišta</h1>
       <div className='w-100 rounded bg-white border shadow p-4'>
+        <input
+          type="text"
+          className='form-control'
+          placeholder="Search by name or address"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        />
         <table className='table table-striped'>
           <thead>
             <tr>
@@ -94,9 +110,9 @@ const ListConstructionsPage: React.FC = ({}) => {
             </tr>
           </thead>
           <tbody>
-              {
-                data.map((d, i) => (
-                  
+          {filteredData.map((d, i) => (
+              
+          
                   <tr key={i} className="align-middle">
                     <td>{i+1+"."}</td>
                     <td>{d.name}</td>
