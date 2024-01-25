@@ -19,13 +19,53 @@ const ListConstructionsPage: React.FC = ({}) => {
   const [activeId, setActiveId] = useState<string | null>(null);
   const tooltipRefs = useRef<{ [key: string]: React.RefObject<HTMLButtonElement> }>({});
   const [filter, setFilter] = useState('');
-  
+  const [startDate, setStartDate] = useState<string>('');
+  const [endDate, setEndDate] = useState<string>('');
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(25);
 
-  const filteredData = data.filter(d =>
-    d.name.toLowerCase().includes(filter.toLowerCase()) ||
-    d.address.toLowerCase().includes(filter.toLowerCase())
-    // Add more conditions based on other columns if needed
-  );
+
+  const handleItemsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setItemsPerPage(parseInt(e.target.value, 10));
+    setCurrentPage(1); // Reset to the first page when changing items per page
+  };
+
+
+  
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+
+
+  const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setStartDate(e.target.value);
+  };
+
+  const handleEndDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEndDate(e.target.value);
+  };
+
+  const filterByDate = (construction: any) => {
+    if (startDate && endDate) {
+      const startedDate = construction.proof ? construction.started.slice(0, 10) : null;
+      const finishedDate = construction.proof ? construction.finished.slice(0, 10) : null;
+      
+      return (
+        (startedDate && startedDate >= startDate && startedDate <= endDate) ||
+        (finishedDate && finishedDate >= startDate && finishedDate <= endDate)
+      );
+    }
+    return true;
+  };
+
+
+  const filteredData = data.filter(
+    (d) =>
+      d.name.toLowerCase().includes(filter.toLowerCase()) ||
+      d.address.toLowerCase().includes(filter.toLowerCase())
+  ).filter(filterByDate);
+
 
 
   const updateConfig = () => {
@@ -89,13 +129,28 @@ const ListConstructionsPage: React.FC = ({}) => {
     <div className='d-flex flex-column  align-items-center bg-light vh-100'>
       <h1>Lista gradilišta</h1>
       <div className='w-100 rounded bg-white border shadow p-4'>
-        <input
-          type="text"
-          className='form-control'
-          placeholder="Search by name or address"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-        />
+        <div className='d-flex flex-row'>
+
+          <input
+            type="text"
+            className='form-control me-3'
+            placeholder="Pretraži po imenu ili adresi"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+          />
+          <input
+            type="date"
+            className='form-control me-3'
+            value={startDate}
+            onChange={handleStartDateChange}
+          />
+          <input
+            type="date"
+            className='form-control me-3'
+            value={endDate}
+            onChange={handleEndDateChange}
+          />
+        </div>
         <table className='table table-striped'>
           <thead>
             <tr>
@@ -111,8 +166,6 @@ const ListConstructionsPage: React.FC = ({}) => {
           </thead>
           <tbody>
           {filteredData.map((d, i) => (
-              
-          
                   <tr key={i} className="align-middle">
                     <td>{i+1+"."}</td>
                     <td>{d.name}</td>
@@ -148,6 +201,29 @@ const ListConstructionsPage: React.FC = ({}) => {
               }
           </tbody>
         </table>
+        <div className='col-lg-1'>
+        <select
+            className='form-select me-3'
+            value={itemsPerPage}
+            onChange={handleItemsPerPageChange}
+          >
+            <option value={25}>25</option>
+            <option value={50}>50</option>
+          </select>
+        </div>
+        <div className='d-flex justify-content-center'>
+          <nav>
+            <ul className='pagination'>
+              {Array.from({ length: Math.ceil(filteredData.length / itemsPerPage) }).map((_, index) => (
+                <li key={index} className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}>
+                  <button className='page-link' onClick={() => handlePageChange(index + 1)}>
+                    {index + 1}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
         
 
       </div>

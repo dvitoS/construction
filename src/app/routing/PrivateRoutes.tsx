@@ -22,6 +22,7 @@ import WorkerSettingsPageWrapper  from '../pages/workers/WorkerSettingsPage/Work
 import WorkerOverviewPageWrapper from '../pages/workers/WorkerOverviewPage/WorkerOverviewPageWrapper'
 import ConstructionOverviewPageWrapper from '../pages/construction-sites/ConstructionOverviewPage/ConstructionOverviewPageWrapper'
 import EditWorkersPageWrapper from '../pages/workers/edit/EditWorkersPageWrapper'
+import TestPageWrapper from '../pages/TestPage/TestPageWrapper'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -30,6 +31,7 @@ const PrivateRoutes = () => {
   const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
   const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
   const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
+  const TestPageWrapper = lazy(() => import('../pages/TestPage/TestPageWrapper'))
   const WorkerOverviewPageWrapper = lazy(() => import('../pages/workers/WorkerOverviewPage/WorkerOverviewPageWrapper'))
   const WorkerSettingsPageWrapper = lazy(() => import ('../pages/workers/WorkerSettingsPage/WorkerSettingsPageWrapper'))
   const AddWorkersPageWrapper = lazy(() => import ('../pages/workers/add/AddWorkersPageWrapper'))
@@ -46,6 +48,7 @@ const PrivateRoutes = () => {
         {/* Redirect to Dashboard after success login/registartion */}
         <Route path='auth/*' element={<Navigate to='/dashboard' />} />
         {/* Pages */}
+        <Route path='test' element={<TestPageWrapper />} />
         <Route path='dashboard' element={<DashboardWrapper />} />
         <Route path='builder' element={<BuilderPageWrapper />} />
         <Route path='add' element={<AddWorkersPageWrapper />} />
@@ -70,6 +73,15 @@ const PrivateRoutes = () => {
        
         
         {/* Lazy Modules */}
+        <Route
+          path='testpage'
+          element={
+            <SuspensedView>
+              <TestPageWrapper />
+            </SuspensedView>
+          }
+        />
+
         <Route
           path='crafted/pages/profile/*'
           element={
