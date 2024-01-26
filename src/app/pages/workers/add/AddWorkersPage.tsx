@@ -23,14 +23,14 @@ interface JQueryStatic {
 
 interface FormData {
   workProtection: boolean; 
-  firstAid: boolean; 
+  physicalExam: boolean; 
   geda: boolean;
 }
 
 
 const AddWorkersPage: React.FC = () => {
   const nameInputId = useId();
-  const [checkboxes, setCheckbox] = useState<FormData>({workProtection:false, firstAid:false, geda:false});
+  const [checkboxes, setCheckbox] = useState<FormData>({workProtection:false, physicalExam:false, geda:false});
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
@@ -82,14 +82,14 @@ const AddWorkersPage: React.FC = () => {
           passport: {value: string};
           mob: {value: string};
           email: {value: string};
-          fatherName:{value: string};
-          motherName:{value: string};
+          fathersName:{value: string};
+          mothersName:{value: string};
           wage:{value: string}; 
           overtimeHr:{value: string}; 
           weekendHr:{value: string};   
           nightHr:{value: string}; 
-          workingPermit:{value: string};
-          firstAidDate:{value: string};
+          workPermit:{value: string};
+          physicalExam:{value: string};
           note:{value: string};
           tools:{value: string};
         }
@@ -102,14 +102,14 @@ const AddWorkersPage: React.FC = () => {
           passport: converttoint(target.passport.value),
           mob: target.mob.value,
           email: target.email.value,
-          fatherName: target.fatherName.value,
-          motherName: target.motherName.value,
+          fathersName: target.fathersName.value,
+          mothersName: target.mothersName.value,
           wage: converttoint(target.wage.value),
           overtimeHr: converttoint(target.overtimeHr.value),
           weekendHr: converttoint(target.weekendHr.value),
           nightHr: converttoint(target.nightHr.value),
-          workingPermit: target.workingPermit.value,
-          firstAidDate: target.firstAidDate.value,
+          workPermit: target.workPermit.value,
+          physicalExam: target.physicalExam.value,
           tools:target.tools.value,
           note: target.note.value
           }
@@ -228,7 +228,7 @@ const AddWorkersPage: React.FC = () => {
                     <div className="col-lg-4">
                       <label>Ime oca:</label>
                         <input type="text"
-                        name="fatherName"
+                        name="fathersName"
                         className="form-control"
                         placeholder="Ime oca radnika"/>
                     </div>
@@ -236,7 +236,7 @@ const AddWorkersPage: React.FC = () => {
                     <div className="col-lg-4">
                       <label>Ime majke:</label>
                         <input type="text"
-                        name="motherName"
+                        name="mothersName"
                         className="form-control"
                         placeholder="Ime majke radnika"/>
                     </div>
@@ -290,7 +290,7 @@ const AddWorkersPage: React.FC = () => {
                     <div className="col-lg-4">
                       <label>Radna dozvola vrijedi do:</label>
                         <input type="date"
-                        name="workingPermit"
+                        name="workPermit"
                         data-kt-repeater="datepicker"
                         className="form-control"
                         placeholder="Radna dozvola"
@@ -301,7 +301,7 @@ const AddWorkersPage: React.FC = () => {
                     <div className="col-lg-4">
                       <label>Liječnički pregled vrijedi do:</label>
                         <input type="date"
-                        name="firstAidDate"
+                        name="physicalExam"
                         data-kt-repeater="datepicker"
                         className="form-control"
                         placeholder="Liječnički pregled"
@@ -329,7 +329,7 @@ const AddWorkersPage: React.FC = () => {
                 <div className="mb-10">
                   <div className="form-check form-check-custom form-check-solid">
                       <input  
-                      name="firstAid" 
+                      name="physicalExam" 
                       className="form-check-input" 
                       type="checkbox" 
                       onChange={handleChangeCheckbox}

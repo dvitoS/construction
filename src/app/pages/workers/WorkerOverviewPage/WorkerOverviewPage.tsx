@@ -19,7 +19,7 @@ const WorkerOverviewPage: React.FC<any> = ({className}) => {
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
-  const [data, setData] = useState ({firstName:'', lastName:'', address:'', oib:'', email:'', mob:'', passport:'', fatherName:"", motherName:"", workingPermit:'', firstAidDate:'', workProtection:'', firstAid:'', geda:'', hr:'', overtimeHr:'',weekendHr:'',dailyWage:'', wage:'',nightHr:'', note:'', tools:''});
+  const [data, setData] = useState ({firstName:'', lastName:'', address:'', oib:'', email:'', mob:'', passport:'', fathersName:"", mothersName:"", workPermit:'', physicalExam:'', workProtection:'', firstAid:'', geda:'', hr:'', overtimeHr:'',weekendHr:'',dailyWage:'', wage:'',nightHr:'', note:'', tools:''});
   const { id } = useParams();
 
   const location = useLocation()
@@ -157,7 +157,7 @@ const handleInput = (event:any) => {
               Ime oca
             </label>
             <div className='col-lg-8'>
-              <span className='fw-bolder fs-6 text-dark'>{data.fatherName}</span>
+              <span className='fw-bolder fs-6 text-dark'>{data.fathersName}</span>
             </div>
           </div>
 
@@ -166,7 +166,7 @@ const handleInput = (event:any) => {
               Ime majke
             </label>
             <div className='col-lg-8'>
-              <span className='fw-bolder fs-6 text-dark'>{data.motherName}</span>
+              <span className='fw-bolder fs-6 text-dark'>{data.mothersName}</span>
             </div>
           </div>
 
@@ -214,14 +214,14 @@ const handleInput = (event:any) => {
             <label className='col-lg-4 fw-bold text-muted'>Valjanost radne dozvole</label>
 
             <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>{data.workingPermit}</span>
+              <span className='fw-bold fs-6'>{data.workPermit}</span>
             </div>
           </div>
           <div className='row mb-10'>
             <label className='col-lg-4 fw-bold text-muted'>Valjanost lječničkog pregleda</label>
 
             <div className='col-lg-8'>
-              <span className='fw-bold fs-6'>{data.firstAidDate}</span>
+              <span className='fw-bold fs-6'>{data.physicalExam}</span>
             </div>
           </div>
 
