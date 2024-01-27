@@ -21,6 +21,31 @@ interface JQueryStatic {
   jQuery:any;
 }
 
+interface inputField {
+  id: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+  oib: string;
+  email: string;
+  mob: string;
+  passport: string;
+  fathersName: string;
+  mothersName: string;
+  workPermit: string;
+  physicalExam: string;
+  workProtection: boolean;
+  firstAid: boolean;
+  geda: boolean;
+  hr: string;
+  overtimeHr: string;
+  weekendHr: string;
+  wage: string;
+  nightHr: string;
+  note: string;
+  tools: string;
+}
+
 interface FormData {
   workProtection: boolean; 
   physicalExam: boolean; 
@@ -38,29 +63,75 @@ const AddWorkersPage: React.FC = () => {
   const [checked, setChecked] = useState(true);
   const repeaterRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(true);
-  const [formFields, setFormFields] = useState([
+  const [inputFields, setInputFields] = useState<inputField[]>([
     {
-      id: 1,
+      id: new Date().getTime().toString(),
+      firstName: '',
+      lastName: '',
+      address: '',
+      oib: '',
+      email: '',
+      mob: '',
+      passport: '',
+      fathersName: '',
+      mothersName: '',
+      workPermit: '',
+      physicalExam: '',
+      workProtection: false,
+      firstAid: false,
+      geda: false,
+      hr: '',
+      overtimeHr: '',
+      weekendHr: '',
+      wage: '',
+      nightHr: '',
+      note: '',
+      tools: '',
     },
   ]);
 
 
-
-  const handleCreateClick = () => {
-    // Create a new form field and add it to the state
-    const newField = {
-      id: formFields.length + 1,
+  const addFields = () => {
+    let newfield = {
+      id: new Date().getTime().toString(),
+      firstName: '',
+      lastName: '',
+      address: '',
+      oib: '',
+      email: '',
+      mob: '',
+      passport: '',
+      fathersName: '',
+      mothersName: '',
+      workPermit: '',
+      physicalExam: '',
+      workProtection: false,
+      firstAid: false,
+      geda: false,
+      hr: '',
+      overtimeHr: '',
+      weekendHr: '',
+      wage: '',
+      nightHr: '',
+      note: '',
+      tools: '',
     };
 
-    setFormFields([...formFields, newField]);
+    setInputFields([...inputFields, newfield]);
   };
 
-  const handleDeleteClick = () => {
-    // Delete the last form field
-    setFormFields(formFields.slice(0, -1));
-  };
 
-  
+
+  const removeFields = (id: string) => {
+    let updatedFields = inputFields.filter(field => field.id !== id);
+    setInputFields(updatedFields);
+  }
+
+  const handleFormChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
+    let data = [...inputFields];
+    data[index]={...data[index],[event.target.name]: event.target.value,};
+    setInputFields(data);
+ }
 
   function converttoint(a:string){
     //var x = parseInt(a,10);
@@ -140,14 +211,10 @@ const AddWorkersPage: React.FC = () => {
       <div className="card-title m-0"><h3 className="fw-bolder m-0">Unos Radnika</h3></div>
     </div>
     <div className='card-body'>
-      <div>
-      <div id="kt_docs_repeater_advanced">
-      <div data-repeater-list="kt_docs_repeater_advanced">
-      <div>
-        {formFields.map((field) => (
-          <div key={field.id} data-repeater-list="kt_docs_repeater_advanced">
-            <div data-repeater-item>
-              <form className="form" method="post" onSubmit={handleSubmit}>
+        <form className="form" method="post" onSubmit={handleSubmit}>
+        {inputFields.map((input, index) => {
+            return (
+            <div key={input.id}>
               <div className="card-body">
                   <div className="form-group row">
                     <div className="col-lg-4">
@@ -157,6 +224,8 @@ const AddWorkersPage: React.FC = () => {
                       name="firstName"
                       className="form-control"
                       placeholder="Ime radnika"
+                      value={input.firstName}
+                      onChange={event => handleFormChange(index, event)}
                       required
                       />
                     </div>
@@ -167,6 +236,8 @@ const AddWorkersPage: React.FC = () => {
                       name="lastName"
                       className="form-control"
                       placeholder="Prezime radnika"
+                      value={input.lastName}
+                      onChange={event => handleFormChange(index, event)}
                       required
                       />
                     </div>
@@ -179,6 +250,8 @@ const AddWorkersPage: React.FC = () => {
                       name="address"
                       className="form-control"
                       placeholder="Prebivalište radnika"
+                      value={input.address}
+                      onChange={event => handleFormChange(index, event)}
                       required/>
                     </div>
 
@@ -190,7 +263,10 @@ const AddWorkersPage: React.FC = () => {
                         min="0"
                         max="99999999999"
                         className="form-control"
-                        placeholder="OIB"/>
+                        placeholder="OIB"
+                        value={input.oib}
+                        onChange={event => handleFormChange(index, event)}
+                        />
                       </div>
             
                     <div className="col-lg-4">
@@ -203,6 +279,8 @@ const AddWorkersPage: React.FC = () => {
                         step="1"
                         className="form-control"
                         placeholder="Br putovnice"
+                        value={input.passport}
+                        onChange={event => handleFormChange(index, event)}
                         />
                     </div>
 
@@ -213,6 +291,8 @@ const AddWorkersPage: React.FC = () => {
                           name="mob"
                           className="form-control"
                           placeholder="Br mobitela"
+                          value={input.mob}
+                          onChange={event => handleFormChange(index, event)}
                           />
                     </div>
                     <div className="col-lg-4">
@@ -220,7 +300,10 @@ const AddWorkersPage: React.FC = () => {
                         <input type="email"
                           name="email"
                           className="form-control"
-                          placeholder="email@email.com"/>
+                          placeholder="email@email.com"
+                          value={input.email}
+                          onChange={event => handleFormChange(index, event)}
+                          />
                     </div> 
                   </div>
 
@@ -230,7 +313,10 @@ const AddWorkersPage: React.FC = () => {
                         <input type="text"
                         name="fathersName"
                         className="form-control"
-                        placeholder="Ime oca radnika"/>
+                        placeholder="Ime oca radnika"
+                        value={input.fathersName}
+                        onChange={event => handleFormChange(index, event)}
+                        />
                     </div>
 
                     <div className="col-lg-4">
@@ -238,7 +324,10 @@ const AddWorkersPage: React.FC = () => {
                         <input type="text"
                         name="mothersName"
                         className="form-control"
-                        placeholder="Ime majke radnika"/>
+                        placeholder="Ime majke radnika"
+                        value={input.mothersName}
+                        onChange={event => handleFormChange(index, event)}
+                        />
                     </div>
                   </div><br/>
                     <div>PLAĆA I SATNICA</div>
@@ -249,7 +338,9 @@ const AddWorkersPage: React.FC = () => {
                         <input type="number"
                         name="wage"
                         className="form-control"
-                        placeholder="Plaća"/>
+                        placeholder="Plaća"
+                        value={input.wage}
+                        onChange={event => handleFormChange(index, event)}/>
                         <div className="input-group-append"><span className="input-group-text">€</span></div>
                     </div>
                     </div>
@@ -260,7 +351,9 @@ const AddWorkersPage: React.FC = () => {
                         <input type="number"
                         name="overtimeHr"
                         className="form-control"
-                        placeholder="€"/>
+                        placeholder="€"
+                        value={input.overtimeHr}
+                        onChange={event => handleFormChange(index, event)}/>
                       <div className="input-group-append"><span className="input-group-text">€</span></div>
                       </div>
                     </div>
@@ -270,7 +363,10 @@ const AddWorkersPage: React.FC = () => {
                         <input type="number"
                         name="weekendHr"
                         className="form-control"
-                        placeholder="€"/>
+                        placeholder="€"
+                        value={input.weekendHr}
+                        onChange={event => handleFormChange(index, event)}
+                        />
                         <div className="input-group-append"><span className="input-group-text">€</span></div>
                     </div>
                     </div>
@@ -281,7 +377,10 @@ const AddWorkersPage: React.FC = () => {
                       <input type="number"
                       name="nightHr"
                       className="form-control"
-                      placeholder="€"/>
+                      placeholder="€"
+                      value={input.nightHr}
+                      onChange={event => handleFormChange(index, event)}
+                      />
                       <div className="input-group-append"><span className="input-group-text">€</span></div>
                   </div>
                   </div>
@@ -294,6 +393,8 @@ const AddWorkersPage: React.FC = () => {
                         data-kt-repeater="datepicker"
                         className="form-control"
                         placeholder="Radna dozvola"
+                        value={input.workPermit}
+                        onChange={event => handleFormChange(index, event)}
                         required
                          />
                     </div>
@@ -305,6 +406,8 @@ const AddWorkersPage: React.FC = () => {
                         data-kt-repeater="datepicker"
                         className="form-control"
                         placeholder="Liječnički pregled"
+                        value={input.physicalExam}
+                        onChange={event => handleFormChange(index, event)}
                         required
                         />
                     </div>
@@ -333,7 +436,7 @@ const AddWorkersPage: React.FC = () => {
                       className="form-check-input" 
                       type="checkbox" 
                       onChange={handleChangeCheckbox}
-                      />
+                      value={input.firstName}                      />
                       <label className="form-check-label" >
                           Prva pomoć
                       </label>
@@ -353,7 +456,6 @@ const AddWorkersPage: React.FC = () => {
                       </label>
                   </div>
                 </div>
-      
                 <div className="col-lg-4">
                   <label>Posuđeni alat:</label>
                     <textarea
@@ -361,7 +463,8 @@ const AddWorkersPage: React.FC = () => {
                     cols={50}
                     name="tools"
                     className="form-control"
-                    placeholder="Alat"/>
+                    placeholder="Alat"
+                    />
 
                     <label>Napomena:</label>
                     <textarea
@@ -370,42 +473,28 @@ const AddWorkersPage: React.FC = () => {
                     name="note"
                     id='note'
                     className="form-control"
-                    placeholder="Unesite napomenu"/> 
+                    placeholder="Unesite napomenu"/>     
+                <button className="btn btn-danger font-weight-bold mr-2" type="button" onClick={() => removeFields(input.id)}>Remove</button>
                 </div>
-              </form>
-            </div>
-          </div>
-        ))}
-      </div>
-        
-      <div className="form-group">
-        <a data-repeater-create onClick={handleCreateClick} className="btn btn-flex btn-light-primary">
-          <i className="ki-duotone ki-plus fs-3"></i>
-          Add
-        </a>
-        {formFields.length > 1 && (
-          <a onClick={handleDeleteClick} className="btn btn-flex btn-light-danger ml-2">
-            <i className="ki-duotone ki-trash fs-3"></i>
-            Delete Last
-          </a>
-        )}
-      </div>
-  
-      <br/>
+              </div>
+                
+            )
+          })}
+        </form>
+    </div>
       <div className="card-footer">
         <div className="row">
-          <div className="col-lg-4"></div>
+          <div className="col-lg-2">
+          <button className="btn btn-primary font-weight-bold mr-2" onClick={addFields}>Add More..</button>
+
+          </div>
+
           <div className="col-lg-8">
-            <button type="submit" className="btn btn-primary font-weight-bold mr-2">Potvrdi</button>
+            <button type="submit" className="btn btn-success font-weight-bold mr-2">Potvrdi</button>
           </div>
         </div>
       </div>
-      </div>
-      </div>
-      
-      </div>
-  </div>
-</div>
+    </div>
   )
 }
 export {AddWorkersPage}
