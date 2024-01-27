@@ -23,6 +23,7 @@ import WorkerOverviewPageWrapper from '../pages/workers/WorkerOverviewPage/Worke
 import ConstructionOverviewPageWrapper from '../pages/construction-sites/ConstructionOverviewPage/ConstructionOverviewPageWrapper'
 import EditWorkersPageWrapper from '../pages/workers/edit/EditWorkersPageWrapper'
 import TestPageWrapper from '../pages/TestPage/TestPageWrapper'
+import { BrowserRouter } from 'react-router-dom';
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -43,11 +44,12 @@ const PrivateRoutes = () => {
   const ConstructionOverviewPageWrapper = lazy(() => import ('../pages/construction-sites/ConstructionOverviewPage/ConstructionOverviewPageWrapper'))
 
   return (
-    <Routes>
-      <Route element={<MasterLayout />}>
-        {/* Redirect to Dashboard after success login/registartion */}
-        <Route path='auth/*' element={<Navigate to='/dashboard' />} />
-        {/* Pages */}
+        <Suspense fallback={<TopBarProgress />}>
+      <Routes>
+        <Route element={<MasterLayout />}>
+          {/* Redirect to Dashboard after success login/registration */}
+          <Route path='auth/*' element={<Navigate to='/dashboard' />} />
+           {/* Define other routes */}
         <Route path='test' element={<TestPageWrapper />} />
         <Route path='dashboard' element={<DashboardWrapper />} />
         <Route path='builder' element={<BuilderPageWrapper />} />
@@ -70,10 +72,9 @@ const PrivateRoutes = () => {
         <Route path='total' element={<TotalCostSheetPageWrapper />} />
         <Route path='worker/settings/:id' element={<WorkerSettingsPageWrapper />} />
         <Route path='worker/:id' element={<WorkerOverviewPageWrapper />} />
-       
-        
-        {/* Lazy Modules */}
-        <Route
+
+         {/* Lazy Modules */}
+         <Route
           path='testpage'
           element={
             <SuspensedView>
@@ -264,6 +265,7 @@ const PrivateRoutes = () => {
         <Route path='*' element={<Navigate to='/error/404' />} />
       </Route>
     </Routes>
+      </Suspense>
   )
 }
 
