@@ -22,6 +22,7 @@ interface JQueryStatic {
 }
 
 interface inputField {
+  endpointId: string;
   id: string;
   firstName: string;
   lastName: string;
@@ -65,6 +66,7 @@ const AddWorkersPage: React.FC = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [inputFields, setInputFields] = useState<inputField[]>([
     {
+      endpointId: '',
       id: new Date().getTime().toString(),
       firstName: '',
       lastName: '',
@@ -93,6 +95,7 @@ const AddWorkersPage: React.FC = () => {
 
   const addFields = () => {
     let newfield = {
+      endpointId: '',
       id: new Date().getTime().toString(),
       firstName: '',
       lastName: '',
@@ -402,7 +405,7 @@ const AddWorkersPage: React.FC = () => {
                     <div className="col-lg-4">
                       <label>Liječnički pregled vrijedi do:</label>
                         <input type="date"
-                        name="physicalExam"
+                        name="physicalExamDate"
                         data-kt-repeater="datepicker"
                         className="form-control"
                         placeholder="Liječnički pregled"
@@ -432,7 +435,7 @@ const AddWorkersPage: React.FC = () => {
                 <div className="mb-10">
                   <div className="form-check form-check-custom form-check-solid">
                       <input  
-                      name="physicalExam" 
+                      name="firstAid" 
                       className="form-check-input" 
                       type="checkbox" 
                       onChange={handleChangeCheckbox}

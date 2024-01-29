@@ -21,7 +21,7 @@ const AddCostSheetPage: React.FC = () => {
   const [configLoading, setConfigLoading] = useState<boolean>(false)
   const [resetLoading, setResetLoading] = useState<boolean>(false)
 
-  const [data, setData] = useState({name:'', bill:'', note:'' })
+  const [data, setData] = useState({name:'', amount:'', note:'', billingDate:'', fromDate:'', toDate:''})
 
   const [constructions, setConstructions] = useState([]);
   const [selectedConstruction, setSelectedConstruction] = useState([]);
@@ -106,18 +106,18 @@ useEffect(() => {
             className="form-control"
             placeholder="Trošak"
             onChange={handleChange}
-            value={data.bill}/>
+            value={data.amount}/>
         </div>
         <div className="col-lg-4">
-        <label>Opis troška:</label>
-          <textarea
-          rows={5}
-          cols={50}
-          name="note"
-          className="form-control"
-          placeholder="Opis troška"
-          onChange={handleChange}
-          value={data.note}/>
+          <label>Opis troška:</label>
+            <textarea
+            rows={5}
+            cols={50}
+            name="note"
+            className="form-control"
+            placeholder="Opis troška"
+            onChange={handleChange}
+            value={data.note}/>
           </div>
 
     </div>

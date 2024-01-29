@@ -21,7 +21,7 @@ const AddHourlyRatePage: React.FC = () => {
   const [resetLoading, setResetLoading] = useState<boolean>(false)
   const [checked, setChecked] = useState(true);
 
-  const [data, setData] = useState({ idWorker:'', idConstruction:'', workHours:'', overtimeHr:'', weekendHr:'', dailyWage:'',  nightHr:''})
+  const [data, setData] = useState({ costDate:'',worker:'', construction:'', workHours:'', overtimeHr:'', weekendHr:'', dailyWage:'',  nightHr:''})
 
   const [workers, setWorkers] = useState([]);
   const [selectedWorkers, setSelectedWorkers] = useState([]);
@@ -105,15 +105,15 @@ const AddHourlyRatePage: React.FC = () => {
 
   function handleSubmit(e:any) {
     e.preventDefault()
-    
+    console.log(data)
    
-    if(e){
-      axios.post('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/hourlyrate', data)
+     if(e){
+      axios.post('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/hourly_rates', data)
       .then(response => {
         window.location.reload()
         window.alert("Dodana nova satnica")
         }).catch(error => {console.log(error.response)})
-   }
+   } 
   }
 
 
@@ -139,6 +139,7 @@ const AddHourlyRatePage: React.FC = () => {
     setSelectedTime(selectedValue);
     setData({ ...data, workHours: selectedValue });
     console.log(selectedValue);
+
     
   };
 
@@ -166,31 +167,41 @@ const AddHourlyRatePage: React.FC = () => {
   return (
   <div className='card'>
     <div className='card-header'>
-      <div className="card-title m-0"><h3 className="fw-bolder m-0">Unos Gradilišta </h3></div>
+      <div className="card-title m-0"><h3 className="fw-bolder m-0">Unos Satnica </h3></div>
     </div>
     <div className='card-body'>
-    <div>
-      {formFields.map((field) => (
-        <div key={field.id} data-repeater-list="kt_docs_repeater_advanced">
-          <div data-repeater-item>
+    
       <form className="form" method="post" onSubmit={handleSubmit}>
       <div className="form-group row">
+        <div className="col-lg-2">
+            <label>Datum</label>
+              <input 
+                type="date"
+                name="costDate"
+                data-kt-repeater="datepicker"
+                className="form-control"
+                placeholder="datum troška"
+                value={data.costDate}
+                onChange={handleChange}
+                required
+                />
+        </div>
         <div className="col-lg-3">
           <label>Radnik</label>
-            <select name="idWorker" className="form-select form-select-solid" aria-label="Odabir gridlista" onChange={handleChange}>
+            <select name="worker" className="form-select form-select-solid" aria-label="Odabir gridlista" onChange={handleChange}>
             <option>Odaberite radnika</option>
             {workers.map((worker:any) => (
-              <option key={worker.id} value={worker.name}>{worker.firstName}</option>
+              <option key={worker.id} value={'/api/v1/workers/' + worker.id}>{worker.firstName}</option>
               ))}
             </select>
             <div/>
         </div> 
         <div className="col-lg-3">
           <label>Gradilište</label>
-            <select name="idConstruction" className="form-select form-select-solid" aria-label="Odabir gridlista" onChange={handleChange}>
+            <select name="construction" className="form-select form-select-solid" aria-label="Odabir gridlista" onChange={handleChange}>
             <option>Odaberite gradilište</option>
             {constructions.map((construction:any) => (
-              <option key={construction.id} value={construction.name}>{construction.name}</option>
+              <option key={construction.id} value={'api/v1/constructions/' + construction.id}>{construction.name}</option>
               ))}
             </select>
           <div/>
@@ -256,40 +267,13 @@ const AddHourlyRatePage: React.FC = () => {
             ))}
           </select>
       </div>
-      <div className="form-group">
-      <a data-repeater-create onClick={handleCreateClick} className="btn btn-flex btn-light-primary">
-        <i className="ki-duotone ki-plus fs-3"></i>
-        Add
-      </a>
-      {formFields.length > 1 && (
-        <a onClick={handleDeleteClick} className="btn btn-flex btn-light-danger ml-2">
-          <i className="ki-duotone ki-trash fs-3"></i>
-          Delete Last
-        </a>
-      )}
-    </div>
   </div>
     <br/>
       <div className="card-footer">
         <button type="submit" className="btn btn-primary font-weight-bold mr-2">Potvrdi</button>
       </div>
       </form>
-      </div>
-        </div>
-      ))}
-    </div>
-    <div className="form-group">
-      <a data-repeater-create onClick={handleCreateClick} className="btn btn-flex btn-light-primary">
-        <i className="ki-duotone ki-plus fs-3"></i>
-        Add
-      </a>
-      {formFields.length > 1 && (
-        <a onClick={handleDeleteClick} className="btn btn-flex btn-light-danger ml-2">
-          <i className="ki-duotone ki-trash fs-3"></i>
-          Delete Last
-        </a>
-      )}
-    </div>
+
   </div>
 </div>
 
