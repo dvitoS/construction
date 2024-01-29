@@ -126,8 +126,11 @@ const AddWorkersPage: React.FC = () => {
 
 
   const removeFields = (id: string) => {
-    let updatedFields = inputFields.filter(field => field.id !== id);
-    setInputFields(updatedFields);
+    // Only remove the field if it's not the first one
+    if (id !== inputFields[0].id) {
+      let updatedFields = inputFields.filter(field => field.id !== id);
+      setInputFields(updatedFields);
+    }
   }
 
   const handleFormChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
@@ -477,7 +480,9 @@ const AddWorkersPage: React.FC = () => {
                     id='note'
                     className="form-control"
                     placeholder="Unesite napomenu"/>     
-                <button className="btn btn-danger font-weight-bold mr-2" type="button" onClick={() => removeFields(input.id)}>Remove</button>
+                {index !== 0 && (
+                  <button className="btn btn-danger font-weight-bold mr-2" type="button" onClick={() => removeFields(input.id)}>Remove</button>
+                )}                
                 </div>
               </div>
                 
