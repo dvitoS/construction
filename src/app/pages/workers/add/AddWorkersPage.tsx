@@ -34,7 +34,7 @@ interface inputField {
   fathersName: string;
   mothersName: string;
   workPermit: string;
-  physicalExam: string;
+  physicalExamDate: string;
   workProtection: boolean;
   firstAid: boolean;
   geda: boolean;
@@ -78,7 +78,7 @@ const AddWorkersPage: React.FC = () => {
       fathersName: '',
       mothersName: '',
       workPermit: '',
-      physicalExam: '',
+      physicalExamDate: '',
       workProtection: false,
       firstAid: false,
       geda: false,
@@ -107,7 +107,7 @@ const AddWorkersPage: React.FC = () => {
       fathersName: '',
       mothersName: '',
       workPermit: '',
-      physicalExam: '',
+      physicalExamDate: '',
       workProtection: false,
       firstAid: false,
       geda: false,
@@ -247,7 +247,7 @@ const AddWorkersPage: React.FC = () => {
           fathersName: '',
           mothersName: '',
           workPermit: '',
-          physicalExam: '',
+          physicalExamDate: '',
           workProtection: false,
           firstAid: false,
           geda: false,
@@ -463,7 +463,7 @@ const AddWorkersPage: React.FC = () => {
                         data-kt-repeater="datepicker"
                         className="form-control"
                         placeholder="Liječnički pregled"
-                        value={input.physicalExam}
+                        value={input.physicalExamDate}
                         onChange={event => handleFormChange(index, event)}
                         required
                         />
