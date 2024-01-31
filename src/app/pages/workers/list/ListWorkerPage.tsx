@@ -23,7 +23,7 @@ const ListWorkersPage: React.FC = () => {
     firstName: string;
     lastName: string;
     workPermit: string;
-    firstAidDate: string;
+    physicalExamDate: string;
     workProtection: string;
     firstAid: string;
     geda: string;
@@ -114,12 +114,12 @@ const daysUntilWorkPermit = (dateString: string): number => {
   return Math.ceil((workPermitDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
 };
 
-// Helper function to calculate the difference in days for the firstAidDate
-const daysUntilFirstAidDate = (dateString: string): number => {
+// Helper function to calculate the difference in days for the firstAid
+const daysUntilfirstAid = (dateString: string): number => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  const firstAidDate = new Date(dateString);
-  return Math.ceil((firstAidDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+  const firstAid = new Date(dateString);
+  return Math.ceil((firstAid.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
 };
 
   const handleDelete = (id: any) => {
@@ -153,7 +153,7 @@ const daysUntilFirstAidDate = (dateString: string): number => {
           <tbody>
             {sortedData.map((d, i) => {
               const daysLeftworkPermit = daysUntilWorkPermit(d.workPermit);
-              const daysLeftFirstAid = daysUntilFirstAidDate(d.firstAidDate);
+              const daysLeftFirstAid = daysUntilfirstAid(d.firstAid);
             
               // Determine the background color for the workPermit cell
               let workPermitTextStyle = {};
@@ -178,7 +178,7 @@ const daysUntilFirstAidDate = (dateString: string): number => {
                   <td>{d.firstName}</td>
                   <td>{d.lastName}</td>
                   <td style={{ textAlign: 'center', ...workPermitTextStyle }}>{d.workPermit.slice(0, 10)}</td>
-                  <td style={{ textAlign: 'center', ...firstAidTextStyle }}>{d.firstAidDate.slice(0, 10)}</td>
+                  <td style={{ textAlign: 'center', ...firstAidTextStyle }}>{d.firstAid.slice(0, 10)}</td>
                   <td className="text-center">{d.workProtection ? <i className="fa fa-user-shield fa-2x" title="Zaštita na radu"></i>   : <i></i>}<a> </a>{d.firstAid ? <i className="fa fa-first-aid fa-2x" title="Prva pomoć"></i> : <i></i>}<a> </a>{d.geda ? <i className="fa fa-arrows-alt-v fa-2x" title="GEDA"></i> : <i></i>} </td>
                   <td className="text-center">
                   <i className="fa fa-tools fa-2x" ref={ensureToolTooltipRef(`tool-${d.id}`)}

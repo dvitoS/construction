@@ -33,7 +33,7 @@ interface inputField {
   passport: string;
   fathersName: string;
   mothersName: string;
-  workPermit: string;
+  workPermitDate: string;
   physicalExamDate: string;
   workProtection: boolean;
   firstAid: boolean;
@@ -77,7 +77,7 @@ const AddWorkersPage: React.FC = () => {
       passport: '',
       fathersName: '',
       mothersName: '',
-      workPermit: '',
+      workPermitDate: '',
       physicalExamDate: '',
       workProtection: false,
       firstAid: false,
@@ -106,7 +106,7 @@ const AddWorkersPage: React.FC = () => {
       passport: '',
       fathersName: '',
       mothersName: '',
-      workPermit: '',
+      workPermitDate: '',
       physicalExamDate: '',
       workProtection: false,
       firstAid: false,
@@ -167,7 +167,7 @@ const AddWorkersPage: React.FC = () => {
           overtimeHr:{value: string}; 
           weekendHr:{value: string};   
           nightHr:{value: string}; 
-          workPermit:{value: string};
+          workPermitDate:{value: string};
           physicalExam:{value: string};
           note:{value: string};
           tools:{value: string};
@@ -187,7 +187,7 @@ const AddWorkersPage: React.FC = () => {
           overtimeHr: converttoint(target.overtimeHr.value),
           weekendHr: converttoint(target.weekendHr.value),
           nightHr: converttoint(target.nightHr.value),
-          workPermit: target.workPermit.value,
+          workPermitDate: target.workPermitDate.value,
           physicalExam: target.physicalExam.value,
           tools:target.tools.value,
           note: target.note.value
@@ -246,7 +246,7 @@ const AddWorkersPage: React.FC = () => {
           passport: '',
           fathersName: '',
           mothersName: '',
-          workPermit: '',
+          workPermitDate: '',
           physicalExamDate: '',
           workProtection: false,
           firstAid: false,
@@ -446,11 +446,11 @@ const AddWorkersPage: React.FC = () => {
                     <div className="col-lg-4">
                       <label>Radna dozvola vrijedi do:</label>
                         <input type="date"
-                        name="workPermit"
+                        name="workPermitDate"
                         data-kt-repeater="datepicker"
                         className="form-control"
                         placeholder="Radna dozvola"
-                        value={input.workPermit}
+                        value={input.workPermitDate}
                         onChange={event => handleFormChange(index, event)}
                         required
                          />
