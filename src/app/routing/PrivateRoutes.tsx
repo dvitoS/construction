@@ -83,7 +83,8 @@ const PrivateRoutes = () => {
           }
         />
 
-        <Route
+          
+      <Route
           path='crafted/pages/profile/*'
           element={
             <SuspensedView>

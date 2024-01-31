@@ -49,14 +49,14 @@ interface inputField {
 
 interface FormData {
   workProtection: boolean; 
-  physicalExam: boolean; 
+  firstAid: boolean; 
   geda: boolean;
 }
 
 
 const AddWorkersPage: React.FC = () => {
   const nameInputId = useId();
-  const [checkboxes, setCheckbox] = useState<FormData>({workProtection:false, physicalExam:false, geda:false});
+  const [checkboxes, setCheckbox] = useState<FormData>({workProtection:false, firstAid:false, geda:false});
   const [tab, setTab] = useState('Sidebar')
   const [config, setConfig] = useState<ILayout>(getLayoutFromLocalStorage())
   const [configLoading, setConfigLoading] = useState<boolean>(false)
@@ -122,6 +122,8 @@ const AddWorkersPage: React.FC = () => {
 
     setInputFields([...inputFields, newfield]);
   };
+
+
 
 
 
@@ -209,6 +211,55 @@ const AddWorkersPage: React.FC = () => {
       }else{
         setCheckbox({...checkboxes, [name]:false})
       }
+    }
+
+    const handleSubmitAll = () => {
+      // You can add your logic here for handling the submission of all input fields
+      console.log("Submitting all fields:", inputFields);
+  
+      // Example: Sending data to the server
+      inputFields.forEach((data) => {
+        const request = { ...data, ...checkboxes };
+  
+        axios.post('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers', request)
+          .then(res => {
+            // Handle success if needed
+            console.log("Form submitted successfully:", res.data);
+          })
+          .catch(err => {
+            // Handle error if needed
+            console.error("Error submitting form:", err);
+          });
+      });
+  
+      // Clear input fields or perform any other necessary actions
+      setInputFields([
+        {
+          endpointId: '',
+          id: new Date().getTime().toString(),
+          firstName: '',
+          lastName: '',
+          address: '',
+          oib: '',
+          email: '',
+          mob: '',
+          passport: '',
+          fathersName: '',
+          mothersName: '',
+          workPermit: '',
+          physicalExam: '',
+          workProtection: false,
+          firstAid: false,
+          geda: false,
+          hr: '',
+          overtimeHr: '',
+          weekendHr: '',
+          wage: '',
+          nightHr: '',
+          note: '',
+          tools: '',
+        },
+      ]);
     }
 
   return (
@@ -408,7 +459,7 @@ const AddWorkersPage: React.FC = () => {
                     <div className="col-lg-4">
                       <label>Liječnički pregled vrijedi do:</label>
                         <input type="date"
-                        name="physicalExamDate"
+                        name="physicalExam"
                         data-kt-repeater="datepicker"
                         className="form-control"
                         placeholder="Liječnički pregled"
@@ -442,7 +493,7 @@ const AddWorkersPage: React.FC = () => {
                       className="form-check-input" 
                       type="checkbox" 
                       onChange={handleChangeCheckbox}
-                      value={input.firstName}                      />
+                      />
                       <label className="form-check-label" >
                           Prva pomoć
                       </label>
@@ -498,7 +549,7 @@ const AddWorkersPage: React.FC = () => {
           </div>
 
           <div className="col-lg-8">
-            <button type="submit" className="btn btn-success font-weight-bold mr-2">Potvrdi</button>
+            <button type="submit" className="btn btn-success font-weight-bold mr-2" onClick={handleSubmitAll}>Potvrdi</button>
           </div>
         </div>
       </div>
