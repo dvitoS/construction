@@ -12,7 +12,7 @@ const ListWorkersPage: React.FC = () => {
   const [resetLoading, setResetLoading] = useState<boolean>(false);
   const [data, setData] = useState<any[]>([]);
   const [sortOrder, setSortOrder] = useState('asc'); // 'asc' or 'desc'
-  const [sortedColumn, setSortedColumn] = useState<'firstName' | 'lastName' | 'workingPermit'>('workingPermit');
+  const [sortedColumn, setSortedColumn] = useState<'firstName' | 'lastName' | 'workPermit'>('workPermit');
   const [activeId, setActiveId] = useState<string | null>(null);
   const toolTooltipRefs = useRef<{ [key: string]: React.RefObject<HTMLElement> }>({});
   const noteTooltipRefs = useRef<{ [key: string]: React.RefObject<HTMLElement> }>({});
@@ -22,14 +22,14 @@ const ListWorkersPage: React.FC = () => {
     id: number;
     firstName: string;
     lastName: string;
-    workingPermit: string;
+    workPermit: string;
     firstAidDate: string;
     workProtection: string;
     firstAid: string;
     geda: string;
   }
   
-  const handleSort = (column: 'firstName' | 'lastName' | 'workingPermit')  => {
+  const handleSort = (column: 'firstName' | 'lastName' | 'workPermit')  => {
     setSortOrder((prevOrder) => (prevOrder === 'asc' ? 'desc' : 'asc'));
     setSortedColumn(column);
   };
@@ -39,9 +39,9 @@ const ListWorkersPage: React.FC = () => {
       return sortOrder === 'asc' ? a.firstName.localeCompare(b.firstName) : b.firstName.localeCompare(a.firstName);
     } else if (sortedColumn === 'lastName') {
       return sortOrder === 'asc' ? a.lastName.localeCompare(b.lastName) : b.lastName.localeCompare(a.lastName);
-    } else if (sortedColumn === 'workingPermit') {
-      // Sorting logic for date (workingPermit)
-      return sortOrder === 'asc' ? a.workingPermit.localeCompare(b.workingPermit) : b.workingPermit.localeCompare(a.workingPermit);
+    } else if (sortedColumn === 'workPermit') {
+      // Sorting logic for date (workPermit)
+      return sortOrder === 'asc' ? a.workPermit.localeCompare(b.workPermit) : b.workPermit.localeCompare(a.workPermit);
     }
     // If no column is selected, return unsorted data
     return 0;
@@ -73,7 +73,7 @@ const ListWorkersPage: React.FC = () => {
         const fetchedData: Worker[] = res.data; // Type the fetched data as an array of Workers
         // Sort data immediately after fetching
         const sortedFetchedData = fetchedData.sort((a: Worker, b: Worker) => {
-          return b.workingPermit.localeCompare(a.workingPermit); // Sorting by workingPermit in descending order
+          return b.workPermit.localeCompare(a.workPermit); // Sorting by workPermit in descending order
         });
         setData(sortedFetchedData);
       })
@@ -107,11 +107,11 @@ const ListWorkersPage: React.FC = () => {
     };
 
  // Helper function to calculate the difference in days
-const daysUntilWorkingPermit = (dateString: string): number => {
+const daysUntilWorkPermit = (dateString: string): number => {
   const today = new Date();
   today.setHours(0, 0, 0, 0); // Reset time to start of the day for accurate comparison
-  const workingPermitDate = new Date(dateString);
-  return Math.ceil((workingPermitDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+  const workPermitDate = new Date(dateString);
+  return Math.ceil((workPermitDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
 };
 
 // Helper function to calculate the difference in days for the firstAidDate
@@ -142,7 +142,7 @@ const daysUntilFirstAidDate = (dateString: string): number => {
               <th><strong>Br.</strong></th>
               <th className={`table-sort-${sortOrder}`} onClick={() => handleSort('firstName')}><strong>Ime</strong></th>
               <th className={`table-sort-${sortOrder}`} onClick={() => handleSort('lastName')}><strong>Prezime</strong></th>
-              <th className={`table-sort-${sortOrder}`} onClick={() => handleSort('workingPermit')}><strong>Radna dozvola</strong></th>
+              <th className={`table-sort-${sortOrder}`} onClick={() => handleSort('workPermit')}><strong>Radna dozvola</strong></th>
               <th><strong>Liječnički pregled</strong></th>
               <th><strong>Certifikati</strong></th>
               <th><strong>Alat</strong></th>
@@ -152,17 +152,17 @@ const daysUntilFirstAidDate = (dateString: string): number => {
           </thead>
           <tbody>
             {sortedData.map((d, i) => {
-              const daysLeftWorkingPermit = daysUntilWorkingPermit(d.workingPermit);
+              const daysLeftworkPermit = daysUntilWorkPermit(d.workPermit);
               const daysLeftFirstAid = daysUntilFirstAidDate(d.firstAidDate);
             
-              // Determine the background color for the workingPermit cell
-              let workingPermitTextStyle = {};
-              if (daysLeftWorkingPermit <= 45 && daysLeftWorkingPermit >= 30) {
-                workingPermitTextStyle = { color: 'rgba(255, 140, 0)', fontWeight: 'bold' }; // Solid orange and bold for 15 days before
-              } else if (daysLeftWorkingPermit <= 30 && daysLeftWorkingPermit >= 0) {
-                workingPermitTextStyle = { color: 'rgba(255, 0, 0, 1)', fontWeight: 'bold' }; // Solid red and bold for 5 days before
-              } else if (daysLeftWorkingPermit < 0) {
-                workingPermitTextStyle = { color: 'rgba(255, 0, 0, 1)', fontWeight: 'bold' }; // Solid red and bold for past dates
+              // Determine the background color for the workPermit cell
+              let workPermitTextStyle = {};
+              if (daysLeftworkPermit <= 45 && daysLeftworkPermit >= 30) {
+                workPermitTextStyle = { color: 'rgba(255, 140, 0)', fontWeight: 'bold' }; // Solid orange and bold for 15 days before
+              } else if (daysLeftworkPermit <= 30 && daysLeftworkPermit >= 0) {
+                workPermitTextStyle = { color: 'rgba(255, 0, 0, 1)', fontWeight: 'bold' }; // Solid red and bold for 5 days before
+              } else if (daysLeftworkPermit < 0) {
+                workPermitTextStyle = { color: 'rgba(255, 0, 0, 1)', fontWeight: 'bold' }; // Solid red and bold for past dates
               }
               let firstAidTextStyle = {};
               if (daysLeftFirstAid <= 45 && daysLeftFirstAid >= 30) {
@@ -177,7 +177,7 @@ const daysUntilFirstAidDate = (dateString: string): number => {
                   <td>{i + 1 + "."}</td>
                   <td>{d.firstName}</td>
                   <td>{d.lastName}</td>
-                  <td style={{ textAlign: 'center', ...workingPermitTextStyle }}>{d.workingPermit.slice(0, 10)}</td>
+                  <td style={{ textAlign: 'center', ...workPermitTextStyle }}>{d.workPermit.slice(0, 10)}</td>
                   <td style={{ textAlign: 'center', ...firstAidTextStyle }}>{d.firstAidDate.slice(0, 10)}</td>
                   <td className="text-center">{d.workProtection ? <i className="fa fa-user-shield fa-2x" title="Zaštita na radu"></i>   : <i></i>}<a> </a>{d.firstAid ? <i className="fa fa-first-aid fa-2x" title="Prva pomoć"></i> : <i></i>}<a> </a>{d.geda ? <i className="fa fa-arrows-alt-v fa-2x" title="GEDA"></i> : <i></i>} </td>
                   <td className="text-center">
