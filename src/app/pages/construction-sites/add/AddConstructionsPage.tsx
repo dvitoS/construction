@@ -100,7 +100,7 @@ const AddConstructionsPage: React.FC = () => {
           <div className="form-group row">
               <div className="col-lg-3">
                 <label>Naziv:</label>
-                <input type="text"
+                <input type="text" 
                 name="name"
                 className="form-control"
                 placeholder="Naziv gradilišta"

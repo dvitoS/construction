@@ -315,7 +315,7 @@ const AddWorkersPage: React.FC = () => {
                       <div className="col-lg-4">
                         <label>OIB:</label>
                         <input 
-                        type="number"
+                        type="text"
                         name="oib"
                         min="0"
                         max="99999999999"
@@ -329,7 +329,7 @@ const AddWorkersPage: React.FC = () => {
                     <div className="col-lg-4">
                       <label>Putovnica:</label>
                         <input        
-                        type="number"
+                        type="text"
                         name="passport"
                         min="0"
                         max="999999999999"

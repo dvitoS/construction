@@ -9,7 +9,6 @@ import {toAbsoluteUrl} from '../../../../_metronic/helpers'
 import {useAuth} from '../core/Auth'
 
 
-
 const loginSchema = Yup.object().shape({
   email: Yup.string()
     .email('Wrong email format')
@@ -21,6 +20,7 @@ const loginSchema = Yup.object().shape({
     .max(50, 'Maximum 50 symbols')
     .required('Password is required'),
 })
+
 
 const initialValues = {
   email: 'admin@demo.com',
@@ -34,8 +34,12 @@ const initialValues = {
 */
 
 export function Login() {
+  
   const [loading, setLoading] = useState(false)
   const {saveAuth, setCurrentUser} = useAuth()
+  
+
+ 
 
   const formik = useFormik({
     initialValues,
@@ -44,8 +48,10 @@ export function Login() {
       setLoading(true)
       try {
         const {data: auth} = await login(values.email, values.password)
+        console.log(auth)
         saveAuth(auth)
         const {data: user} = await getUserByToken(auth.api_token)
+        console.log(user)
         setCurrentUser(user)
       } catch (error) {
         console.error(error)
