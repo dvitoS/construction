@@ -11,7 +11,9 @@ import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 import internal from 'stream';
 import jquery from 'jquery';
-
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup'
 
 
 
@@ -38,6 +40,27 @@ interface inputField {
   workProtection: boolean;
   firstAid: boolean;
   geda: boolean;
+  hr: string;
+  overtimeHr: string;
+  weekendHr: string;
+  wage: string;
+  nightHr: string;
+  note: string;
+  tools: string;
+}
+
+interface UserSubmitForm {
+  firstName: string;
+  lastName: string;
+  address: string;
+  oib: string;
+  email: string;
+  mob: string;
+  passport: string;
+  fathersName: string;
+  mothersName: string;
+  workPermitDate: string;
+  physicalExamDate: string;
   hr: string;
   overtimeHr: string;
   weekendHr: string;
@@ -123,10 +146,6 @@ const AddWorkersPage: React.FC = () => {
     setInputFields([...inputFields, newfield]);
   };
 
-
-
-
-
   const removeFields = (id: string) => {
     // Only remove the field if it's not the first one
     if (id !== inputFields[0].id) {
@@ -134,6 +153,90 @@ const AddWorkersPage: React.FC = () => {
       setInputFields(updatedFields);
     }
   }
+
+  const validationSchema = Yup.object({
+    endpointId: Yup.string(),
+    id: Yup.string(),
+    firstName: Yup.string()
+    .required('First name is required')
+    .min(2,'First name must be at least 2 characters')
+    .max(14,'First name must not exceed 14 characters'),
+    lastName: Yup.string()
+      .required('Last name is required')
+      .min(2, 'Username must be at least 6 characters')
+      .max(20, 'Username must not exceed 20 characters'),
+    address:Yup.string()
+      .required('Address is required')
+      .min(2,'Address must be at least 2 characters')
+      .max(20,'Address must not exceed 20 characters'),
+    oib:Yup.string()
+      .required('OIB is required')
+      .min(10,'OIB must be at least 10 characters')
+      .max(20,'OIB must not exceed 12 characters'),
+    email: Yup.string()
+      .required('Email is required')
+      .email('Email is invalid'),
+    mob: Yup.string()
+      .required('Mobile number is required')
+      .min(6, 'Mobile number must be at least 6 characters')
+      .max(20, 'Mobile number must not exceed 16 characters'),
+    passport:Yup.string()
+      .required('Passport is required')
+      .min(10,'Passport must be at least 2 characters')
+      .max(20,'Passport must not exceed 20 characters'),
+    fathersName: Yup.string()
+      .required('Fathers name is required')
+      .min(2,'Fathers name must be at least 2 characters')
+      .max(20,'Fathers name must not exceed 20 characters'),
+    mothersName: Yup.string()
+      .required('Mothers name is required')
+      .min(2,'Mothers name must be at least 2 characters')
+      .max(20,'Mothers name must not exceed 20 characters'),
+    workPermitDate: Yup.string()
+      .required('Work permit date is requred'),
+    physicalExamDate: Yup.string()
+      .required('Physical exam date is requred'),
+    hr: Yup.string()
+      .required('Hourly rate is required')
+      .min(1,'Hourly rate must be at least 1 character')
+      .max(4,'Hourly rate must not exceed 4 characters'),
+    overtimeHr: Yup.string()
+      .required('Overtime hourly rate is required')
+      .min(1,'Overtime hourly rate must be at least 1 characters')
+      .max(4,'Overtime hourly rate must not exceed 4 characters'),
+    weekendHr: Yup.string()
+      .required('Weekend hourly rate is required')
+      .min(1,'Weekend hourly rate must be at least 1 characters')
+      .max(4,'Weekend hourly rate must not exceed 4 characters'),
+    wage: Yup.string()
+      .required('Wage rate is required')
+      .min(3,'Wage rate must be at least 3 characters')
+      .max(6,'Wage rate must not exceed 6 characters'),
+    nightHr: Yup.string()
+      .required('Night rate is required')
+      .min(1,'Night rate must be at least 1 characters')
+      .max(3,'Weekend hourly rate must not exceed 3 characters'),
+    workProtection: Yup.bool(),
+    firstAid: Yup.bool(),
+    geda: Yup.bool(),
+    note: Yup.string()
+      .notRequired()
+      .max(300,'Note must not exceed 300 characters'),
+    tools: Yup.string()
+      .notRequired()
+      .max(100,'Tools must not exceed 100 characters'),
+  });
+  
+  const {
+    handleSubmit,
+    formState: { errors }
+  } = useForm<UserSubmitForm>({
+    resolver: yupResolver<UserSubmitForma>(formState)
+  });
+
+  const onSubmit = (data: UserSubmitForm) => {
+    console.log(JSON.stringify(data, null, 2));
+  };
 
   const handleFormChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
     let data = [...inputFields];
@@ -151,7 +254,7 @@ const AddWorkersPage: React.FC = () => {
     return x;
   }
 
-    function handleSubmit(e:React.FormEvent) {
+    function convertSubmit(e:React.FormEvent) {
         e.preventDefault()
         const target = e.target as typeof e.target & {
           firstName: {value: string};
@@ -268,7 +371,7 @@ const AddWorkersPage: React.FC = () => {
       <div className="card-title m-0"><h3 className="fw-bolder m-0">Unos Radnika</h3></div>
     </div>
     <div className='card-body'>
-        <form className="form" method="post" onSubmit={handleSubmit}>
+        <form className="form" method="post" onSubmit={convertSubmit}>
         {inputFields.map((input, index) => {
             return (
             <div key={input.id}>
@@ -279,7 +382,7 @@ const AddWorkersPage: React.FC = () => {
                       <input 
                       type="text"
                       name="firstName"
-                      className="form-control"
+                      className={`form-control ${errors.firstName ? 'is-invalid' : ''}`}
                       placeholder="Ime radnika"
                       value={input.firstName}
                       onChange={event => handleFormChange(index, event)}
@@ -291,7 +394,7 @@ const AddWorkersPage: React.FC = () => {
                       <label>Prezime:</label>
                       <input type="text"
                       name="lastName"
-                      className="form-control"
+                      className={`form-control ${errors.lastName ? 'is-invalid' : ''}`}
                       placeholder="Prezime radnika"
                       value={input.lastName}
                       onChange={event => handleFormChange(index, event)}
@@ -305,7 +408,7 @@ const AddWorkersPage: React.FC = () => {
                       <label>Adresa:</label>
                       <input type="text"
                       name="address"
-                      className="form-control"
+                      className={`form-control ${errors.address ? 'is-invalid' : ''}`}
                       placeholder="Prebivalište radnika"
                       value={input.address}
                       onChange={event => handleFormChange(index, event)}
@@ -319,7 +422,7 @@ const AddWorkersPage: React.FC = () => {
                         name="oib"
                         min="0"
                         max="99999999999"
-                        className="form-control"
+                        className={`form-control ${errors.oib ? 'is-invalid' : ''}`}
                         placeholder="OIB"
                         value={input.oib}
                         onChange={event => handleFormChange(index, event)}
@@ -334,7 +437,7 @@ const AddWorkersPage: React.FC = () => {
                         min="0"
                         max="999999999999"
                         step="1"
-                        className="form-control"
+                        className={`form-control ${errors.passport ? 'is-invalid' : ''}`}
                         placeholder="Br putovnice"
                         value={input.passport}
                         onChange={event => handleFormChange(index, event)}
@@ -346,7 +449,7 @@ const AddWorkersPage: React.FC = () => {
                         <input
                           type="tel"
                           name="mob"
-                          className="form-control"
+                          className={`form-control ${errors.mob ? 'is-invalid' : ''}`}
                           placeholder="Br mobitela"
                           value={input.mob}
                           onChange={event => handleFormChange(index, event)}
@@ -356,7 +459,7 @@ const AddWorkersPage: React.FC = () => {
                       <label>E-mail:</label>
                         <input type="email"
                           name="email"
-                          className="form-control"
+                          className={`form-control ${errors.email ? 'is-invalid' : ''}`}
                           placeholder="email@email.com"
                           value={input.email}
                           onChange={event => handleFormChange(index, event)}
@@ -369,7 +472,7 @@ const AddWorkersPage: React.FC = () => {
                       <label>Ime oca:</label>
                         <input type="text"
                         name="fathersName"
-                        className="form-control"
+                        className={`form-control ${errors.fathersName ? 'is-invalid' : ''}`}
                         placeholder="Ime oca radnika"
                         value={input.fathersName}
                         onChange={event => handleFormChange(index, event)}
@@ -380,7 +483,7 @@ const AddWorkersPage: React.FC = () => {
                       <label>Ime majke:</label>
                         <input type="text"
                         name="mothersName"
-                        className="form-control"
+                        className={`form-control ${errors.mothersName ? 'is-invalid' : ''}`}
                         placeholder="Ime majke radnika"
                         value={input.mothersName}
                         onChange={event => handleFormChange(index, event)}
@@ -394,7 +497,7 @@ const AddWorkersPage: React.FC = () => {
                       <div className="input-group">
                         <input type="number"
                         name="wage"
-                        className="form-control"
+                        className={`form-control ${errors.wage ? 'is-invalid' : ''}`}
                         placeholder="Plaća"
                         value={input.wage}
                         onChange={event => handleFormChange(index, event)}/>
@@ -407,7 +510,7 @@ const AddWorkersPage: React.FC = () => {
                       <div className="input-group">
                         <input type="number"
                         name="overtimeHr"
-                        className="form-control"
+                        className={`form-control ${errors.overtimeHr ? 'is-invalid' : ''}`}
                         placeholder="€"
                         value={input.overtimeHr}
                         onChange={event => handleFormChange(index, event)}/>
@@ -419,7 +522,7 @@ const AddWorkersPage: React.FC = () => {
                       <div className="input-group">
                         <input type="number"
                         name="weekendHr"
-                        className="form-control"
+                        className={`form-control ${errors.weekendHr ? 'is-invalid' : ''}`}
                         placeholder="€"
                         value={input.weekendHr}
                         onChange={event => handleFormChange(index, event)}
@@ -433,7 +536,7 @@ const AddWorkersPage: React.FC = () => {
                     <div className="input-group">
                       <input type="number"
                       name="nightHr"
-                      className="form-control"
+                      className={`form-control ${errors.nightHr ? 'is-invalid' : ''}`}
                       placeholder="€"
                       value={input.nightHr}
                       onChange={event => handleFormChange(index, event)}
@@ -448,7 +551,7 @@ const AddWorkersPage: React.FC = () => {
                         <input type="date"
                         name="workPermitDate"
                         data-kt-repeater="datepicker"
-                        className="form-control"
+                        className={`form-control ${errors.workPermitDate ? 'is-invalid' : ''}`}
                         placeholder="Radna dozvola"
                         value={input.workPermitDate}
                         onChange={event => handleFormChange(index, event)}
@@ -461,7 +564,7 @@ const AddWorkersPage: React.FC = () => {
                         <input type="date"
                         name="physicalExam"
                         data-kt-repeater="datepicker"
-                        className="form-control"
+                        className={`form-control ${errors.physicalExamDate ? 'is-invalid' : ''}`}
                         placeholder="Liječnički pregled"
                         value={input.physicalExamDate}
                         onChange={event => handleFormChange(index, event)}
@@ -519,7 +622,7 @@ const AddWorkersPage: React.FC = () => {
                     rows={5}
                     cols={50}
                     name="tools"
-                    className="form-control"
+                    className={`form-control ${errors.tools ? 'is-invalid' : ''}`}
                     placeholder="Alat"
                     />
 
