@@ -12,6 +12,7 @@ import axios from 'axios';
 import internal from 'stream';
 import jquery from 'jquery';
 import { useForm } from 'react-hook-form';
+import { useFormik } from 'formik';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup'
 
@@ -87,6 +88,15 @@ const AddWorkersPage: React.FC = () => {
   const [checked, setChecked] = useState(true);
   const repeaterRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(true);
+  const [email, setEmail] = useState('');
+  const [validEmail, setValidEmail] = useState(false);
+
+  const handleEmailChange = (e:any) => {
+    const enteredEmail = e.target.value;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setEmail(enteredEmail);
+    setValidEmail(emailRegex.test(enteredEmail));
+  };
   const [inputFields, setInputFields] = useState<inputField[]>([
     {
       endpointId: '',
@@ -154,25 +164,25 @@ const AddWorkersPage: React.FC = () => {
     }
   }
 
-  const validationSchema = Yup.object({
+   const validationSchema = Yup.object().shape({
     endpointId: Yup.string(),
     id: Yup.string(),
     firstName: Yup.string()
     .required('First name is required')
     .min(2,'First name must be at least 2 characters')
-    .max(14,'First name must not exceed 14 characters'),
+    .max(14,'First name must not exceed 24 characters'),
     lastName: Yup.string()
       .required('Last name is required')
       .min(2, 'Username must be at least 6 characters')
-      .max(20, 'Username must not exceed 20 characters'),
+      .max(20, 'Username must not exceed 30 characters'),
     address:Yup.string()
       .required('Address is required')
       .min(2,'Address must be at least 2 characters')
       .max(20,'Address must not exceed 20 characters'),
     oib:Yup.string()
       .required('OIB is required')
-      .min(10,'OIB must be at least 10 characters')
-      .max(20,'OIB must not exceed 12 characters'),
+      .min(11,'OIB must be at least 11 characters')
+      .max(11,'OIB must not exceed 11 characters'),
     email: Yup.string()
       .required('Email is required')
       .email('Email is invalid'),
@@ -225,18 +235,39 @@ const AddWorkersPage: React.FC = () => {
     tools: Yup.string()
       .notRequired()
       .max(100,'Tools must not exceed 100 characters'),
-  });
   
-  const {
-    handleSubmit,
-    formState: { errors }
-  } = useForm<UserSubmitForm>({
-    resolver: yupResolver<UserSubmitForma>(formState)
-  });
+    
+  }); 
+/* 
+  const formik = useFormik({
+    initialValues: {
+      firstName: '',
+      lastName:'',
+      email: '',
+      oib:'',
+      address: '',
+      mob: '',
+      passport:'',
+      fathersName:'',
+      mothersName:'',
+      workPermitDate:'',
+      physicalExamDate:'',
+      hr:'',
+      overtimeHr:'',
+      weekendHr:'',
+      wage:'',
+      nightHr:'',
+      workProtection:'',
+      firstAid:'',
+      geda:'',
+      note:'',
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values:any) => {
+      // Handle form submission
+    },
+  }); */
 
-  const onSubmit = (data: UserSubmitForm) => {
-    console.log(JSON.stringify(data, null, 2));
-  };
 
   const handleFormChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
     let data = [...inputFields];
@@ -253,8 +284,14 @@ const AddWorkersPage: React.FC = () => {
     }
     return x;
   }
+  const { 
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(validationSchema)
+  });
 
-    function convertSubmit(e:React.FormEvent) {
+
+    function handleSubmit(e:React.FormEvent) {
         e.preventDefault()
         const target = e.target as typeof e.target & {
           firstName: {value: string};
@@ -295,6 +332,8 @@ const AddWorkersPage: React.FC = () => {
           tools:target.tools.value,
           note: target.note.value
           }
+          
+
           const request = {...data, ...checkboxes};
           /* console.log(request); */
           axios.post('https://phpstack-675879-3984600.cloudwaysapps.com/api/v1/workers', request)
@@ -371,7 +410,7 @@ const AddWorkersPage: React.FC = () => {
       <div className="card-title m-0"><h3 className="fw-bolder m-0">Unos Radnika</h3></div>
     </div>
     <div className='card-body'>
-        <form className="form" method="post" onSubmit={convertSubmit}>
+        <form className="form" method="post" onSubmit={handleSubmit}>
         {inputFields.map((input, index) => {
             return (
             <div key={input.id}>
